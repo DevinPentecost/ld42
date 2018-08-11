@@ -2,7 +2,7 @@
 
 [ext_resource path="res://objects/game/GameController.gd" type="Script" id=1]
 
-[node name="GameController" type="Node" index="0" groups=[
+[node name="GameController" type="Node" groups=[
 "game_controller",
 ]]
 
