@@ -6,30 +6,31 @@ export var Sex = 0
 export var AgeMonths = 0
 
 
-const namesP = preload("res://data/dognames.gd")
-const adjectivesP = preload("res://data/dogadjectives.gd")
-const sentencesP = preload("res://data/dogsentences.gd")
-const objectsP = preload("res://data/dogobjects.gd")
+const _namesP = preload("res://data/dognames.gd")
+const _adjectivesP = preload("res://data/dogadjectives.gd")
+const _sentencesP = preload("res://data/dogsentences.gd")
+const _objectsP = preload("res://data/dogobjects.gd")
 
-const sexes = ["girl", "boy"]
-const swapHer = ["her", "his"]
-const swapShe = ["she", "he"]
+const _sexes = ["girl", "boy"]
+const _swapHer = ["her", "his"]
+const _swapShe = ["she", "he"]
 
+signal BioGenerationDone
 
 func _ready():
 	randomize()
 	
-	var names = namesP.new()
-	var adjectives = adjectivesP.new()
-	var sentences = sentencesP.new()
-	var objects = objectsP.new()
+	var names = _namesP.new()
+	var adjectives = _adjectivesP.new()
+	var sentences = _sentencesP.new()
+	var objects = _objectsP.new()
 	
-	var sexIndex = randi()%(sexes.size())
+	var sexIndex = randi()%(_sexes.size())
 	
-	var sex = sexes[sexIndex].to_lower()
+	var sex = _sexes[sexIndex].to_lower()
 	Sex = sexIndex
-	var her = swapHer[sexIndex].to_lower()
-	var she = swapShe[sexIndex].to_lower()
+	var her = _swapHer[sexIndex].to_lower()
+	var she = _swapShe[sexIndex].to_lower()
 	
 	var ageMonths = randi()%120
 	AgeMonths = AgeMonths
@@ -69,7 +70,7 @@ func _ready():
 		var outroB = sentences.OutroSentences[outroBIndex].format(swapper)
 		Bio = Bio + " " + _titleCase(outroB)
 	
-	pass
+	self.emit_signal("BioGenerationDone")
 	
 func _titleCase(s):
 	return s.left(1).to_upper() + s.substr(1, s.length()-1)
