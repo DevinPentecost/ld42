@@ -15,7 +15,7 @@ var _movement_input = [false, false, false, false]
 const PI2 = 2*PI
 var desired_angle = null
 const _player_rotation_speed = 5 #Radians a second?
-const _player_movement_speed = 50 #Units per second
+const _player_movement_speed = 100 #Units per second
 const _player_movement_angle = PI/2 #Radians away from target before player starts moving
 
 #Action variables
@@ -99,7 +99,7 @@ func _handle_player_motion(delta):
 	#First, are we looking close enough to move?
 	var angular_distance = abs(rotation.y - desired_angle)
 	var angular_distance_mod = abs(rotation.y - (desired_angle + PI2))
-	print('D ', angular_distance, ' DM ', angular_distance_mod)
+	#print('D ', angular_distance, ' DM ', angular_distance_mod)
 	if angular_distance < _player_movement_angle or angular_distance_mod < _player_movement_angle:
 		#We can start moving
 		
