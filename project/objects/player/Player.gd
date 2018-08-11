@@ -19,6 +19,7 @@ const _player_movement_speed = 50 #Units per second
 const _player_movement_angle = PI/2 #Radians away from target before player starts moving
 
 #Action variables
+var _game_over = false
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -40,6 +41,10 @@ func _process(delta):
 	_handle_player_movement(delta)
 	
 func _handle_player_movement(delta):
+
+	#Don't move if the game ended
+	if _game_over:
+		return
 
 	#First, rotate
 	_handle_player_rotation(delta)
@@ -134,6 +139,10 @@ func _calculate_desired_angle():
 
 func _unhandled_input(event):
 	
+	#Don't respond to input if the game ended
+	if _game_over:
+		return
+	
 	#See if it was movement
 	_handle_movement_input(event)
 	
@@ -162,3 +171,7 @@ func _handle_action_input(event):
 	if event.is_action_pressed(_action_input_event):
 		#Fire off the action
 		emit_signal("player_action")
+		
+func game_over():
+	#Game has ended!
+	_game_over = true
