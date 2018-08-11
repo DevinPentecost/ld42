@@ -1,33 +1,31 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://objects/dogbio.gd" type="Script" id=1]
-[ext_resource path="res://fonts/fontbold.tres" type="DynamicFont" id=2]
-[ext_resource path="res://fonts/fontlight.tres" type="DynamicFont" id=3]
+[ext_resource path="res://objects/ui/BioContainer.tscn" type="PackedScene" id=2]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=4]
 
-script/source = "extends Label
+script/source = "extends Button
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+export(NodePath) var bioUi
+
+onready var _bioUiNode = get_node(bioUi)
 
 
-func _ready():
-	self.get_parent().connect(\"BioGenerationDone\", self, \"_setName\")
 
-
-func _setName():
-	self.text = self.get_parent().Name
-	
-"
-
-[sub_resource type="GDScript" id=2]
-
-script/source = "extends Label
+const _dogbioP = preload(\"res://objects/dogbio.gd\")
 
 func _ready():
-	self.get_parent().connect(\"BioGenerationDone\", self, \"_setBio\")
+	pass
 
-
-func _setBio():
-	self.text = self.get_parent().Bio"
+func _pressed():
+	var doggie = _dogbioP.new()
+	doggie._ready()
+	_bioUiNode.ViewBio(doggie)"
 
 [node name="Node" type="Node" index="0"]
 
@@ -52,73 +50,33 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="BioContainer" type="VBoxContainer" parent="ReferenceRect" index="0"]
+[node name="BioContainer" parent="ReferenceRect" index="0" instance=ExtResource( 2 )]
+
+[node name="Button" type="Button" parent="ReferenceRect" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 354.0
-margin_top = 83.0
-margin_right = 638.0
-margin_bottom = 437.0
+margin_left = 75.0
+margin_top = 108.0
+margin_right = 161.0
+margin_bottom = 128.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 1
+focus_mode = 2
+mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-alignment = 0
-script = ExtResource( 1 )
-Name = "name"
-Bio = "bio"
-Sex = 0
-AgeMonths = 0
-
-[node name="DogName" type="Label" parent="ReferenceRect/BioContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 284.0
-margin_bottom = 19.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = ExtResource( 2 )
-text = "Doggie"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 1 )
-_sections_unfolded = [ "Visibility", "custom_fonts" ]
-
-[node name="DogBio" type="Label" parent="ReferenceRect/BioContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 23.0
-margin_right = 284.0
-margin_bottom = 42.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = ExtResource( 3 )
-text = "Biography!"
-autowrap = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = SubResource( 2 )
-_sections_unfolded = [ "custom_fonts" ]
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Make a Dog"
+flat = false
+align = 1
+script = SubResource( 4 )
+bioUi = NodePath("../BioContainer")
 
 
