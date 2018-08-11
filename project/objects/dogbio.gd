@@ -22,21 +22,21 @@ func _ready():
 	
 	var sexIndex = randi()%(sexes.size())
 	
-	var sex = sexes[sexIndex]
-	var her = swapHer[sexIndex]
-	var she = swapShe[sexIndex]
+	var sex = sexes[sexIndex].to_lower()
+	var her = swapHer[sexIndex].to_lower()
+	var she = swapShe[sexIndex].to_lower()
 	
 	var ageMonths = randi()%120
 	var ageStr = str(ageMonths) + " months"
 	if ageMonths > 20:
 		ageStr = str(ageMonths / 12) + " years"
 	
-	var adjective = adjectives.AllAdjectives[randi()%(adjectives.AllAdjectives.size())]
+	var adjective = adjectives.AllAdjectives[randi()%(adjectives.AllAdjectives.size())].to_lower()
 	
 	if sexIndex == 0:
-		Name = names.GirlNames[randi()%(names.GirlNames.size())]
+		Name = _titleCase(names.GirlNames[randi()%(names.GirlNames.size())])
 	else:
-		Name = names.BoyNames[randi()%(names.BoyNames.size())]
+		Name = _titleCase(names.BoyNames[randi()%(names.BoyNames.size())])
 	
 	var swapper = {"name": Name, "girl": sex, "she": she, "her": her, "age": ageStr, "adjective": adjective}
 	var intro = sentences.IntroSentences[randi()%(sentences.IntroSentences.size())].format(swapper)
