@@ -58,7 +58,7 @@ func _process(delta):
 	#Debug
 	if _debugging:
 		print('a ', adoption, ' h ', happiness)
-	$AdoptSprte.modulate.r = adoption
+	$AdoptSprite.modulate.r = adoption
 	$HappySprite.modulate.r = happiness
 
 func _bio_ready():

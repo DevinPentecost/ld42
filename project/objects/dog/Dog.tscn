@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://objects/dog/Dog.gd" type="Script" id=1]
 [ext_resource path="res://objects/dog/dog_texture_a.png" type="Texture" id=2]
 [ext_resource path="res://objects/dog/dog_texture_b.png" type="Texture" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
-[ext_resource path="res://objects/dogbio.gd" type="Script" id=5]
+[ext_resource path="res://objects/dogbio.gd" type="Script" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -14,7 +14,7 @@ mid_height = 0.5
 radial_segments = 64
 rings = 8
 
-[node name="Dog" type="Spatial"]
+[node name="Dog" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 TEXTURE_A = ExtResource( 2 )
@@ -29,7 +29,7 @@ adoption_rate = null
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0.5, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -44,7 +44,6 @@ skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
 
-
 [node name="Biography" type="Node" parent="." index="1"]
 
 script = ExtResource( 4 )
@@ -52,38 +51,6 @@ Name = "name"
 Bio = "bio"
 Sex = 0
 AgeMonths = 0
-
-[node name="AdoptSprte" type="Sprite3D" parent="." index="2"]
-
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 1.5, -0.5 )
-layers = 1
-material_override = null
-cast_shadow = 1
-extra_cull_margin = 0.0
-use_in_baked_light = false
-lod_min_distance = 0.0
-lod_min_hysteresis = 0.0
-lod_max_distance = 0.0
-lod_max_hysteresis = 0.0
-centered = true
-offset = Vector2( 0, 0 )
-flip_h = false
-flip_v = false
-modulate = Color( 0, 1, 0, 1 )
-opacity = 1.0
-pixel_size = 0.01
-axis = 2
-transparent = false
-shaded = true
-double_sided = true
-alpha_cut = 0
-texture = ExtResource( 4 )
-vframes = 1
-hframes = 1
-frame = 0
-region_enabled = false
-region_rect = Rect2( 0, 0, 0, 0 )
-_sections_unfolded = [ "Flags", "Transform" ]
 
 [node name="HappySprite" type="Sprite3D" parent="." index="2"]
 
@@ -109,11 +76,44 @@ transparent = false
 shaded = false
 double_sided = true
 alpha_cut = 0
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 vframes = 1
 hframes = 1
 frame = 0
 region_enabled = false
 region_rect = Rect2( 0, 0, 0, 0 )
 _sections_unfolded = [ "Flags", "Transform" ]
+
+[node name="AdoptSprite" type="Sprite3D" parent="." index="3"]
+
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 1.5, -0.5 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 0, 1, 0, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 2
+transparent = false
+shaded = true
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 5 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = false
+region_rect = Rect2( 0, 0, 0, 0 )
+_sections_unfolded = [ "Flags", "Transform" ]
+
 
