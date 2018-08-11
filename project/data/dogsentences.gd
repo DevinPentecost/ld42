@@ -8,6 +8,7 @@ extends Node
 	# {her}
 	# {age}
 	# {adjective}
+	# {objects}
 
 export var IntroSentences = ["Meet {name}, this {adjective} {girl} is looking for {her} best friend to grab a pup-achino with.",
 "This {girl} wants nothing more than to bond to your lap.",
@@ -39,7 +40,7 @@ export var OutroSentences = ["{she} is already housebroken and crate trained.",
 "{she} wanted us to let y'all know {she} enjoys long walks anywhere and chasing down squirrels!",
 "{she} is a special pup because {she} has some neurological issues.",
 "{she} doesn't let {her} quirks slow {her} down, {she} is very active and loves to explore.",
-"{her} new family will need to take precautions for {her} safety, especially around stairs and fireplaces.",
+"{her} new family will need to take precautions for {her} safety, especially around stairs and {objects}.",
 "{she} would like a home where someone is around frequently and {she} gets to spend majority of {her} time outside in a yard or a room where {she} can play.",
 "{she} sleeps through the night in {her} crate but is still working on potty training.",
 "{she} will get into your lap and give you snuggles and kisses but is content with a belly rub.",
@@ -48,10 +49,13 @@ export var OutroSentences = ["{she} is already housebroken and crate trained.",
 "{she} has also learned about playing with toys and playing with other dogs.",
 "{she} loves to get up on the end table and lay in the sun or just look out the window.",
 "Changes are very scary for {her} and {she} doesn't like a lot of people around {her}.",
-"Playing with Karl would bring out the little tough guy in {her}, but now that Karl has been adopted {she} is opening up to {her} foster siblings.",
+"Playing with {name} would bring out the little tough guy in {her}, but now that {name} has been taken in {she} is opening up to {her} foster siblings.",
 "{she} is learning to trust again and is doing very well.",
 "{she} bonds quickly to one person.",
 "{she} plays well with small dogs, don't know about cats.",
 "{she} is a little shy at first but once {she} feels comfortable and knows you, {she} will be ok.",
 "{she} loves belly rubs, {she} will roll on {her} back and beg for belly rubs.",
-"{she} doesn't want to get out of bed unless {she} feels like it's justified."]
+"{she} doesn't want to get out of bed unless {she} feels like it's justified.",
+"{she}'s fascinated by {objects}.",
+"{she} needs to be watched carefully around {objects}.",
+"{name} loves to place with {objects}!"]
