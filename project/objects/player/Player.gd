@@ -12,10 +12,10 @@ const _movement_input_events = ["player_move_up", "player_move_left", "player_mo
 var _movement_input = [false, false, false, false]
 
 #Movement variables
-const PI2 = 2*PI
 var desired_angle = null
-const _player_rotation_speed = 5 #Radians a second?
-const _player_movement_speed = 100 #Units per second
+const _player_rotation_lock = 0.1 #Radians to 'lock' to desired angle
+const _player_rotation_speed = 2.3 #Radians a second?
+const _player_movement_speed = 140 #Units per second
 const _player_movement_angle = PI/2 #Radians away from target before player starts moving
 
 #Action variables
@@ -65,9 +65,15 @@ func _handle_player_rotation(delta):
 	#How far to move?
 	var angular_distance = desired_angle - rotation.y
 	
+	#Are we close enough to just face it?
+	if abs(angular_distance) <= _player_rotation_lock:
+		#Just face it
+		rotation.y = desired_angle
+		return
+	
 	#Across the circle?
 	if angular_distance < 0:
-		angular_distance += PI2
+		angular_distance += PI*2
 	
 	#Which way to go?
 	var rotation_direction = 1
@@ -76,20 +82,17 @@ func _handle_player_rotation(delta):
 		rotation_direction = -1
 	
 	#Now rotate that much
-	var rotation_amount = _player_rotation_speed * rotation_direction * delta
-	var target_rotation = rotation.y + rotation_amount
+	var rotation_amount = _player_rotation_speed * rotation_direction
+	rotation_amount *= delta
 	
-	#Did we go past it?
-	if (rotation_direction == 1) and (target_rotation >= desired_angle) or (rotation_direction == -1) and (target_rotation <= desired_angle):
-		#Just stop there
-		rotation.y = desired_angle
-	else:
-		#Rotate that amount
-		rotation.y = target_rotation
-		
+	#Do the rotate
+	rotation.y += rotation_amount
+	
 	#If we rotated past
-	if rotation.y > PI2:
-		rotation.y -= PI2
+	if rotation.y > PI:
+		rotation.y -= 2*PI
+	if rotation.y < -PI:
+		rotation.y += 2*PI
 
 func _handle_player_motion(delta):
 	#Is the player moving at all?
@@ -97,9 +100,10 @@ func _handle_player_motion(delta):
 		return
 	
 	#First, are we looking close enough to move?
-	var angular_distance = abs(rotation.y - desired_angle)
-	var angular_distance_mod = abs(rotation.y - (desired_angle + PI2))
-	#print('D ', angular_distance, ' DM ', angular_distance_mod)
+	var angular_distance = abs(desired_angle - rotation.y)
+	var angular_distance_mod = abs(desired_angle - (rotation.y + 2*PI))
+	
+	#Facing close enough to start moving?
 	if angular_distance < _player_movement_angle or angular_distance_mod < _player_movement_angle:
 		#We can start moving
 		
@@ -115,25 +119,29 @@ func _handle_player_motion(delta):
 func _calculate_desired_angle():
 	#Figure out where the player wants to rotate towards
 	#Huge ugly match statement because I'm math dumb
+	var angle = null
 	match _movement_input:
 		[true, false, false, false]:
-			return 0
+			angle = 0
 		[true, true, false, false]:
-			return PI/4
+			angle = PI/4
 		[false, true, false, false]:
-			return 2*PI/4
+			angle = 2*PI/4
 		[false, true, true, false]:
-			return 3*PI/4
+			angle = 3*PI/4
 		[false, false, true, false]:
-			return 4*PI/4
+			angle = PI
 		[false, false, true, true]:
-			return 5*PI/4
+			angle = -3*PI/4
 		[false, false, false, true]:
-			return 6*PI/4
+			angle = -2*PI/4
 		[true, false, false, true]:
-			return 7*PI/4
+			angle = -PI/4
 		_:
 			return null
+	
+	#Adjust the angle
+	return angle
 
 
 

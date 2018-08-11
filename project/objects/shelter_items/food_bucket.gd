@@ -9,7 +9,9 @@ export var activation_cooldown_seconds = 15
 signal on_cooldown_done
 signal on_food_full
 
+
 # Internal things
+var _active = false
 var current_cooldown_seconds = 0
 var current_food = max_food / 2
 
@@ -61,10 +63,18 @@ func request_food():
 	return food_to_give
 
 func on_player_action():
-	# Detect if the player is in contact
-	var is_nearby = true
-	if is_nearby == true:
+	#Is the player interacting with the bucket?
+	if _active:
 		# Give the player food!
 		get_tree().call_group("game_controller", "fill_player_food", request_food())
 		
 	pass
+
+func _on_ActionArea_body_entered(body):
+	#For now, assume it's the player
+	print(body)
+	_active = true
+
+func _on_ActionArea_body_exited(body):
+	#For now, assume it's the player
+	_active = false

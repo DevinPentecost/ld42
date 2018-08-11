@@ -3,6 +3,7 @@ extends Node
 signal game_over(time, adoptions)
 signal score_changed(time, adoptions)
 signal food_changed(food_amount)
+signal not_enough_food
 
 #Scoring
 var time = 0
@@ -13,7 +14,7 @@ onready var _game_grid = $"../GameGrid"
 
 #Food
 const MAX_PLAYER_FOOD = 10
-var player_food = MAX_PLAYER_FOOD setget _set_player_food
+var _player_food = 10 setget _set_player_food
 
 #Dog spawning
 onready var _spawn_timer = $SpawnTimer
@@ -32,6 +33,11 @@ func _ready():
 	#Spawn the first dog
 	_start_dog_spawn()
 	
+	player_feed_kennel(null)
+	player_feed_kennel(null)
+	player_feed_kennel(null)
+	player_feed_kennel(null)
+	
 	#Track every frame
 	set_process(true)
 	
@@ -42,6 +48,7 @@ func _process(delta):
 	_update_score()
 	
 func _update_score():
+	#GUI should be listening!
 	emit_signal("score_changed", time, adoptions)
 
 func _start_dog_spawn():
@@ -66,11 +73,14 @@ func _set_player_food(new_food):
 	#A good number?
 	new_food = max(new_food, 0)
 	new_food = min(new_food, MAX_PLAYER_FOOD)
-	player_food = new_food
+	_player_food = new_food
+	
+	#Alert whoever is listening
+	emit_signal("food_changed", _player_food)
 	
 func can_player_spend_food():
 	#Do we have any?
-	return player_food > 0
+	return _player_food > 0
 	
 func spend_player_food(amount=1):
 	#Can we feed anything?
@@ -78,8 +88,10 @@ func spend_player_food(amount=1):
 		return null
 	
 	#Remove food from the player's inventory
-	player_food -= 1
-	return player_food
+	_set_player_food(_player_food - 1)
+	
+	#Return the amount remaining
+	return _player_food
 	
 func fill_player_food(amount=null):
 	#Was an amount specified?
@@ -89,6 +101,23 @@ func fill_player_food(amount=null):
 	
 	#Set it
 	_set_player_food(amount)
+	
+func player_feed_kennel(kennel_node):
+	#A kennel is attempting to feed
+	
+	#Can we?
+	print(_player_food)
+	if can_player_spend_food():
+		#We spend that food
+		var remaining_food = spend_player_food()
+		print("Remaining food: ", remaining_food)
+		
+		#Tell the kennel to be happy or whatever
+		pass
+	else:
+		#We need to alert folks that there wasn't enough food
+		print("OUT OF FOOD")
+		emit_signal("not_enough_food")
 
 func on_Kennel_dog_adopted(kennel):
 	

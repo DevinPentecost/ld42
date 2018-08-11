@@ -21,17 +21,16 @@ func on_player_action():
 	#Is the player here?
 	if _active:
 		#We respond!
+		get_tree().call_group("game_controller", "player_feed_kennel", self)
 		print("FEED THAT DOG?!?!")
 	
 	pass
 
 func _on_ActionArea_body_entered(body):
-	
 	#For now, assume it's the player
 	_active = true
 
 
 func _on_ActionArea_body_exited(body):
-	
 	#For now, assume it's the player
 	_active = false

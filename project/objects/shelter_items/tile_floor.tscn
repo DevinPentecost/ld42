@@ -63,7 +63,7 @@ subdivide_depth = 0
 
 plane = Plane( 0, 1, 0, 0 )
 
-[node name="tile_floor" type="MeshInstance" index="0"]
+[node name="tile_floor" type="MeshInstance"]
 
 layers = 1
 material_override = null
