@@ -14,7 +14,7 @@ onready var _game_grid = $"../GameGrid"
 
 #Food
 const MAX_PLAYER_FOOD = 10
-var _player_food = 10 setget _set_player_food
+var _player_food = MAX_PLAYER_FOOD setget _set_player_food
 
 #Dog spawning
 onready var _spawn_timer = $SpawnTimer
@@ -30,13 +30,12 @@ func _ready():
 	#Get all the kennels
 	_initialize_kennels()
 	
-	#Spawn the first dog
+	#Spawn the first dogs
+	_spawn_dog()
+	_spawn_dog()
+	_spawn_dog()
+	_spawn_dog()
 	_start_dog_spawn()
-	
-	player_feed_kennel(null)
-	player_feed_kennel(null)
-	player_feed_kennel(null)
-	player_feed_kennel(null)
 	
 	#Track every frame
 	set_process(true)
@@ -60,14 +59,13 @@ func _start_dog_spawn():
 func _initialize_kennels():
 	
 	#Get all of the kennels
-	return
 	var all_kennels = _game_grid.get_all_kennels()
 	for kennel in all_kennels:
 		#It starts empty
 		_empty_kennels.append(kennel)
 		
 		#Listen for adoptions
-		kennel.connect("dog_adopted", self, "_on_Kennel_dog_adopted", kennel)
+		kennel.connect("dog_adopted", self, "_on_Kennel_dog_adopted", [kennel])
 
 func _set_player_food(new_food):
 	#A good number?
@@ -129,14 +127,16 @@ func on_Kennel_dog_adopted(kennel):
 	_empty_kennels.append(kennel)
 
 func _spawn_dog():
-	return
+	
 	#Are there any available spots?
 	var available_kennels = _empty_kennels.size()
 	if available_kennels <= 0:
 		#Player has lost!
+		print("NO ROOM FOR DOGGIES YOU LOST!")
 		emit_signal("game_over")
 		get_tree().call_group("player", "game_over")
 		_spawn_timer.stop()
+		return
 	
 	#Get a kennel and call it occupied
 	var kennel_index = randi() % available_kennels

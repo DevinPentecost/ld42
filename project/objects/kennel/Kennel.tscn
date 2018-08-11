@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://objects/kennel/Kennel.gd" type="Script" id=1]
-[ext_resource path="res://objects/kennel/BowlArea.gd" type="Script" id=2]
-[ext_resource path="res://objects/kennel/Bowl.tscn" type="PackedScene" id=3]
-[ext_resource path="res://objects/kennel/DogArea.gd" type="Script" id=4]
-[ext_resource path="res://objects/kennel/mat.png" type="Texture" id=5]
+[ext_resource path="res://objects/dog/Dog.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/kennel/BowlArea.gd" type="Script" id=3]
+[ext_resource path="res://objects/kennel/Bowl.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/kennel/DogArea.gd" type="Script" id=5]
+[ext_resource path="res://objects/kennel/mat.png" type="Texture" id=6]
+[ext_resource path="res://objects/basic_tiles/FloorTile.tscn" type="PackedScene" id=7]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -16,7 +18,7 @@ extents = Vector3( 0.1, 1, 2 )
 
 [sub_resource type="BoxShape" id=3]
 
-extents = Vector3( 0.25, 1, 1 )
+extents = Vector3( 0.25, 0.25, 1 )
 
 [sub_resource type="CubeMesh" id=4]
 
@@ -39,19 +41,20 @@ subdivide_depth = 0
 ]]
 
 script = ExtResource( 1 )
+_dog_scene = ExtResource( 2 )
 
 [node name="StaticBody" type="StaticBody" parent="." index="0"]
 
-editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
-collision_layer = 2
+collision_layer = 3
 collision_mask = 1
 friction = 1.0
 bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="LeftShape" type="CollisionShape" parent="StaticBody" index="0"]
 
@@ -83,6 +86,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="ActionArea" type="Area" parent="." index="1"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0 )
 input_ray_pickable = false
 input_capture_on_drag = false
@@ -108,10 +112,14 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="ActionArea" index="0"]
 
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 shape = SubResource( 3 )
 disabled = false
+_sections_unfolded = [ "Transform" ]
 
 [node name="Walls" type="Spatial" parent="." index="2"]
+
+editor/display_folded = true
 
 [node name="WallFront" type="MeshInstance" parent="Walls" index="0"]
 
@@ -184,21 +192,21 @@ _sections_unfolded = [ "Transform" ]
 [node name="BowlArea" type="Spatial" parent="." index="3"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 1 )
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
-bowl_scene = ExtResource( 3 )
+bowl_scene = ExtResource( 4 )
 area = Vector2( 1.25, 0.5 )
 
 [node name="DogArea" type="Spatial" parent="." index="4"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.25 )
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 area = Vector2( 1.75, 1.75 )
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="5"]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 1.5, 0, 0 )
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 1.5, 0.01, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -220,13 +228,15 @@ transparent = false
 shaded = false
 double_sided = false
 alpha_cut = 0
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 vframes = 1
 hframes = 1
 frame = 0
 region_enabled = false
 region_rect = Rect2( 0, 0, 0, 0 )
 _sections_unfolded = [ "Flags", "Transform" ]
+
+[node name="FloorTile" parent="." index="6" instance=ExtResource( 7 )]
 
 [connection signal="body_entered" from="ActionArea" to="." method="_on_ActionArea_body_entered"]
 
