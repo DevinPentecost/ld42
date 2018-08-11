@@ -2,10 +2,13 @@ extends Spatial
 
 signal adopted
 
+#Debbing
+var _debugging = false
+
 #Properties of doggo
 const SCALE_RANGE = Vector2(0.8, 1.5)
-const TEND_RATE_RANGE = Vector2(0.5, 1.5)
-const ADOPTION_RATE_RANGE = Vector2(0.75, 1.25)
+const TEND_RATE_RANGE = Vector2(0.1, 0.15)
+const ADOPTION_RATE_RANGE = Vector2(0.1, 0.15)
 const COLOR_RANGE = {
 	'r': Vector2(0, 1),
 	'g': Vector2(0, 1),
@@ -44,12 +47,20 @@ func _ready():
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	# Update game logic here.
-	pass
+	
+	_update_status(delta)
+	
+	#Debug
+	if _debugging:
+		print('a ', adoption, ' h ', happiness)
+	$AdoptSprte.modulate.r = adoption
+	$HappySprite.modulate.r = happiness
 
 func _update_status(delta):
 	
 	#Lower the happiness by the tend rate
 	happiness -= tend_rate * delta
+	happiness = max(happiness, 0)
 	
 	#Are we happy enough to start getting adopted?
 	if happiness >= MIN_ADOPTION_HAPPINESS:

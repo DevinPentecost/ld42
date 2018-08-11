@@ -10,6 +10,8 @@
 
 [node name="GameGrid" parent="." index="0" instance=ExtResource( 1 )]
 
+_sections_unfolded = [ "Pause" ]
+
 [node name="GameController" parent="." index="1" instance=ExtResource( 2 )]
 
 [node name="Player" parent="." index="2" instance=ExtResource( 3 )]
@@ -18,8 +20,9 @@
 
 [node name="Kennel" parent="." index="4" instance=ExtResource( 5 )]
 
-transform = Transform( -0.362216, 0, -0.932094, 0, 1, 0, 0.932094, 0, -0.362216, 3.4102, 0, -12.3718 )
+transform = Transform( -0.94947, 0, -0.313857, 0, 1, 0, 0.313857, 0, -0.94947, 5.90267, 0, -1.41698 )
 _sections_unfolded = [ "Transform" ]
+_force_dog_spawn = true
 
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="5"]
 
