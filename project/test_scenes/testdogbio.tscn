@@ -1,9 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://objects/dogbio.gd" type="Script" id=1]
 [ext_resource path="res://objects/ui/BioContainer.tscn" type="PackedScene" id=2]
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Button
 
@@ -26,6 +26,28 @@ func _pressed():
 	var doggie = _dogbioP.new()
 	doggie._ready()
 	_bioUiNode.ViewBio(doggie)"
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Button
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+export(NodePath) var bioUi
+
+onready var _bioUiNode = get_node(bioUi)
+
+
+
+const _dogbioP = preload(\"res://objects/dogbio.gd\")
+
+func _ready():
+	pass
+
+func _pressed():
+	_bioUiNode.HideBio()"
 
 [node name="Node" type="Node" index="0"]
 
@@ -52,6 +74,8 @@ size_flags_vertical = 1
 
 [node name="BioContainer" parent="ReferenceRect" index="0" instance=ExtResource( 2 )]
 
+_sections_unfolded = [ "Rect", "Visibility" ]
+
 [node name="Button" type="Button" parent="ReferenceRect" index="1"]
 
 anchor_left = 0.0
@@ -76,7 +100,34 @@ group = null
 text = "Make a Dog"
 flat = false
 align = 1
-script = SubResource( 4 )
+script = SubResource( 1 )
+bioUi = NodePath("../BioContainer")
+
+[node name="Button2" type="Button" parent="ReferenceRect" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 74.0
+margin_top = 142.0
+margin_right = 137.0
+margin_bottom = 162.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "HideBio"
+flat = false
+align = 1
+script = SubResource( 2 )
 bioUi = NodePath("../BioContainer")
 
 
