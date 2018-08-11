@@ -5,21 +5,21 @@
 [sub_resource type="CylinderMesh" id=1]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
-top_radius = 1.0
-bottom_radius = 1.0
+top_radius = 0.25
+bottom_radius = 0.5
 height = 2.0
 radial_segments = 64
 rings = 4
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="SphereShape" id=4]
 
-extents = Vector3( 1, 1, 1 )
+radius = 0.5
 
 [sub_resource type="PrismMesh" id=3]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 left_to_right = 0.5
-size = Vector3( 2, 2, 2 )
+size = Vector3( 0.5, 0.5, 0.5 )
 subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
@@ -31,7 +31,7 @@ subdivide_depth = 0
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 1
-collision_mask = 1
+collision_mask = 2
 axis_lock_linear_x = false
 axis_lock_linear_y = false
 axis_lock_linear_z = false
@@ -40,7 +40,7 @@ axis_lock_angular_y = false
 axis_lock_angular_z = false
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
-_sections_unfolded = [ "Axis Lock", "Transform" ]
+_sections_unfolded = [ "Axis Lock", "Collision", "Transform" ]
 
 [node name="Model" type="MeshInstance" parent="." index="0"]
 
@@ -62,13 +62,13 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape" type="CollisionShape" parent="." index="1"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
 [node name="DebugMesh" type="MeshInstance" parent="." index="2"]
 
-transform = Transform( -2.18557e-008, 0.5, -2.18557e-008, 0, -2.18557e-008, -0.5, -0.5, -2.18557e-008, 9.55343e-016, 0.6, 2, 0 )
+transform = Transform( -2.18557e-008, 0.5, -2.18557e-008, 0, -2.18557e-008, -0.5, -0.5, -2.18557e-008, 9.55343e-016, 0.25, 2, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1

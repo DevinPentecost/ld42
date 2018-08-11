@@ -53,6 +53,7 @@ func _start_dog_spawn():
 func _initialize_kennels():
 	
 	#Get all of the kennels
+	return
 	var all_kennels = _game_grid.get_all_kennels()
 	for kennel in all_kennels:
 		#It starts empty
@@ -99,7 +100,7 @@ func on_Kennel_dog_adopted(kennel):
 	_empty_kennels.append(kennel)
 
 func _spawn_dog():
-	
+	return
 	#Are there any available spots?
 	var available_kennels = _empty_kennels.size()
 	if available_kennels <= 0:
