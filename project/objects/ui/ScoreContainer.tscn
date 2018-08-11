@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/fontbold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/fontlight.tres" type="DynamicFont" id=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends HBoxContainer
+
+signal SetScoreSignal(score)
+
+var _wiggleDuration = 1.0
+var _wiggleCur = 0.0
+
+func SetScore(score):
+	self.emit_signal(\"SetScoreSignal\", score)
+	_wiggleCur = 0.0
+
+func _ready():
+	_wiggleCur = _wiggleDuration
+	self.SetScore(0)
+	
+func _process(delta):
+	_wiggleCur = _wiggleCur + delta
+	if _wiggleCur >= _wiggleDuration:
+		self.rect_rotation = 0.0
+		return
+	self.rect_rotation = cos(_wiggleCur * 8.0) * 2.0"
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Label
+
+func _ready():
+	self.get_parent().connect(\"SetScoreSignal\", self, \"_setScore\")
+
+func _setScore(score):
+	self.text = str(score)"
+
+[node name="ScoreContainer" type="HBoxContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 21.0
+margin_top = 540.0
+margin_right = 97.0
+margin_bottom = 580.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+script = SubResource( 1 )
+
+[node name="Label" type="Label" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 10.0
+margin_right = 63.0
+margin_bottom = 29.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 1 )
+text = "Rescues"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="ScoreNumber" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 67.0
+margin_top = 10.0
+margin_right = 94.0
+margin_bottom = 29.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
+text = "999"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = SubResource( 2 )
+_sections_unfolded = [ "custom_fonts" ]
+
+

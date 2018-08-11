@@ -13,6 +13,7 @@ const _objectsP = preload("res://data/dogobjects.gd")
 
 const _sexes = ["girl", "boy"]
 const _swapHer = ["her", "his"]
+const _swapDO = ["her", "him"]
 const _swapShe = ["she", "he"]
 
 signal BioGenerationDone
@@ -31,6 +32,7 @@ func _ready():
 	Sex = sexIndex
 	var her = _swapHer[sexIndex].to_lower()
 	var she = _swapShe[sexIndex].to_lower()
+	var dirobj = _swapDO[sexIndex].to_lower()
 	
 	var ageMonths = randi()%120
 	AgeMonths = AgeMonths
@@ -45,14 +47,14 @@ func _ready():
 	
 	var adjective = adjectives.AllAdjectives[randi()%(adjectives.AllAdjectives.size())].to_lower()
 	var object = objects.AllObjects[randi()%(objects.AllObjects.size())].to_lower()
-	var swapper = {"name": Name, "girl": sex, "she": she, "her": her, "age": ageStr, "adjective": adjective, "objects": object}
+	var swapper = {"name": Name, "girl": sex, "she": she, "her": her, "do": dirobj, "age": ageStr, "adjective": adjective, "objects": object}
 	
 	var intro = sentences.IntroSentences[randi()%(sentences.IntroSentences.size())].format(swapper)
 	
 	# redo randoms
 	adjective = adjectives.AllAdjectives[randi()%(adjectives.AllAdjectives.size())].to_lower()
 	object = objects.AllObjects[randi()%(objects.AllObjects.size())].to_lower()
-	swapper = {"name": Name, "girl": sex, "she": she, "her": her, "age": ageStr, "adjective": adjective, "objects": object}
+	swapper = {"name": Name, "girl": sex, "she": she, "her": her, "do": dirobj, "age": ageStr, "adjective": adjective, "objects": object}
 	
 	var outroAIndex = randi()%(sentences.OutroSentences.size())
 	var outroA = sentences.OutroSentences[outroAIndex].format(swapper)
@@ -65,7 +67,7 @@ func _ready():
 		# redo randoms
 		adjective = adjectives.AllAdjectives[randi()%(adjectives.AllAdjectives.size())].to_lower()
 		object = objects.AllObjects[randi()%(objects.AllObjects.size())].to_lower()
-		swapper = {"name": Name, "girl": sex, "she": she, "her": her, "age": ageStr, "adjective": adjective, "objects": object}
+		swapper = {"name": Name, "girl": sex, "she": she, "her": her, "do": dirobj, "age": ageStr, "adjective": adjective, "objects": object}
 		
 		var outroB = sentences.OutroSentences[outroBIndex].format(swapper)
 		Bio = Bio + " " + _titleCase(outroB)
