@@ -1,23 +1,24 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://objects/kennel/Kennel.gd" type="Script" id=1]
 [ext_resource path="res://objects/kennel/BowlArea.gd" type="Script" id=2]
 [ext_resource path="res://objects/kennel/Bowl.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/kennel/DogArea.gd" type="Script" id=4]
+[ext_resource path="res://objects/kennel/mat.png" type="Texture" id=5]
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=1]
 
 extents = Vector3( 2, 1, 0.1 )
 
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=2]
 
 extents = Vector3( 0.1, 1, 2 )
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="BoxShape" id=3]
 
 extents = Vector3( 0.25, 1, 1 )
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="CubeMesh" id=4]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 0.1, 1, 4 )
@@ -25,7 +26,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="CubeMesh" id=2]
+[sub_resource type="CubeMesh" id=5]
 
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 size = Vector3( 0.1, 2, 4 )
@@ -33,7 +34,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[node name="Kennel" type="Spatial" index="0" groups=[
+[node name="Kennel" type="Spatial" groups=[
 "kennel",
 ]]
 
@@ -55,28 +56,28 @@ _sections_unfolded = [ "Collision" ]
 [node name="LeftShape" type="CollisionShape" parent="StaticBody" index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
 [node name="RightShape" type="CollisionShape" parent="StaticBody" index="1"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
 [node name="FrontShape" type="CollisionShape" parent="StaticBody" index="2"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
 [node name="BackShape" type="CollisionShape" parent="StaticBody" index="3"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
@@ -107,7 +108,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="ActionArea" index="0"]
 
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 disabled = false
 
 [node name="Walls" type="Spatial" parent="." index="2"]
@@ -124,7 +125,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 1 )
+mesh = SubResource( 4 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -141,7 +142,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 2 )
+mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -158,7 +159,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 2 )
+mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -175,7 +176,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 2 )
+mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -194,6 +195,38 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.25 )
 script = ExtResource( 4 )
 _sections_unfolded = [ "Transform" ]
 area = Vector2( 1.75, 1.75 )
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="5"]
+
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 1.5, 0, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 1
+transparent = false
+shaded = false
+double_sided = false
+alpha_cut = 0
+texture = ExtResource( 5 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = false
+region_rect = Rect2( 0, 0, 0, 0 )
+_sections_unfolded = [ "Flags", "Transform" ]
 
 [connection signal="body_entered" from="ActionArea" to="." method="_on_ActionArea_body_entered"]
 

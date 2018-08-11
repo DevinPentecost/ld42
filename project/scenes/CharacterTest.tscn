@@ -5,7 +5,7 @@
 [ext_resource path="res://objects/game/Camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/kennel/Kennel.tscn" type="PackedScene" id=4]
 
-[node name="CharacterTest" type="Node"]
+[node name="CharacterTest" type="Node" index="0"]
 
 [node name="GameController" parent="." index="0" instance=ExtResource( 1 )]
 
