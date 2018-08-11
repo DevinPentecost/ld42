@@ -2,6 +2,8 @@ extends Node
 
 export var Name = "name"
 export var Bio = "bio"
+export var Sex = 0
+export var AgeMonths = 0
 
 
 const namesP = preload("res://data/dognames.gd")
@@ -25,10 +27,12 @@ func _ready():
 	var sexIndex = randi()%(sexes.size())
 	
 	var sex = sexes[sexIndex].to_lower()
+	Sex = sexIndex
 	var her = swapHer[sexIndex].to_lower()
 	var she = swapShe[sexIndex].to_lower()
 	
 	var ageMonths = randi()%120
+	AgeMonths = AgeMonths
 	var ageStr = str(ageMonths) + " month"
 	if ageMonths > 20:
 		ageStr = str(ageMonths / 12) + " year"
