@@ -1,12 +1,22 @@
 extends Spatial
 
-export(PackedScene) var _dog_scene
+signal dog_adopted
 
+export(PackedScene) var _dog_scene
+export(bool) var _force_dog_spawn = false #DEBUG ONLY!
+
+var _active_dog_node = null
 var _active = false
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
+	
+	#Start with a dog?
+	if _force_dog_spawn:
+		spawn_dog()
+		_active_dog_node._debugging = true
+	
 	pass
 
 #func _process(delta):
@@ -18,6 +28,8 @@ func spawn_dog():
 	
 	#Make the dog node
 	var new_dog_node = _dog_scene.instance()
+	_active_dog_node = new_dog_node
+	new_dog_node.connect("adopted", self, "_on_Dog_adopted")
 	
 	#Get a random name and description
 	new_dog_node.dog_name = "Dog #" + str(randi() % 1000)
@@ -56,7 +68,8 @@ func on_player_action():
 	if _active:
 		#We respond!
 		get_tree().call_group("game_controller", "player_feed_kennel", self)
-		print("FEED THAT DOG?!?!")
+		if _active_dog_node:
+			_active_dog_node.feed()
 	
 	pass
 
@@ -68,3 +81,13 @@ func _on_ActionArea_body_entered(body):
 func _on_ActionArea_body_exited(body):
 	#For now, assume it's the player
 	_active = false
+
+func _on_Dog_adopted():
+	#Make some changes to the kennel if needed
+	
+	#Get rid of the dog since it's happy
+	_active_dog_node.queue_free()
+	_active_dog_node = null
+	
+	#Announce we got the dog adopted
+	emit_signal("dog_adopted")

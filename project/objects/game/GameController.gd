@@ -120,7 +120,7 @@ func player_feed_kennel(kennel_node):
 		print("OUT OF FOOD")
 		emit_signal("not_enough_food")
 
-func on_Kennel_dog_adopted(kennel):
+func _on_Kennel_dog_adopted(kennel):
 	
 	#Give the player a point
 	adoptions += 1
@@ -149,7 +149,6 @@ func _spawn_dog():
 	#Tell the kennel to put a dog in it
 	target_kennel.spawn_dog()
 	
-
 func _on_SpawnTimer_timeout():
 	
 	#Make the dog
