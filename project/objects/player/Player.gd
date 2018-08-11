@@ -1,8 +1,7 @@
 extends KinematicBody
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+#Signals
+signal player_action
 
 #Action input from the player
 const _action_input_event = "player_action"
@@ -18,6 +17,8 @@ var desired_angle = null
 const _player_rotation_speed = 5 #Radians a second?
 const _player_movement_speed = 50 #Units per second
 const _player_movement_angle = PI/2 #Radians away from target before player starts moving
+
+#Action variables
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -129,6 +130,8 @@ func _calculate_desired_angle():
 		_:
 			return null
 
+
+
 func _unhandled_input(event):
 	
 	#See if it was movement
@@ -158,4 +161,4 @@ func _handle_action_input(event):
 	#Was it a player action?
 	if event.is_action_pressed(_action_input_event):
 		#Fire off the action
-		pass
+		emit_signal("player_action")
