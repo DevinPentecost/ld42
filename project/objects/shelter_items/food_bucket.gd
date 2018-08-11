@@ -59,3 +59,12 @@ func request_food():
 	can_emit_cooldown_signal = true
 	
 	return food_to_give
+
+func on_player_action():
+	# Detect if the player is in contact
+	var is_nearby = true
+	if is_nearby == true:
+		# Give the player food!
+		get_tree().call_group("game_controller", "fill_player_food", request_food())
+		
+	pass

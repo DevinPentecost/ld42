@@ -6,8 +6,13 @@ onready var scene_shelter_counter = load("res://objects/shelter_items/tile_count
 onready var scene_shelter_food = load("res://objects/shelter_items/food_bucket.tscn")
 onready var scene_shelter_cage = load("res://objects/shelter_items/tile_kennel.tscn")
 
+# Contents of the grid, as provided by the input file
 var grid_contents = {}
+
+# Scene grid, containing all of the scened in the grid
 var scene_grid = {}
+
+# Array of kennel locations (array of dictionaries with contents {row, col})
 var kennel_locations = []
 
 
@@ -24,6 +29,18 @@ func _ready():
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+
+var _tile_void = 0
+var _tile_floor = 1
+var _tile_wall = 2
+var _tile_counter = 3
+var _tile_food = 4
+var _tile_kennel = 5
+
+var _direction_down = 1
+var _direction_left = 2
+var _direction_up = 3
+var _direction_right = 4
 
 
 func _create_grid_scenes():
@@ -43,22 +60,22 @@ func _create_grid_scenes():
 			# Create the appropriate scene
 			var new_scene = null
 			var type = int(type_str)
-			if type == 0:
+			if type == _tile_void:
 				# Void, do nothing
 				continue
-			if type == 1:
+			if type == _tile_floor:
 				# Floor
 				new_scene = scene_shelter_floor.instance()
-			if type == 2:
+			if type == _tile_wall:
 				# Wall
 				new_scene = scene_shelter_wall.instance()
-			if type == 3:
+			if type == _tile_counter:
 				# Counter
 				new_scene = scene_shelter_counter.instance() 
-			if type == 4:
+			if type == _tile_food:
 				# Dog food
 				new_scene = scene_shelter_food.instance()
-			if type == 5:
+			if type == _tile_kennel:
 				# Kennel
 				new_scene = scene_shelter_cage.instance()
 				kennel_locations.append(location)
@@ -69,11 +86,11 @@ func _create_grid_scenes():
 			
 			var rotation = Vector3(0, 90, 0)
 			var value = int(value_str)
-			if value == 2:
+			if value == _direction_left:
 				rotation = Vector3(0, 0, 0)
-			if value == 3:
+			if value == _direction_up:
 				rotation = Vector3(0, 270, 0)
-			if value == 4:
+			if value == _direction_right:
 				rotation = Vector3(0, 180, 0)
 			new_scene.rotation_degrees = rotation
 			
@@ -119,3 +136,10 @@ func _read_file():
 	file.close()
 	
 	# we have a raw grid, but no scenes/meshes to go with it...
+
+func get_all_kennels():
+	var output = []
+	for location in kennel_locations:
+		output.append(scene_grid[location.row][location.col])
+		
+	return output
