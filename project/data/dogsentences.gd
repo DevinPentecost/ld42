@@ -17,7 +17,7 @@ export var IntroSentences = ["Meet {name}, this {adjective} {girl} is looking fo
 "{name} was rescued from a different shelter where {she} landed after being found stray.",
 "{name} is about as {adjective} as puppies come!",
 "{name} is {adjective} and gets along well with kids, other dogs and even cats.",
-"{name} may be the runt of {her} litter but that doesnt stop {her} from keeping up with the rest!",
+"{name} may be the runt of {her} litter but that doesnt stop {do} from keeping up with the rest!",
 "This {age} old little {girl} is ready to meet {her} new best friend and go on all sorts of adventures together.",
 "{name} is an {adjective} puppy who is about {age}s old.",
 "{name} is a great puppy who is very energetic and {adjective}.",
@@ -29,7 +29,7 @@ export var IntroSentences = ["Meet {name}, this {adjective} {girl} is looking fo
 "{name} is an experienced, but {adjective}, hunter of {objects}.",
 "This {adjective} {girl} used to be a show dog!",
 "This {adjective} {girl} is very popular with visitors!",
-"{name} has some special needs, and would love to join a caring family.",
+"{name} has some special needs, and would love to join a {adjective} family.",
 "{name} prefers relaxing on the couch on hot days.",
 "This {age} old pup bonds quickly to {adjective} humans, but {she} is very skittish around {objects}."]
 
