@@ -1,10 +1,13 @@
 extends Spatial
 
-onready var scene_shelter_wall = load("res://objects/shelter_items/tile_wall.tscn")
-onready var scene_shelter_floor = load("res://objects/shelter_items/tile_floor.tscn")
-onready var scene_shelter_counter = load("res://objects/shelter_items/tile_counter.tscn")
-onready var scene_shelter_food = load("res://objects/shelter_items/food_bucket.tscn")
-onready var scene_shelter_cage = load("res://objects/shelter_items/tile_kennel.tscn")
+onready var scene_shelter_wall = load("res://objects/basic_tiles/WallTile.tscn")
+onready var scene_shelter_floor = load("res://objects/basic_tiles/FloorTile.tscn")
+onready var scene_shelter_counter = load("res://objects/basic_tiles/CounterTile.tscn")
+onready var scene_shelter_food = load("res://objects/food_bucket/FoodBucket.tscn")
+onready var scene_shelter_cage = load("res://objects/kennel/Kennel.tscn")
+
+#Grid sizing
+const TILE_SIZE = 4
 
 # Contents of the grid, as provided by the input file
 var grid_contents = {}
@@ -30,17 +33,17 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
-var _tile_void = 0
-var _tile_floor = 1
-var _tile_wall = 2
-var _tile_counter = 3
-var _tile_food = 4
-var _tile_kennel = 5
+const _tile_void = 0
+const _tile_floor = 1
+const _tile_wall = 2
+const _tile_counter = 3
+const _tile_food = 4
+const _tile_kennel = 5
 
-var _direction_down = 1
-var _direction_left = 2
-var _direction_up = 3
-var _direction_right = 4
+const _direction_down = 1
+const _direction_left = 2
+const _direction_up = 3
+const _direction_right = 4
 
 
 func _create_grid_scenes():
@@ -55,43 +58,44 @@ func _create_grid_scenes():
 			
 			var square = grid_contents[row][col]
 			var type_str = square.type
-			var value_str = square.value
+			var direction = square.value
 			
 			# Create the appropriate scene
 			var new_scene = null
-			var type = int(type_str)
-			if type == _tile_void:
-				# Void, do nothing
-				continue
-			if type == _tile_floor:
-				# Floor
-				new_scene = scene_shelter_floor.instance()
-			if type == _tile_wall:
-				# Wall
-				new_scene = scene_shelter_wall.instance()
-			if type == _tile_counter:
-				# Counter
-				new_scene = scene_shelter_counter.instance() 
-			if type == _tile_food:
-				# Dog food
-				new_scene = scene_shelter_food.instance()
-			if type == _tile_kennel:
-				# Kennel
-				new_scene = scene_shelter_cage.instance()
-				kennel_locations.append(location)
+			match int(type_str):
+				_tile_void:
+					# Void, do nothing
+					continue
+				_tile_floor:
+					# Floor
+					new_scene = scene_shelter_floor.instance()
+				_tile_wall:
+					# Wall
+					new_scene = scene_shelter_wall.instance()
+				_tile_counter:
+					# Counter
+					new_scene = scene_shelter_counter.instance() 
+				_tile_food:
+					# Dog food
+					new_scene = scene_shelter_food.instance()
+				_tile_kennel:
+					# Kennel
+					new_scene = scene_shelter_cage.instance()
+					kennel_locations.append(location)
 			
 			# We need to translate and rotate the scene
-			var translation = Vector3(col, 0, row)
+			var translation = Vector3(-row * TILE_SIZE, 0, col * TILE_SIZE)
 			new_scene.translation = translation
 			
-			var rotation = Vector3(0, 90, 0)
-			var value = int(value_str)
-			if value == _direction_left:
-				rotation = Vector3(0, 0, 0)
-			if value == _direction_up:
-				rotation = Vector3(0, 270, 0)
-			if value == _direction_right:
-				rotation = Vector3(0, 180, 0)
+			#Update rotation
+			var rotation = Vector3(0, 0, 0)
+			match int(direction):
+				_direction_left:
+					rotation.y = 90
+				_direction_right:
+					rotation.y = -90
+				_direction_down:
+					rotation.y = 180
 			new_scene.rotation_degrees = rotation
 			
 			# Add it as a child node and add to the master grid
@@ -102,7 +106,7 @@ func _create_grid_scenes():
 
 func _read_file():
 	var file = File.new()
-	file.open("res://objects/shelter_items/shelter_grid/game_grid.txt", file.READ)
+	file.open("res://data/game_grid.txt", file.READ)
 	
 	# Iterate over each line
 	var current_line = 0

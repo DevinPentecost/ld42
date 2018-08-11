@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://objects/dog/Dog.gd" type="Script" id=1]
+[ext_resource path="res://objects/dog/dog_texture_a.png" type="Texture" id=2]
+[ext_resource path="res://objects/dog/dog_texture_b.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleMesh" id=1]
+
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+radius = 0.5
+mid_height = 0.5
+radial_segments = 64
+rings = 8
+
+[node name="Dog" type="Spatial"]
+
+script = ExtResource( 1 )
+TEXTURE_A = ExtResource( 2 )
+TEXTURE_B = ExtResource( 3 )
+dog_name = null
+description = "This hound needs a description!"
+dog_scale = null
+base_texture = null
+tint = null
+tend_rate = null
+adoption_rate = null
+
+[node name="MeshInstance" type="MeshInstance" parent="." index="0"]
+
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0.5, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = SubResource( 1 )
+skeleton = NodePath("..")
+material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+

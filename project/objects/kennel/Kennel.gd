@@ -1,8 +1,6 @@
 extends Spatial
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+export(PackedScene) var _dog_scene
 
 var _active = false
 
@@ -15,6 +13,42 @@ func _ready():
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+
+func spawn_dog():
+	
+	#Make the dog node
+	var new_dog_node = _dog_scene.instance()
+	
+	#Get a random name and description
+	new_dog_node.dog_name = "Dog #" + str(randi() % 1000)
+	new_dog_node.description = "This dog will be put down unless Erin wires up descriptions"
+	
+	#Pick starting values
+	new_dog_node.dog_scale = rand_range(new_dog_node.SCALE_RANGE.x, new_dog_node.SCALE_RANGE.y)
+	new_dog_node.tend_rate = rand_range(new_dog_node.TEND_RATE_RANGE.x, new_dog_node.TEND_RATE_RANGE.y)
+	new_dog_node.adoption_rate = rand_range(new_dog_node.ADOPTION_RATE_RANGE.x, new_dog_node.ADOPTION_RATE_RANGE.y)
+	
+	#Get a random texture
+	var target_texture = null
+	match(randi() % 2):
+		0:
+			target_texture = new_dog_node.TEXTURE_A
+		1:
+			target_texture = new_dog_node.TEXTURE_B
+		
+	new_dog_node.base_texture = target_texture
+	
+	#Generate a random color
+	var r = rand_range(new_dog_node.COLOR_RANGE.r.x, new_dog_node.COLOR_RANGE.r.y)
+	var g = rand_range(new_dog_node.COLOR_RANGE.g.x, new_dog_node.COLOR_RANGE.g.y)
+	var b = rand_range(new_dog_node.COLOR_RANGE.b.x, new_dog_node.COLOR_RANGE.b.y)
+	new_dog_node.tint = Color(r, g, b)
+	
+	#How happy is it to start
+	new_dog_node.happiness = rand_range(new_dog_node.MIN_START_HAPPINESS, new_dog_node.MAX_START_HAPPINESS)
+	
+	#Add this dog node to the dog zone
+	$DogArea.add_dog(new_dog_node)
 
 func on_player_action():
 	
