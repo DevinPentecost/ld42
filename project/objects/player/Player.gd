@@ -172,6 +172,10 @@ func _handle_action_input(event):
 		#Fire off the action
 		emit_signal("player_action")
 		
+		# Tell groups to check player action
+		get_tree().call_group("kennel", "on_player_action")
+		get_tree().call_group("food", "on_player_action")
+		
 func game_over():
 	#Game has ended!
 	_game_over = true
