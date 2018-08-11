@@ -75,12 +75,14 @@ func on_player_action():
 
 func _on_ActionArea_body_entered(body):
 	#For now, assume it's the player
-	_active = true
+	if body.is_in_group("player"):
+		_active = true
 
 
 func _on_ActionArea_body_exited(body):
 	#For now, assume it's the player
-	_active = false
+	if body.is_in_group("player"):
+		_active = false
 
 func _on_Dog_adopted():
 	#Make some changes to the kennel if needed

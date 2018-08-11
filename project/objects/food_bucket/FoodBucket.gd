@@ -1,5 +1,9 @@
 extends Spatial
 
+#Materials to use for normal and highlight
+export(Material) var normal_material
+export(Material) var highlight_material
+
 # External facing things
 export var max_food = 100
 export var food_regenerate_per_second = 1
@@ -62,6 +66,15 @@ func request_food():
 	
 	return food_to_give
 
+func _update_material():
+	#Are we in range of the user?
+	var material = normal_material
+	if _active:
+		material = highlight_material
+		
+	#Update the bucket
+	$Bucket/Cylinder.mesh.surface_set_material(0, material)
+
 func on_player_action():
 	#Is the player interacting with the bucket?
 	if _active:
@@ -72,8 +85,12 @@ func on_player_action():
 
 func _on_ActionArea_body_entered(body):
 	#For now, assume it's the player
-	_active = true
+	if body.is_in_group("player"):
+		_active = true
+	_update_material()
 
 func _on_ActionArea_body_exited(body):
 	#For now, assume it's the player
-	_active = false
+	if body.is_in_group("player"):
+		_active = false
+	_update_material()
