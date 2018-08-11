@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://objects/dog/Dog.gd" type="Script" id=1]
 [ext_resource path="res://objects/dog/dog_texture_a.png" type="Texture" id=2]
 [ext_resource path="res://objects/dog/dog_texture_b.png" type="Texture" id=3]
+[ext_resource path="res://objects/dogbio.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -27,7 +28,7 @@ adoption_rate = null
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0.5, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -41,5 +42,13 @@ mesh = SubResource( 1 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
+
+[node name="Biography" type="Node" parent="." index="1"]
+
+script = ExtResource( 4 )
+Name = "name"
+Bio = "bio"
+Sex = 0
+AgeMonths = 0
 
 

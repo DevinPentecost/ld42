@@ -24,6 +24,8 @@ export(Color) var tint
 export(float) var tend_rate
 export(float) var adoption_rate
 
+var bio
+
 #Properties of the dog's status
 const MIN_START_HAPPINESS = 0.1
 const MAX_START_HAPPINESS = 0.8
@@ -35,6 +37,9 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	
+	# Generate a bio
+	self.find_node("Biography").connect("BioGenerationDone", self, "_bio_ready")
+	
 	#Create the model and stuff here
 	
 	set_process(true)
@@ -45,6 +50,11 @@ func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	# Update game logic here.
 	pass
+
+func _bio_ready():
+	bio = self.find_node("Biography")
+	dog_name = bio.Name
+	description = bio.Bio
 
 func _update_status(delta):
 	

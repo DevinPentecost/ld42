@@ -50,7 +50,7 @@ func _ready():
 func _pressed():
 	_bioUiNode.HideBio()"
 
-[node name="Node" type="Node" index="0"]
+[node name="Node" type="Node"]
 
 script = ExtResource( 1 )
 Name = "name"
