@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://objects/food_bucket/FoodBucket.gd" type="Script" id=1]
 [ext_resource path="res://objects/food_bucket/food_mat.png" type="Texture" id=2]
 [ext_resource path="res://objects/basic_tiles/FloorTile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/food_bucket/bucket.dae" type="PackedScene" id=4]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -63,7 +64,7 @@ disabled = false
 
 [node name="StaticBody" type="StaticBody" parent="." index="1"]
 
-transform = Transform( 0.7, 0, 0, 0, -1.14044e-007, -0.7, 0, 0.7, -1.14044e-007, 0, 0.7, 0 )
+transform = Transform( 0.7, 0, 0, 0, -1.14044e-07, -0.7, 0, 0.7, -1.14044e-07, 0, 0.7, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 2
@@ -76,6 +77,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody" index="0"]
 
+visible = false
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -99,6 +101,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="Sprite3D" type="Sprite3D" parent="." index="2"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0 )
+visible = false
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -130,6 +133,12 @@ _sections_unfolded = [ "Flags", "Transform" ]
 
 [node name="FloorTile" parent="." index="3" instance=ExtResource( 3 )]
 
+visible = false
+_sections_unfolded = [ "Transform" ]
+
+[node name="Bucket" parent="." index="4" instance=ExtResource( 4 )]
+
+transform = Transform( 1.42978, 0, 0.453565, 0, 1.5, 0, -0.453565, 0, 1.42978, 1.63556, 0, -0.438022 )
 _sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="ActionArea" to="." method="_on_ActionArea_body_entered"]
