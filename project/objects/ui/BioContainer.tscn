@@ -3,19 +3,35 @@
 [ext_resource path="res://fonts/fontbold.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/fontlight.tres" type="DynamicFont" id=2]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends VBoxContainer
 
 signal ViewBioSignal(dogbio)
 
+var _wiggleDuration = 1.0
+var _wiggleCur = 0.0
+
 func ViewBio(dogbio):
 	self.emit_signal(\"ViewBioSignal\", dogbio)
+	self.visible = true
+	_wiggleCur = 0.0
+
+func HideBio():
+	self.visible = false
 
 func _ready():
-	pass"
+	_wiggleCur = _wiggleDuration
+	
+func _process(delta):
+	_wiggleCur = _wiggleCur + delta
+	if _wiggleCur >= _wiggleDuration:
+		self.rect_rotation = 0.0
+		return
+	self.rect_rotation = cos(_wiggleCur * 8.0) * 2.0"
+_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends Label
 
@@ -25,7 +41,7 @@ func _ready():
 func _setName(bioObj):
 	self.text = bioObj.Name"
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=3]
 
 script/source = "extends Label
 
@@ -52,7 +68,8 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-script = SubResource( 3 )
+script = SubResource( 1 )
+_sections_unfolded = [ "Rect" ]
 
 [node name="DogName" type="Label" parent="." index="0"]
 
@@ -73,7 +90,7 @@ text = "Doggie"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = SubResource( 1 )
+script = SubResource( 2 )
 _sections_unfolded = [ "Visibility", "custom_fonts" ]
 
 [node name="DogBio" type="Label" parent="." index="1"]
@@ -97,7 +114,7 @@ autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = SubResource( 2 )
+script = SubResource( 3 )
 _sections_unfolded = [ "custom_fonts" ]
 
 

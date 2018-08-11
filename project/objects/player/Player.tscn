@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://objects/player/Player.gd" type="Script" id=1]
+[ext_resource path="res://objects/player/char.dae" type="PackedScene" id=2]
 
 [sub_resource type="CylinderMesh" id=1]
 
@@ -45,6 +46,7 @@ _sections_unfolded = [ "Axis Lock", "Collision", "Transform" ]
 [node name="Model" type="MeshInstance" parent="." index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+visible = false
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -68,7 +70,8 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="DebugMesh" type="MeshInstance" parent="." index="2"]
 
-transform = Transform( -2.18557e-008, 0.5, -2.18557e-008, 0, -2.18557e-008, -0.5, -0.5, -2.18557e-008, 9.55343e-016, 0.25, 2, 0 )
+transform = Transform( -2.18557e-08, 0.5, -2.18557e-08, 0, -2.18557e-08, -0.5, -0.5, -2.18557e-08, 9.55343e-16, 0.25, 2, 0 )
+visible = false
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -81,6 +84,11 @@ lod_max_hysteresis = 0.0
 mesh = SubResource( 3 )
 skeleton = NodePath("..")
 material/0 = null
+_sections_unfolded = [ "Transform" ]
+
+[node name="PlayerModel" parent="." index="3" instance=ExtResource( 2 )]
+
+transform = Transform( -8.14603e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -8.14603e-08, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
 
