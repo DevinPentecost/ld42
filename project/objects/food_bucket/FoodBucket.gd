@@ -72,7 +72,6 @@ func on_player_action():
 
 func _on_ActionArea_body_entered(body):
 	#For now, assume it's the player
-	print(body)
 	_active = true
 
 func _on_ActionArea_body_exited(body):
