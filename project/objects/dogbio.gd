@@ -46,4 +46,4 @@ func _ready():
 	pass
 	
 func _titleCase(s):
-	return s.left(1).to_upper() + s.substr(1, s.length()-1).to_lower()
+	return s.left(1).to_upper() + s.substr(1, s.length()-1)
