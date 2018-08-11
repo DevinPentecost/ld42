@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://objects/dogbio.gd" type="Script" id=1]
 [ext_resource path="res://objects/ui/BioContainer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/ui/ScoreContainer.tscn" type="PackedScene" id=3]
 
 [sub_resource type="GDScript" id=1]
 
@@ -74,6 +75,10 @@ size_flags_vertical = 1
 
 [node name="BioContainer" parent="ReferenceRect" index="0" instance=ExtResource( 2 )]
 
+margin_left = 721.0
+margin_top = 20.0
+margin_right = 1005.0
+margin_bottom = 374.0
 _sections_unfolded = [ "Rect", "Visibility" ]
 
 [node name="Button" type="Button" parent="ReferenceRect" index="1"]
@@ -82,10 +87,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 75.0
-margin_top = 108.0
-margin_right = 161.0
-margin_bottom = 128.0
+margin_left = 577.0
+margin_top = 29.0
+margin_right = 663.0
+margin_bottom = 49.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -109,10 +114,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 74.0
-margin_top = 142.0
-margin_right = 137.0
-margin_bottom = 162.0
+margin_left = 581.0
+margin_top = 61.0
+margin_right = 662.0
+margin_bottom = 84.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -129,5 +134,7 @@ flat = false
 align = 1
 script = SubResource( 2 )
 bioUi = NodePath("../BioContainer")
+
+[node name="ScoreContainer" parent="ReferenceRect" index="3" instance=ExtResource( 3 )]
 
 

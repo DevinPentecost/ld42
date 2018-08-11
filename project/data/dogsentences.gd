@@ -6,6 +6,7 @@ extends Node
 	# {girl}
 	# {she}
 	# {her}
+	# {do} direct object, her/him
 	# {age}
 	# {adjective}
 	# {objects}
@@ -29,8 +30,8 @@ export var IntroSentences = ["Meet {name}, this {adjective} {girl} is looking fo
 "This {adjective} {girl} used to be a show dog!",
 "This {adjective} {girl} is very popular with visitors!",
 "{name} has some special needs, and would love to join a caring family.",
-"{name} gets prefers relaxing on the couch on hot days.",
-"This {age} old pup bonds quickly to {adjective} humans, but {she} is very skittish around people with beards."]
+"{name} prefers relaxing on the couch on hot days.",
+"This {age} old pup bonds quickly to {adjective} humans, but {she} is very skittish around {objects}."]
 
 export var OutroSentences = ["{she} is already housebroken and crate trained.",
 "{she} loves going everywhere with {her} humans and does well in the car.",
@@ -54,9 +55,9 @@ export var OutroSentences = ["{she} is already housebroken and crate trained.",
 "{she} will get into your lap and give you snuggles and kisses but is content with a belly rub.",
 "{she}'s pretty good on potty training and would love your help to continue!",
 "{she} is not food aggressive in fact {she} will go to {her} spot and wait for {her} bowl to be placed.",
-"{she} has also learned about playing with toys and playing with other dogs.",
+"{she} has also learned about playing with {objects} and sharing with other dogs.",
 "{she} loves to get up on the end table and lay in the sun or just look out the window.",
-"Changes are very scary for {her} and {she} doesn't like a lot of people around {her}.",
+"Changes are very scary for {do} and {she} doesn't like a lot of people around {do}.",
 "{she} is learning to trust again and is doing very well.",
 "{she} bonds quickly to one person.",
 "{she} plays well with small dogs, don't know about cats.",
