@@ -27,7 +27,6 @@ var _game_over = false
 
 #Animation
 const ANIMATION_BLEND_TIME = 0.25
-const ACTION_BLEND_TIME = 2
 enum PlayerAnimationState {
 	IDLE,
 	WALK,
