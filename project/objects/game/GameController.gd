@@ -7,9 +7,15 @@ signal food_changed(food_amount)
 signal open_kennels_changed(open_kennel_count, total_kennels)
 signal not_enough_food
 
+#Music
+export(AudioStream) var bgm
+
 #Scoring
 var time = 0
 var adoptions = 0
+
+#The player
+onready var _player = $"../Player"
 
 #The game grid
 onready var _game_grid = $"../GameGrid"
@@ -44,6 +50,9 @@ func _ready():
 	
 	#Track every frame
 	set_process(true)
+	
+	#Let the player know when a dog is adopted
+	connect("dog_adopted", _player, "_on_GameController_dog_adopted")
 	
 
 func _process(delta):

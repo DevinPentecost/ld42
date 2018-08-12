@@ -5,6 +5,12 @@ signal player_action
 signal near_kennel
 signal leave_kennel
 
+#SFX Export
+export(AudioStreamSample) var eat_sfx
+export(AudioStreamSample) var lose_sfx
+export(AudioStreamSample) var adopt_sfx
+
+
 #Action input from the player
 const _action_input_event = "player_action"
 
@@ -24,6 +30,7 @@ var _rotating = false
 
 #Action variables
 var _game_over = false
+
 
 #Animation
 const ANIMATION_BLEND_TIME = 0.25
@@ -263,9 +270,21 @@ func _handle_action_input(event):
 		#Pet the good boy
 		_play_action_animation()
 		
+		#Play a sound
+		_play_sfx(eat_sfx)
+		
 func game_over():
 	#Game has ended!
 	_game_over = true
+	
+	#Uh oh!
+	_play_sfx(lose_sfx)
+
+func _play_sfx(audio_stream):
+	#Play the sound
+	audio_stream.loop = false
+	$AudioStreamPlayer3D.stream = audio_stream
+	$AudioStreamPlayer3D.play()
 
 func _on_InteractArea_area_entered(area):
 	
@@ -280,3 +299,11 @@ func _on_InteractArea_area_exited(area):
 	if area.is_in_group("kennel"):
 		#We let people know
 		emit_signal("leave_kennel", area.get_parent())
+
+func _on_GameController_dog_adopted(dog_name):
+	#Play a sound
+	_play_sfx(adopt_sfx)
+
+func _on_AudioStreamPlayer3D_finished():
+	$AudioStreamPlayer3D.stop()
+	pass # replace with function body
