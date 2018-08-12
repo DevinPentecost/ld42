@@ -1,6 +1,7 @@
 extends Node
 
-export var GirlNames = ["Abby",
+export var GirlNames = [
+"Abby",
 "Alfie",
 "Allie",
 "Amber",
@@ -100,6 +101,7 @@ export var GirlNames = ["Abby",
 "Marley",
 "Max",
 "Maya",
+"Melon",
 "Mia",
 "Mickey",
 "Mila",
@@ -157,10 +159,15 @@ export var GirlNames = ["Abby",
 "Winnie",
 "Xena",
 "Ziggy",
-"Zoey"]
+"Zoey",
+"Clementine",
+"Clemmy",
+"Clover"
+]
 
 
-export var BoyNames = ["Ace",
+export var BoyNames = [
+"Ace",
 "Alfie",
 "Angel",
 "Angus",
@@ -198,6 +205,7 @@ export var BoyNames = ["Ace",
 "Coco",
 "Cocoa",
 "Cody",
+"Cola",
 "Cookie",
 "Cooper",
 "Copper",
@@ -286,4 +294,8 @@ export var BoyNames = ["Ace",
 "Winston",
 "Zeus",
 "Ziggy",
-"Zoe"]
+"Zoe",
+"Bumble",
+"Dorblin",
+"Fieri"
+]

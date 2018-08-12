@@ -114,7 +114,7 @@ func _on_Dog_happiness_state_changed(new_state):
 	if new_state == _dog_class.BROKEN:
 		#Tell the game controller to make a toast
 		var toast = "%s is hungry!" % _active_dog_node.dog_name
-		get_tree().call_group("gui", "_emit_toast", toast)
+		get_tree().call_group("toast", "toast", toast)
 	
 func _update_decor(hasDog):
 	$mat.visible = hasDog

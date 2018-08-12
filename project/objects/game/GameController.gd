@@ -6,7 +6,6 @@ signal score_changed(time, adoptions)
 signal food_changed(food_amount)
 signal open_kennels_changed(open_kennel_count, total_kennels)
 signal not_enough_food
-signal create_toast(toast)
 
 #Music
 export(AudioStream) var bgm
@@ -169,10 +168,6 @@ func _spawn_dog():
 	
 	#Notify the number has changed
 	emit_signal("open_kennels_changed", _empty_kennels.size(), _all_kennels.size())
-	
-	#Create a bonus toast
-	var toast = "%s needs a forever home!" % target_kennel._active_dog_node.name
-	emit_signal("create_toast", toast)
 	
 func _on_SpawnTimer_timeout():
 	

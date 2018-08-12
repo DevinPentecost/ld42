@@ -107,6 +107,10 @@ func _ready():
 			
 	#Start the timer
 	_reset_action_timer()
+	
+	#Let the player know!
+	var toast = "%s needs a forever home!" % dog_name
+	get_tree().call_group("toast", "toast", toast)
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
