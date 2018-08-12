@@ -15,7 +15,7 @@ mid_height = 0.5
 radial_segments = 64
 rings = 8
 
-[node name="Dog" type="Spatial" index="0"]
+[node name="Dog" type="Spatial"]
 
 script = ExtResource( 1 )
 TEXTURE_A = ExtResource( 2 )
@@ -30,7 +30,7 @@ adoption_rate = 1.0
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
-transform = Transform( 1, -7.10543e-015, -3.01876e-011, -3.01876e-011, -0.000345306, -1, -7.10543e-015, 1, -0.000345306, 0, 0.5, 0 )
+transform = Transform( 1, -7.10543e-15, -3.01876e-11, -3.01876e-11, -0.000345306, -1, -7.10543e-15, 1, -0.000345306, 0, 0.5, 0 )
 visible = false
 layers = 1
 material_override = null
@@ -54,11 +54,20 @@ Bio = "bio"
 Sex = 0
 AgeMonths = 0
 
-[node name="dogmodel_temp" parent="." index="2" instance=ExtResource( 5 )]
+[node name="dogmodel" parent="." index="2" instance=ExtResource( 5 )]
 
-transform = Transform( -6.51683e-008, 0, -0.4, 0, 0.4, 0, 0.4, 0, -6.51683e-008, 0, 0, 0 )
+transform = Transform( -6.51683e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -6.51683e-08, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Skeleton" parent="dogmodel/Armature" index="0"]
+
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, 0, 0 )
+
+[node name="AnimationPlayer" parent="dogmodel" index="1"]
+
+autoplay = "stand"
 
 [node name="emoter" parent="." index="3" instance=ExtResource( 6 )]
 
 
+[editable path="dogmodel"]
