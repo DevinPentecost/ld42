@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/crowded.ogg-5b1446be1edf9e49fa437f160ad3787c.oggstr"
+
+[deps]
+
+source_file="res://objects/player/crowded.ogg"
+dest_files=[ "res://.import/crowded.ogg-5b1446be1edf9e49fa437f160ad3787c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

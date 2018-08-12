@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/iLikeDogs.ogg-97093130610d027307f98159dc7be074.oggstr"
+
+[deps]
+
+source_file="res://objects/player/iLikeDogs.ogg"
+dest_files=[ "res://.import/iLikeDogs.ogg-97093130610d027307f98159dc7be074.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

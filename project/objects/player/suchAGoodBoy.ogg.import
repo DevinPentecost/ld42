@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/suchAGoodBoy.ogg-6b0266778915b83655f333039fdb936d.oggstr"
+
+[deps]
+
+source_file="res://objects/player/suchAGoodBoy.ogg"
+dest_files=[ "res://.import/suchAGoodBoy.ogg-6b0266778915b83655f333039fdb936d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
