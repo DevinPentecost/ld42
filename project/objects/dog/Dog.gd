@@ -103,7 +103,7 @@ func _update_status(delta):
 	if happiness >= MIN_ADOPTION_HAPPINESS:
 		adoption += adoption_rate * delta
 		
-		emojiRef.ShowHeart(1)
+		emojiRef.ShowHeart(10)
 		
 		#Are we super happy?!
 		if adoption >= 1:
@@ -111,7 +111,7 @@ func _update_status(delta):
 			emit_signal("adopted")
 			set_process(false)
 	else:
-		emojiRef.ShowAnger(1)
+		emojiRef.ShowAnger(10)
 		
 func feed():
 	#The dog is fed and happy!
