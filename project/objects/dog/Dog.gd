@@ -27,7 +27,10 @@ export(Color) var tint
 export(float) var tend_rate = 1.0
 export(float) var adoption_rate = 1.0
 
+# Refs to other nodes
 var bio
+var dpar
+var emojiRef
 
 #Properties of the dog's status
 const MIN_START_HAPPINESS = 0.1
@@ -39,6 +42,9 @@ var adoption = 0
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
+	
+	dpar = $"../.."
+	emojiRef = self.find_node("emoter")
 	
 	# Generate a bio
 	bio = self.find_node("Biography")
@@ -58,7 +64,7 @@ func _process(delta):
 	_update_status(delta)
 	
 	#Tell our parent to let folks know we've updated
-	var dpar = $"../.."
+	
 	if dpar != null:
 		$"../..".emit_signal("dog_status_changed")
 	
@@ -73,11 +79,15 @@ func _update_status(delta):
 	if happiness >= MIN_ADOPTION_HAPPINESS:
 		adoption += adoption_rate * delta
 		
+		emojiRef.ShowHeart(1)
+		
 		#Are we super happy?!
 		if adoption >= 1:
 			#Someone adopted us
 			emit_signal("adopted")
 			set_process(false)
+	else:
+		emojiRef.ShowAnger(1)
 		
 func feed():
 	#The dog is fed and happy!
