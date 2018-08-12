@@ -17,6 +17,7 @@ func _ready():
 	if _force_dog_spawn:
 		spawn_dog()
 		_active_dog_node._debugging = true
+	_update_decor(_force_dog_spawn)
 	
 	pass
 
@@ -62,6 +63,8 @@ func spawn_dog():
 	
 	#Add this dog node to the dog zone
 	$DogArea.add_dog(new_dog_node)
+	#Show the mat and bowl
+	_update_decor(true)
 
 func on_player_action():
 	
@@ -92,6 +95,11 @@ func _on_Dog_adopted():
 	
 	#Get rid of the dog since it's happy
 	_active_dog_node.queue_free()
+	#Hide the mat and bowl
+	_update_decor(false)
+	
 	_active_dog_node = null
 	
-	
+func _update_decor(hasDog):
+	$mat.visible = hasDog
+	$BowlArea.SetVisible(hasDog)
