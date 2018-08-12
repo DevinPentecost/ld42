@@ -9,6 +9,8 @@ const TWEEN_DURATION = 0.25
 const HIDE_DISTANCE = 15 + 300
 var _start_position = null
 
+signal ViewBioSignal(dogbio)
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -30,10 +32,12 @@ func update_dog(dog_node):
 		return
 		
 	#Update information about the dog
-	$NameContainer/DogName.text = dog_node.dog_name
+	#$NameContainer/DogName.text = dog_node.dog_name
 	$StatsContainer/VBoxContainer/HappinessProgress.value = dog_node.happiness
 	$StatsContainer/VBoxContainer/AdoptabilityProgress.value = dog_node.adoption
-	$DescriptionContainer/VBoxContainer/Description.text = dog_node.description
+	#$DescriptionContainer/VBoxContainer/Description.text = dog_node.description
+	
+	self.emit_signal("ViewBioSignal", dog_node.bio)
 
 func _tween_to_position(target_position, duration, delay=0):
 	#Stop the tween
