@@ -17,6 +17,7 @@ func _ready():
 	_game_controller.connect("score_changed", self, "_on_GameController_score_changed")
 	_game_controller.connect("food_changed", self, "_on_GameController_food_changed")
 	_game_controller.connect("not_enough_food", self, "_on_GameController_not_enough_food")
+	_game_controller.connect("dog_adopted", self, "_on_GameController_dog_adopted")
 	
 	#Listen to the player
 	_player.connect("near_kennel", self, "_on_Player_near_kennel")
@@ -39,6 +40,12 @@ func _on_GameController_food_changed(food):
 func _on_GameController_not_enough_food():
 	pass
 	
+func _on_GameController_dog_adopted(dog_name):
+
+	#Let the toast know!
+	var toast_string = "%s was adopted!" % dog_name
+	$AdoptionToast.toast(toast_string)
+
 func _on_Player_near_kennel(kennel):
 	#Listen for changes
 	kennel.connect("dog_status_changed", self, "_on_Kennel_dog_status_changed", [kennel])
@@ -50,7 +57,6 @@ func _on_Player_leave_kennel(kennel):
 	$BioContainer.hide()
 	kennel.disconnect("dog_status_changed", self, "_on_Kennel_dog_status_changed")
 	kennel = null
-	
 	
 func _on_Kennel_dog_status_changed(kennel):
 	#Update the bio

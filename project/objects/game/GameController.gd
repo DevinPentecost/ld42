@@ -1,6 +1,7 @@
 extends Node
 
 signal game_over(time, adoptions)
+signal dog_adopted(dog_name)
 signal score_changed(time, adoptions)
 signal food_changed(food_amount)
 signal not_enough_food
@@ -125,6 +126,9 @@ func _on_Kennel_dog_adopted(kennel):
 	#Give the player a point
 	adoptions += 1
 	_update_score()
+	
+	#Send a toast
+	emit_signal("dog_adopted", kennel._active_dog_node.dog_name)
 	
 	#Add it to the list of empty kennels
 	_empty_kennels.append(kennel)
