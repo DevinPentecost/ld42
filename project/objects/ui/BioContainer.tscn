@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://objects/ui/BioContainer.gd" type="Script" id=1]
 [ext_resource path="res://fonts/fontbold.tres" type="DynamicFont" id=2]
@@ -6,26 +6,6 @@
 [ext_resource path="res://objects/ui/progress_over.png" type="Texture" id=4]
 [ext_resource path="res://objects/ui/progress_fill.png" type="Texture" id=5]
 [ext_resource path="res://fonts/fontlight.tres" type="DynamicFont" id=6]
-
-[sub_resource type="GDScript" id=2]
-
-script/source = "extends Label
-
-func _ready():
-	self.get_parent().connect(\"ViewBioSignal\", self, \"_setName\")
-
-func _setName(bioObj):
-	self.text = bioObj.Name"
-
-[sub_resource type="GDScript" id=3]
-
-script/source = "extends Label
-
-func _ready():
-	self.get_parent().connect(\"ViewBioSignal\", self, \"_setBio\")
-
-func _setBio(bioObj):
-	self.text = bioObj.Bio"
 
 [node name="BioContainer" type="VBoxContainer"]
 
@@ -83,7 +63,6 @@ text = "Doggie"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = SubResource( 2 )
 _sections_unfolded = [ "Visibility", "custom_fonts" ]
 
 [node name="StatsContainer" type="CenterContainer" parent="." index="1"]
@@ -276,7 +255,6 @@ text = "About me:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = SubResource( 3 )
 _sections_unfolded = [ "Anchor", "Margin", "custom_fonts" ]
 
 [node name="Description" type="Label" parent="DescriptionContainer/VBoxContainer" index="1"]
