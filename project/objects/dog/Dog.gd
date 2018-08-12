@@ -21,11 +21,11 @@ onready var TEXTURES = [TEXTURE_A, TEXTURE_B]
 #All the various properties of a dog
 export(String) var dog_name
 export(String) var description = "This hound needs a description!"
-export(float) var dog_scale
+export(float) var dog_scale = 1.0
 export(Texture) var base_texture
 export(Color) var tint
-export(float) var tend_rate
-export(float) var adoption_rate
+export(float) var tend_rate = 1.0
+export(float) var adoption_rate = 1.0
 
 var bio
 
@@ -41,7 +41,9 @@ func _ready():
 	# Initialization here
 	
 	# Generate a bio
-	self.find_node("Biography").connect("BioGenerationDone", self, "_bio_ready")
+	bio = self.find_node("Biography")
+	dog_name = bio.Name
+	description = bio.Bio
 	
 	#Create the model and stuff here
 	
@@ -56,14 +58,10 @@ func _process(delta):
 	_update_status(delta)
 	
 	#Tell our parent to let folks know we've updated
-	var dpar = $"../../"
-	$"../..".emit_signal("dog_status_changed")
+	var dpar = $"../.."
+	if dpar != null:
+		$"../..".emit_signal("dog_status_changed")
 	
-
-func _bio_ready():
-	bio = self.find_node("Biography")
-	dog_name = bio.Name
-	description = bio.Bio
 
 func _update_status(delta):
 	
