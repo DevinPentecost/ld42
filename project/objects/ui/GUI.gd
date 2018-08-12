@@ -18,6 +18,7 @@ func _ready():
 	_game_controller.connect("food_changed", self, "_on_GameController_food_changed")
 	_game_controller.connect("not_enough_food", self, "_on_GameController_not_enough_food")
 	_game_controller.connect("dog_adopted", self, "_on_GameController_dog_adopted")
+	_game_controller.connect("open_kennels_changed", self, "_on_GameController_open_kennels_changed")
 	
 	#Listen to the player
 	_player.connect("near_kennel", self, "_on_Player_near_kennel")
@@ -34,10 +35,15 @@ func _on_GameController_score_changed(time, adoptions):
 	#Update the score container
 	$ScoreContainer.set_score(time, adoptions)
 	
-func _on_GameController_food_changed(food):
-	pass
+func _on_GameController_food_changed(current_food, max_food):
+	
+	#Update the resource container
+	$ResourceContainer.update_food(current_food, max_food)
 	
 func _on_GameController_not_enough_food():
+	
+	#Shake the resource container or something
+	
 	pass
 	
 func _on_GameController_dog_adopted(dog_name):
@@ -45,6 +51,10 @@ func _on_GameController_dog_adopted(dog_name):
 	#Let the toast know!
 	var toast_string = "%s was adopted!" % dog_name
 	$AdoptionToast.toast(toast_string)
+
+func _on_GameController_open_kennels_changed(open_kennel_count, total_kennel_count):
+	#Just pass on to the widget
+	$ResourceContainer.update_kennels(open_kennel_count, total_kennel_count)
 
 func _on_Player_near_kennel(kennel):
 	#Listen for changes

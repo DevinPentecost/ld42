@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://objects/ui/GUI.gd" type="Script" id=1]
 [ext_resource path="res://objects/ui/BioContainer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/ui/ScoreContainer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/ui/AdoptionToast.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/ui/ResourceContainer.tscn" type="PackedScene" id=5]
 
 [node name="GUI" type="Node"]
 
@@ -14,5 +15,9 @@ script = ExtResource( 1 )
 [node name="ScoreContainer" parent="." index="1" instance=ExtResource( 3 )]
 
 [node name="AdoptionToast" parent="." index="2" instance=ExtResource( 4 )]
+
+[node name="ResourceContainer" parent="." index="3" instance=ExtResource( 5 )]
+
+out_color = Color( 1, 0, 0, 1 )
 
 

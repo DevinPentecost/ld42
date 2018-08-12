@@ -4,6 +4,7 @@ signal game_over(time, adoptions)
 signal dog_adopted(dog_name)
 signal score_changed(time, adoptions)
 signal food_changed(food_amount)
+signal open_kennels_changed(open_kennel_count, total_kennels)
 signal not_enough_food
 
 #Scoring
@@ -63,8 +64,8 @@ func _start_dog_spawn():
 func _initialize_kennels():
 	
 	#Get all of the kennels
-	var all_kennels = _game_grid.get_all_kennels()
-	for kennel in all_kennels:
+	_all_kennels = _game_grid.get_all_kennels()
+	for kennel in _all_kennels:
 		#It starts empty
 		_empty_kennels.append(kennel)
 		
@@ -78,7 +79,7 @@ func _set_player_food(new_food):
 	_player_food = new_food
 	
 	#Alert whoever is listening
-	emit_signal("food_changed", _player_food)
+	emit_signal("food_changed", _player_food, MAX_PLAYER_FOOD)
 	
 func can_player_spend_food():
 	#Do we have any?
@@ -132,6 +133,9 @@ func _on_Kennel_dog_adopted(kennel):
 	
 	#Add it to the list of empty kennels
 	_empty_kennels.append(kennel)
+	
+	#Update kennel count
+	emit_signal("open_kennels_changed", _empty_kennels.size(), _all_kennels.size())
 
 func _spawn_dog():
 	
@@ -152,6 +156,9 @@ func _spawn_dog():
 	
 	#Tell the kennel to put a dog in it
 	target_kennel.spawn_dog()
+	
+	#Notify the number has changed
+	emit_signal("open_kennels_changed", _empty_kennels.size(), _all_kennels.size())
 	
 func _on_SpawnTimer_timeout():
 	
