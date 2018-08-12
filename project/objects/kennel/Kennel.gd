@@ -38,25 +38,32 @@ func spawn_dog():
 	new_dog_node.description = "This dog will be put down unless Erin wires up descriptions"
 	
 	#Pick starting values
-	new_dog_node.dog_scale = rand_range(new_dog_node.SCALE_RANGE.x, new_dog_node.SCALE_RANGE.y)
 	new_dog_node.tend_rate = rand_range(new_dog_node.TEND_RATE_RANGE.x, new_dog_node.TEND_RATE_RANGE.y)
 	new_dog_node.adoption_rate = rand_range(new_dog_node.ADOPTION_RATE_RANGE.x, new_dog_node.ADOPTION_RATE_RANGE.y)
 	
 	#Get a random texture
 	var target_texture = null
-	match(randi() % 2):
+	match(randi() % 3):
 		0:
 			target_texture = new_dog_node.TEXTURE_A
 		1:
 			target_texture = new_dog_node.TEXTURE_B
+		2:
+			target_texture = new_dog_node.TEXTURE_C
 		
 	new_dog_node.base_texture = target_texture
 	
 	#Generate a random color
-	var r = rand_range(new_dog_node.COLOR_RANGE.r.x, new_dog_node.COLOR_RANGE.r.y)
-	var g = rand_range(new_dog_node.COLOR_RANGE.g.x, new_dog_node.COLOR_RANGE.g.y)
-	var b = rand_range(new_dog_node.COLOR_RANGE.b.x, new_dog_node.COLOR_RANGE.b.y)
+	var r = rand_range(new_dog_node.COLOR_RANGE.r.x, new_dog_node.COLOR_RANGE.r.y) 
+	var g = rand_range(new_dog_node.COLOR_RANGE.g.x, new_dog_node.COLOR_RANGE.g.y) 
+	var b = rand_range(new_dog_node.COLOR_RANGE.b.x, new_dog_node.COLOR_RANGE.b.y) 
 	new_dog_node.tint = Color(r, g, b)
+	
+	#Generate random size
+	var sx = rand_range(new_dog_node.SCALE_RANGE.x.x, new_dog_node.SCALE_RANGE.x.y) 
+	var sy = rand_range(new_dog_node.SCALE_RANGE.y.x, new_dog_node.SCALE_RANGE.y.y) 
+	var sz = rand_range(new_dog_node.SCALE_RANGE.z.x, new_dog_node.SCALE_RANGE.z.y) 
+	new_dog_node.dog_scale = Vector3(sx,sy,sz)
 	
 	#How happy is it to start
 	new_dog_node.happiness = rand_range(new_dog_node.MIN_START_HAPPINESS, new_dog_node.MAX_START_HAPPINESS)

@@ -6,24 +6,29 @@ signal adopted
 var _debugging = false
 
 #Properties of doggo
-const SCALE_RANGE = Vector2(0.8, 1.5)
+const SCALE_RANGE = {
+	'x': Vector2(0.6, 1.6),
+	'y': Vector2(0.6, 1.4),
+	'z': Vector2(0.6, 1.2)
+}
 const TEND_RATE_RANGE = Vector2(0.1, 0.15)
 const ADOPTION_RATE_RANGE = Vector2(0.1, 0.15)
 const COLOR_RANGE = {
-	'r': Vector2(0, 1),
-	'g': Vector2(0, 1),
-	'b': Vector2(0, 1)
+	'r': Vector2(.4, .9),
+	'g': Vector2(.6, .9),
+	'b': Vector2(.75, .9)
 }
 export(Texture) var TEXTURE_A
 export(Texture) var TEXTURE_B
-onready var TEXTURES = [TEXTURE_A, TEXTURE_B]
+export(Texture) var TEXTURE_C
+onready var TEXTURES = [TEXTURE_A, TEXTURE_B, TEXTURE_C]
 
 #All the various properties of a dog
 export(String) var dog_name
 export(String) var description = "This hound needs a description!"
-export(float) var dog_scale = 1.0
+export(float) var dog_scale = Vector3(1,1,1)
 export(Texture) var base_texture
-export(Color) var tint
+export(Color) var tint = Color(1,1,1)
 export(float) var tend_rate = 0.0001
 export(float) var adoption_rate = 0.01
 var _secondCounter = 0.0
@@ -32,6 +37,8 @@ var _secondCounter = 0.0
 var bio
 var dpar
 var emojiRef
+var material
+var mesh
 onready var _dog_area = $".."
 
 #Properties of the dog's status
@@ -65,6 +72,8 @@ func _ready():
 	
 	dpar = $"../.."
 	emojiRef = self.find_node("emoter")
+	mesh = self.find_node("Cylinder")
+	material = mesh.get_surface_material(0).duplicate()
 	
 	# Generate a bio
 	bio = self.find_node("Biography")
@@ -73,6 +82,12 @@ func _ready():
 	
 	#Create the model and stuff here
 	set_process(true)
+	
+	# scale doggo
+	mesh.scale = dog_scale
+	material.albedo_color = tint
+	material.albedo_texture = base_texture
+	mesh.set_surface_material(0,material)
 	
 	#Pick a state randomly
 	match(randi() % 2):

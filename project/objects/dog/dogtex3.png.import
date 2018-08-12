@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dog_texture_b.png-8f6ea3e5e387094305bbffdf0fd962ce.stex"
+path="res://.import/dogtex3.png-e4acb2de46ca75d7d87c29d92b9ab546.stex"
 
 [deps]
 
-source_file="res://objects/dog/dog_texture_b.png"
-dest_files=[ "res://.import/dog_texture_b.png-8f6ea3e5e387094305bbffdf0fd962ce.stex" ]
+source_file="res://objects/dog/dogtex3.png"
+dest_files=[ "res://.import/dogtex3.png-e4acb2de46ca75d7d87c29d92b9ab546.stex" ]
 
 [params]
 

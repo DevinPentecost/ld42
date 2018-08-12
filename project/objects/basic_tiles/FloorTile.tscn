@@ -8,11 +8,12 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[node name="FloorTile" type="Spatial" index="0"]
+[node name="FloorTile" type="Spatial"]
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0 )
+visible = false
 layers = 1
 material_override = null
 cast_shadow = 1
