@@ -29,6 +29,17 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
+func _on_GameController_game_over():
+	#Show the game over button
+	$GameOver.visible = true
+	
+	#Fade it in
+	$Tween.interpolate_property($GameOver, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 1, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
+	$Tween.start()
+	yield($Tween, "tween_completed")
+	
+	#Listen for clicks
+	$GameOver.connect("pressed", self, "_on_GameOver_pressed")
 
 func _on_GameController_score_changed(time, adoptions):
 	
@@ -71,3 +82,8 @@ func _on_Player_leave_kennel(kennel):
 func _on_Kennel_dog_status_changed(kennel):
 	#Update the bio
 	$BioContainer.update_dog(kennel._active_dog_node)
+
+func _on_GameOver_pressed():
+	
+	print("RESTART THE GAME HERE!")
+	pass # replace with function body

@@ -102,8 +102,6 @@ _sections_unfolded = [ "Pause" ]
 [node name="Camera" parent="." index="4" instance=ExtResource( 5 )]
 
 environment = SubResource( 1 )
-projection = 1
-size = 8.0
 
 [node name="Kennel" parent="." index="5" instance=ExtResource( 6 )]
 
