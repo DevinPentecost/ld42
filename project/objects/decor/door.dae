@@ -5,8 +5,8 @@
 		<author>Anonymous</author>
 		<authoring_tool>Collada Exporter for Blender 2.6+, by Juan Linietsky (juan@codenix.com)</authoring_tool>
 	</contributor>
-	<created>2018-08-12T00:48:47Z</created>
-	<modified>2018-08-12T00:48:47Z</modified>
+	<created>2018-08-12T01:04:50Z</created>
+	<modified>2018-08-12T01:04:50Z</modified>
 	<unit meter="1.0" name="meter"/>
 	<up_axis>Z_UP</up_axis>
 </asset>
@@ -143,7 +143,7 @@
 <library_visual_scenes>
 	<visual_scene id="id-scene-1" name="scene">
 		<node id="door" name="door" type="NODE">
-			<matrix sid="transform"> 0.7823890447616577 0.0 0.0 -3.1175103187561035 0.0 -5.87409836327879e-08 -1.343837022781372 -4.9363224619014545e-09 0.0 1.343837022781372 -5.87409836327879e-08 1.3853917121887207 0.0 0.0 0.0 1.0  </matrix>
+			<matrix sid="transform"> 0.7823890447616577 0.0 0.0 0.028401246294379234 0.0 -5.87409836327879e-08 -1.343837022781372 -4.9363224619014545e-09 0.0 1.343837022781372 -5.87409836327879e-08 1.3853917121887207 0.0 0.0 0.0 1.0  </matrix>
 			<instance_geometry url="#id-mesh-7">
 				<bind_material>
 					<technique_common>
