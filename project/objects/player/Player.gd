@@ -2,6 +2,8 @@ extends KinematicBody
 
 #Signals
 signal player_action
+signal near_kennel
+signal leave_kennel
 
 #Action input from the player
 const _action_input_event = "player_action"
@@ -187,3 +189,17 @@ func _handle_action_input(event):
 func game_over():
 	#Game has ended!
 	_game_over = true
+
+func _on_InteractArea_area_entered(area):
+	
+	#Is it a kennel?
+	if area.is_in_group("kennel"):
+		#We let people know
+		emit_signal("near_kennel", area.get_parent())
+
+
+func _on_InteractArea_area_exited(area):
+	#Is it a kennel?
+	if area.is_in_group("kennel"):
+		#We let people know
+		emit_signal("leave_kennel", area.get_parent())

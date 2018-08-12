@@ -1,6 +1,7 @@
 extends Spatial
 
 signal dog_adopted
+signal dog_status_changed
 
 export(PackedScene) var _dog_scene
 export(bool) var _force_dog_spawn = false #DEBUG ONLY!

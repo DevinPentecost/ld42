@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://objects/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://objects/player/char.dae" type="PackedScene" id=2]
@@ -24,6 +24,10 @@ size = Vector3( 0.5, 0.5, 0.5 )
 subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
+
+[sub_resource type="SphereShape" id=4]
+
+radius = 1.0
 
 [node name="Player" type="KinematicBody" groups=[
 "player",
@@ -70,7 +74,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="DebugMesh" type="MeshInstance" parent="." index="2"]
 
-transform = Transform( -2.18557e-08, 0.5, -2.18557e-08, 0, -2.18557e-08, -0.5, -0.5, -2.18557e-08, 9.55343e-16, 0.25, 2, 0 )
+transform = Transform( -2.18557e-008, 0.5, -2.18557e-008, 0, -2.18557e-008, -0.5, -0.5, -2.18557e-008, 9.55343e-016, 0.25, 2, 0 )
 visible = false
 layers = 1
 material_override = null
@@ -88,7 +92,40 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="PlayerModel" parent="." index="3" instance=ExtResource( 2 )]
 
-transform = Transform( -8.14603e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -8.14603e-08, 0, 0, 0 )
+transform = Transform( -8.14603e-008, 0, 0.5, 0, 0.5, 0, -0.5, 0, -8.14603e-008, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="InteractArea" type="Area" parent="." index="4"]
+
+input_ray_pickable = false
+input_capture_on_drag = false
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+collision_layer = 0
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+reverb_bus_enable = false
+reverb_bus_name = "Master"
+reverb_bus_amount = 0.0
+reverb_bus_uniformity = 0.0
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape" type="CollisionShape" parent="InteractArea" index="0"]
+
+shape = SubResource( 4 )
+disabled = false
+
+[connection signal="area_entered" from="InteractArea" to="." method="_on_InteractArea_area_entered"]
+
+[connection signal="area_exited" from="InteractArea" to="." method="_on_InteractArea_area_exited"]
 
 

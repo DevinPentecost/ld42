@@ -55,11 +55,10 @@ func _process(delta):
 	
 	_update_status(delta)
 	
-	#Debug
-	if _debugging:
-		print('a ', adoption, ' h ', happiness)
-	$AdoptSprite.modulate.r = adoption
-	$HappySprite.modulate.r = happiness
+	#Tell our parent to let folks know we've updated
+	var dpar = $"../../"
+	$"../..".emit_signal("dog_status_changed")
+	
 
 func _bio_ready():
 	bio = self.find_node("Biography")
