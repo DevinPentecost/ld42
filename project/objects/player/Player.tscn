@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://objects/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://objects/player/Eat.ogg" type="AudioStream" id=2]
-[ext_resource path="res://objects/player/Lose.ogg" type="AudioStream" id=3]
-[ext_resource path="res://objects/player/Adopted.ogg" type="AudioStream" id=4]
-[ext_resource path="res://objects/player/char.dae" type="PackedScene" id=5]
+[ext_resource path="res://objects/player/char.dae" type="PackedScene" id=2]
+[ext_resource path="res://objects/player/Eat.ogg" type="AudioStream" id=3]
+[ext_resource path="res://objects/player/Lose.ogg" type="AudioStream" id=4]
+[ext_resource path="res://objects/player/crowded.ogg" type="AudioStream" id=5]
+[ext_resource path="res://objects/player/Adopted.ogg" type="AudioStream" id=6]
+[ext_resource path="res://objects/player/cantWaitToAdopt.ogg" type="AudioStream" id=7]
+[ext_resource path="res://objects/player/iLikeDogs.ogg" type="AudioStream" id=8]
+[ext_resource path="res://objects/player/suchAGoodBoy.ogg" type="AudioStream" id=9]
 
 [sub_resource type="CylinderMesh" id=1]
 
@@ -32,7 +36,7 @@ subdivide_depth = 0
 
 radius = 1.0
 
-[node name="Player" type="KinematicBody" groups=[
+[node name="Player" type="KinematicBody" index="0" groups=[
 "player",
 ]]
 
@@ -49,9 +53,6 @@ axis_lock_angular_z = false
 collision/safe_margin = 0.001
 script = ExtResource( 1 )
 _sections_unfolded = [ "Axis Lock", "Collision", "Transform" ]
-eat_sfx = ExtResource( 2 )
-lose_sfx = ExtResource( 3 )
-adopt_sfx = ExtResource( 4 )
 
 [node name="Model" type="MeshInstance" parent="." index="0"]
 
@@ -80,7 +81,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="DebugMesh" type="MeshInstance" parent="." index="2"]
 
-transform = Transform( -2.18557e-008, 0.5, -2.18557e-008, 0, -2.18557e-008, -0.5, -0.5, -2.18557e-008, 9.55343e-016, 0.25, 2, 0 )
+transform = Transform( -2.18557e-08, 0.5, -2.18557e-08, 0, -2.18557e-08, -0.5, -0.5, -2.18557e-08, 9.55343e-16, 0.25, 2, 0 )
 visible = false
 layers = 1
 material_override = null
@@ -96,9 +97,9 @@ skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
 
-[node name="PlayerModel" parent="." index="3" instance=ExtResource( 5 )]
+[node name="PlayerModel" parent="." index="3" instance=ExtResource( 2 )]
 
-transform = Transform( -8.14603e-008, 0, 0.5, 0, 0.5, 0, -0.5, 0, -8.14603e-008, 0, 0, 0 )
+transform = Transform( -8.14603e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -8.14603e-08, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="InteractArea" type="Area" parent="." index="4"]
@@ -130,9 +131,9 @@ _sections_unfolded = [ "Collision" ]
 shape = SubResource( 4 )
 disabled = false
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="5"]
+[node name="AudioPlayerEat0" type="AudioStreamPlayer3D" parent="." index="5"]
 
-stream = null
+stream = ExtResource( 3 )
 attenuation_model = 0
 unit_db = 10.0
 unit_size = 1.0
@@ -149,12 +150,150 @@ emission_angle_filter_attenuation_db = -12.0
 attenuation_filter_cutoff_hz = 5000.0
 attenuation_filter_db = -24.0
 doppler_tracking = 0
-_sections_unfolded = [ "Emission Angle" ]
+_sections_unfolded = [ "Attenuation Filter", "Doppler", "Emission Angle", "Transform", "Visibility" ]
+
+[node name="AudioPlayerLose0" type="AudioStreamPlayer3D" parent="." index="6"]
+
+stream = ExtResource( 4 )
+attenuation_model = 0
+unit_db = 10.0
+unit_size = 1.0
+max_db = 3.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 0.0
+out_of_range_mode = 0
+bus = "Master"
+area_mask = 1
+emission_angle_enabled = false
+emission_angle_degrees = 45.0
+emission_angle_filter_attenuation_db = -12.0
+attenuation_filter_cutoff_hz = 5000.0
+attenuation_filter_db = -24.0
+doppler_tracking = 0
+_sections_unfolded = [ "Attenuation Filter", "Doppler", "Emission Angle", "Transform", "Visibility" ]
+
+[node name="AudioPlayerLose1" type="AudioStreamPlayer3D" parent="." index="7"]
+
+stream = ExtResource( 5 )
+attenuation_model = 0
+unit_db = 10.0
+unit_size = 1.0
+max_db = 3.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 0.0
+out_of_range_mode = 0
+bus = "Master"
+area_mask = 1
+emission_angle_enabled = false
+emission_angle_degrees = 45.0
+emission_angle_filter_attenuation_db = -12.0
+attenuation_filter_cutoff_hz = 5000.0
+attenuation_filter_db = -24.0
+doppler_tracking = 0
+_sections_unfolded = [ "Attenuation Filter", "Doppler", "Emission Angle", "Transform", "Visibility" ]
+
+[node name="AudioPlayerAdopted0" type="AudioStreamPlayer3D" parent="." index="8"]
+
+stream = ExtResource( 6 )
+attenuation_model = 0
+unit_db = 10.0
+unit_size = 1.0
+max_db = 3.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 0.0
+out_of_range_mode = 0
+bus = "Master"
+area_mask = 1
+emission_angle_enabled = false
+emission_angle_degrees = 45.0
+emission_angle_filter_attenuation_db = -12.0
+attenuation_filter_cutoff_hz = 5000.0
+attenuation_filter_db = -24.0
+doppler_tracking = 0
+_sections_unfolded = [ "Attenuation Filter", "Doppler", "Emission Angle", "Transform", "Visibility" ]
+
+[node name="AudioPlayerAdopted1" type="AudioStreamPlayer3D" parent="." index="9"]
+
+stream = ExtResource( 7 )
+attenuation_model = 0
+unit_db = 10.0
+unit_size = 1.0
+max_db = 3.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 0.0
+out_of_range_mode = 0
+bus = "Master"
+area_mask = 1
+emission_angle_enabled = false
+emission_angle_degrees = 45.0
+emission_angle_filter_attenuation_db = -12.0
+attenuation_filter_cutoff_hz = 5000.0
+attenuation_filter_db = -24.0
+doppler_tracking = 0
+_sections_unfolded = [ "Attenuation Filter", "Doppler", "Emission Angle", "Transform", "Visibility" ]
+
+[node name="AudioPlayerAdopted2" type="AudioStreamPlayer3D" parent="." index="10"]
+
+stream = ExtResource( 8 )
+attenuation_model = 0
+unit_db = 10.0
+unit_size = 1.0
+max_db = 3.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 0.0
+out_of_range_mode = 0
+bus = "Master"
+area_mask = 1
+emission_angle_enabled = false
+emission_angle_degrees = 45.0
+emission_angle_filter_attenuation_db = -12.0
+attenuation_filter_cutoff_hz = 5000.0
+attenuation_filter_db = -24.0
+doppler_tracking = 0
+_sections_unfolded = [ "Attenuation Filter", "Doppler", "Emission Angle", "Transform", "Visibility" ]
+
+[node name="AudioPlayerAdopted3" type="AudioStreamPlayer3D" parent="." index="11"]
+
+stream = ExtResource( 9 )
+attenuation_model = 0
+unit_db = 10.0
+unit_size = 1.0
+max_db = 3.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 0.0
+out_of_range_mode = 0
+bus = "Master"
+area_mask = 1
+emission_angle_enabled = false
+emission_angle_degrees = 45.0
+emission_angle_filter_attenuation_db = -12.0
+attenuation_filter_cutoff_hz = 5000.0
+attenuation_filter_db = -24.0
+doppler_tracking = 0
+_sections_unfolded = [ "Attenuation Filter", "Doppler", "Emission Angle", "Transform", "Visibility" ]
 
 [connection signal="area_entered" from="InteractArea" to="." method="_on_InteractArea_area_entered"]
 
 [connection signal="area_exited" from="InteractArea" to="." method="_on_InteractArea_area_exited"]
 
-[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_AudioStreamPlayer3D_finished"]
+[connection signal="finished" from="AudioPlayerEat0" to="." method="_on_AudioStreamPlayer3D_finished"]
+
+[connection signal="finished" from="AudioPlayerLose0" to="." method="_on_AudioStreamPlayer3D_finished"]
+
+[connection signal="finished" from="AudioPlayerLose1" to="." method="_on_AudioStreamPlayer3D_finished"]
+
+[connection signal="finished" from="AudioPlayerAdopted0" to="." method="_on_AudioStreamPlayer3D_finished"]
+
+[connection signal="finished" from="AudioPlayerAdopted1" to="." method="_on_AudioStreamPlayer3D_finished"]
+
+[connection signal="finished" from="AudioPlayerAdopted2" to="." method="_on_AudioStreamPlayer3D_finished"]
+
+[connection signal="finished" from="AudioPlayerAdopted3" to="." method="_on_AudioStreamPlayer3D_finished"]
 
 

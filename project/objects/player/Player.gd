@@ -5,12 +5,6 @@ signal player_action
 signal near_kennel
 signal leave_kennel
 
-#SFX Export
-export(AudioStreamSample) var eat_sfx
-export(AudioStreamSample) var lose_sfx
-export(AudioStreamSample) var adopt_sfx
-
-
 #Action input from the player
 const _action_input_event = "player_action"
 
@@ -30,6 +24,13 @@ var _rotating = false
 
 #Action variables
 var _game_over = false
+
+#Sound
+enum SoundEffectType {
+	EAT,
+	LOSE,
+	ADOPT
+}
 
 
 #Animation
@@ -60,7 +61,7 @@ func _process(delta):
 	
 	#Move the player
 	_handle_player_movement(delta)
-	
+
 func _handle_player_movement(delta):
 
 	#Don't move if the game ended
@@ -271,7 +272,7 @@ func _handle_action_input(event):
 		_play_action_animation()
 		
 		#Play a sound
-		_play_sfx(eat_sfx)
+		_play_sfx(SoundEffectType.EAT)
 		
 func game_over():
 	#Game has ended!
@@ -281,13 +282,30 @@ func game_over():
 	_play_lose_animation()
 	
 	#Uh oh!
-	_play_sfx(lose_sfx)
+	_play_sfx(SoundEffectType.LOSE)
 
-func _play_sfx(audio_stream):
+func _pick_randomly_from_array(choice_array):
+	var array_size = choice_array.size()
+	var selection = randi()%array_size
+	return choice_array[selection]
+
+func _play_sfx(sound_type):
+	# Play one of the provided sound effects
+	# Why doesn't godot have a sane way to create sound effect libraries?
+	var player = null
+	match sound_type:
+		SoundEffectType.EAT:
+			player = _pick_randomly_from_array([$AudioPlayerEat0])
+			pass
+		SoundEffectType.LOSE:
+			player = _pick_randomly_from_array([$AudioPlayerLose0, $AudioPlayerLose1])
+			pass
+		SoundEffectType.ADOPT:
+			player = _pick_randomly_from_array([$AudioPlayerAdopted0, $AudioPlayerAdopted1, $AudioPlayerAdopted2, $AudioPlayerAdopted3])
+			pass
+	
 	#Play the sound
-	audio_stream.loop = false
-	$AudioStreamPlayer3D.stream = audio_stream
-	$AudioStreamPlayer3D.play()
+	player.play()
 
 func _on_InteractArea_area_entered(area):
 	
@@ -305,8 +323,8 @@ func _on_InteractArea_area_exited(area):
 
 func _on_GameController_dog_adopted(dog_name):
 	#Play a sound
-	_play_sfx(adopt_sfx)
+	_play_sfx(SoundEffectType.ADOPT)
 
 func _on_AudioStreamPlayer3D_finished():
-	$AudioStreamPlayer3D.stop()
+	#$AudioStreamPlayer3D.stop()
 	pass # replace with function body
