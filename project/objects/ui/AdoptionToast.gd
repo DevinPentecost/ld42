@@ -4,10 +4,16 @@ extends Control
 # var a = 2
 # var b = "textvar"
 
-const TOAST_VERTICAL_DISTANCE = 50
+#How far should each toast be from the other
+const TOAST_SPACING = 25
+
+const TOAST_VERTICAL_DISTANCE = 25
 const TOAST_HORIZONTAL_DISTANCE = 150
 const TOAST_TIME = 1
 const TOAST_HOLD = 2
+
+#Current toasts
+var _toasts = {}
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -44,9 +50,18 @@ func toast(toast_text):
 	var color = Color(1, 1, 1, 1)
 	var hidden = Color(1, 1, 1, 0)
 	
+	#Calculate the target Y pos
+	var target_y = TOAST_VERTICAL_DISTANCE
+	print(target_y, ' ', _toasts.has(target_y))
+	while _toasts.has(target_y):
+		target_y += TOAST_SPACING
+	
+	#Occupy that spot
+	_toasts[target_y] = label
+	
 	#Set some tweens
 	var start_position = Vector2(0, TOAST_VERTICAL_DISTANCE)
-	var end_position = Vector2(0, -TOAST_VERTICAL_DISTANCE)
+	var end_position = Vector2(0, - (TOAST_VERTICAL_DISTANCE + target_y))
 	tween.interpolate_property(label, "modulate", hidden, color, TOAST_TIME, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	tween.interpolate_property(label, "rect_position", start_position, end_position, TOAST_TIME, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	tween.start()
@@ -67,6 +82,7 @@ func toast(toast_text):
 	yield(tween, "tween_completed")
 	
 	#Now kill them
+	_toasts.erase(target_y)
 	label.queue_free()
 	
 	
