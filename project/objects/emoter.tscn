@@ -17,7 +17,6 @@ onready var _anger = find_node(\"anger\")
 var _animDuration = 3.0
 var _icon = _heart
 
-
 var _animSpeed = 0.5
 var _animMagnitude = 0.4
 
@@ -49,7 +48,7 @@ func _setIcon(icon, duration):
 
 	_animDuration = duration
 	_animProgress = 0.0
-	_animDuration = _animDuration * _animSpeed
+	_animDuration = _animDuration
 
 func _ready():
 	_initialPos = self.translation
@@ -59,8 +58,12 @@ func _ready():
 
 func _process(delta):
 	_animProgress = _animProgress + (delta * _animSpeed)
-	if _animProgress > _animDuration:
-		self.translation.z = _initialPos.y
+	_animDuration = _animDuration - delta
+	
+	if _animDuration <= 0.0:
+		_animDuration = 0.0
+		_animProgress = 0.0
+		self.translation.y = _initialPos.y
 		for child in self.get_children():
 			child.visible = false
 	else:
