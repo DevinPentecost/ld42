@@ -19,9 +19,22 @@ const _player_rotation_lock = 0.1 #Radians to 'lock' to desired angle
 const _player_rotation_speed = 2.3 #Radians a second?
 const _player_movement_speed = 140 #Units per second
 const _player_movement_angle = PI/2 #Radians away from target before player starts moving
+var _moving = false
+var _rotating = false
 
 #Action variables
 var _game_over = false
+
+#Animation
+const ANIMATION_BLEND_TIME = 0.25
+const ACTION_BLEND_TIME = 2
+enum PlayerAnimationState {
+	IDLE,
+	WALK,
+	ACTION,
+	LOSE
+}
+var _animation_state = null
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -33,7 +46,7 @@ func _ready():
 	#Handle input
 	set_process_unhandled_input(true)
 	
-	pass
+	_play_idle_animation()
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
@@ -54,7 +67,16 @@ func _handle_player_movement(delta):
 	#Now move
 	_handle_player_motion(delta)
 	
+	#Handle the animation
+	if _moving or _rotating:
+		_play_walk_animation()
+	else:
+		_play_idle_animation()
+	
 func _handle_player_rotation(delta):
+	
+	#Stop rotating this frame
+	_rotating = false
 	
 	#Do we even want to rotate?
 	if desired_angle == null:
@@ -63,6 +85,9 @@ func _handle_player_rotation(delta):
 	#Are we already where we want to be?
 	if rotation.y == desired_angle:
 		return
+	
+	#We're rotating
+	_rotating = true
 	
 	#How far to move?
 	var angular_distance = desired_angle - rotation.y
@@ -97,9 +122,16 @@ func _handle_player_rotation(delta):
 		rotation.y += 2*PI
 
 func _handle_player_motion(delta):
+	
+	#Stop moving this frame
+	_moving = false
+	
 	#Is the player moving at all?
 	if desired_angle == null:
 		return
+	
+	#We're moving now
+	_moving = true
 	
 	#First, are we looking close enough to move?
 	var angular_distance = abs(desired_angle - rotation.y)
@@ -116,7 +148,6 @@ func _handle_player_motion(delta):
 		#Move the player forward that much
 		var velocity = Vector3(speed, 0, 0).rotated(Vector3(0, 1, 0), rotation.y)
 		move_and_slide(velocity)
-	
 
 func _calculate_desired_angle():
 	#Figure out where the player wants to rotate towards
@@ -145,8 +176,52 @@ func _calculate_desired_angle():
 	#Adjust the angle
 	return angle
 
+func _play_idle_animation():
+	
+	#If we are petting
+	if _animation_state == PlayerAnimationState.ACTION and $PlayerModel/AnimationPlayer.is_playing():
+		#We just wait for this one to end
+		return
+	
+	#Set the state
+	if _animation_state == PlayerAnimationState.IDLE:
+		return
+	_animation_state = PlayerAnimationState.IDLE
+	
+	#Start playing the idle animation
+	$PlayerModel/AnimationPlayer.get_animation("idle").loop = true
+	$PlayerModel/AnimationPlayer.play("idle", ANIMATION_BLEND_TIME)
+	
+func _play_walk_animation():
+	#Set the state
+	if _animation_state == PlayerAnimationState.WALK:
+		return
+	_animation_state = PlayerAnimationState.WALK
+	
+	#Start playing the idle animation
+	$PlayerModel/AnimationPlayer.get_animation("walk").loop = true
+	$PlayerModel/AnimationPlayer.play("walk", ANIMATION_BLEND_TIME)
 
-
+func _play_action_animation():
+	#Set the state
+	if _animation_state == PlayerAnimationState.ACTION:
+		return
+	_animation_state = PlayerAnimationState.ACTION
+	
+	#Start playing the idle animation
+	$PlayerModel/AnimationPlayer.get_animation("pet").loop = false
+	$PlayerModel/AnimationPlayer.play("pet", ANIMATION_BLEND_TIME)
+	
+func _play_lose_animation():
+	#Set the state
+	if _animation_state == PlayerAnimationState.LOSE:
+		return
+	_animation_state = PlayerAnimationState.LOSE
+	
+	#Start playing the idle animation
+	$PlayerModel/AnimationPlayer.get_animation("lose").loop = false
+	$PlayerModel/AnimationPlayer.play("lose", ANIMATION_BLEND_TIME)
+	
 func _unhandled_input(event):
 	
 	#Don't respond to input if the game ended
@@ -185,6 +260,9 @@ func _handle_action_input(event):
 		# Tell groups to check player action
 		get_tree().call_group("kennel", "on_player_action")
 		get_tree().call_group("food", "on_player_action")
+		
+		#Pet the good boy
+		_play_action_animation()
 		
 func game_over():
 	#Game has ended!
