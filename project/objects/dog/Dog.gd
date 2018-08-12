@@ -1,6 +1,7 @@
 extends Spatial
 
 signal adopted
+signal happiness_state_changed(new_state)
 
 #Debbing
 var _debugging = false
@@ -66,6 +67,14 @@ enum DogAnimationState {
 }
 var _animation_state = null
 
+#Dog happy status
+enum DogHappinessState {
+	HAPPY,
+	ANGRY,
+	BROKEN
+}
+var _current_happiness_state = DogHappinessState.BROKEN
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -120,15 +129,28 @@ func _update_status(delta):
 	happiness = max(happiness, 0)
 	
 	#Update adoption meter depending on happiness
+	var new_state = null
 	if happiness >= MIN_ADOPTION_HAPPINESS:
 		adoption += adoption_rate * delta * max(min(pow(happiness, 3), 1), 0.1)
-		
+		#We are grumpy, let people know
+		new_state = DogHappinessState.HAPPY
 		emojiRef.ShowHeart(10)
 	elif happiness <= 0.0:
 		adoption -= ABONDONDED_ADOPTIONDECAY * delta
 		emojiRef.ShowHeartBroken(10)
+		
+		#We are grumpy, let people know
+		new_state = DogHappinessState.BROKEN
+		
 	else:
+		
+		#We are grumpy, let people know
+		new_state = DogHappinessState.ANGRY		
 		emojiRef.ShowAnger(10)
+	
+	if _current_happiness_state != new_state:
+		emit_signal("happiness_state_changed", new_state)
+		_current_happiness_state = new_state
 	
 	# Determine if dog is adopted
 	if happiness > 0.0:

@@ -4,6 +4,7 @@ signal dog_adopted
 signal dog_status_changed
 
 export(PackedScene) var _dog_scene
+const _dog_class = preload("res://objects/dog/Dog.gd")
 export(bool) var _force_dog_spawn = false #DEBUG ONLY!
 
 var _active_dog_node = null
@@ -32,6 +33,7 @@ func spawn_dog():
 	var new_dog_node = _dog_scene.instance()
 	_active_dog_node = new_dog_node
 	new_dog_node.connect("adopted", self, "_on_Dog_adopted")
+	new_dog_node.connect("happiness_state_changed", self, "_on_Dog_happiness_state_changed")
 	
 	#Get a random name and description
 	new_dog_node.dog_name = "Dog #" + str(randi() % 1000)
@@ -106,6 +108,13 @@ func _on_Dog_adopted():
 	_update_decor(false)
 	
 	_active_dog_node = null
+	
+func _on_Dog_happiness_state_changed(new_state):
+	#Is it upset
+	if new_state == _dog_class.BROKEN:
+		#Tell the game controller to make a toast
+		var toast = "%s is hungry!" % _active_dog_node.dog_name
+		get_tree().call_group("gui", "_emit_toast", toast)
 	
 func _update_decor(hasDog):
 	$mat.visible = hasDog

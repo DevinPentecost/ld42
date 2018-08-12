@@ -19,6 +19,7 @@ func _ready():
 	_game_controller.connect("not_enough_food", self, "_on_GameController_not_enough_food")
 	_game_controller.connect("dog_adopted", self, "_on_GameController_dog_adopted")
 	_game_controller.connect("open_kennels_changed", self, "_on_GameController_open_kennels_changed")
+	_game_controller.connect("create_toast", self, "_on_GameController_create_toast")
 	
 	#Listen to the player
 	_player.connect("near_kennel", self, "_on_Player_near_kennel")
@@ -28,6 +29,9 @@ func _ready():
 #	# Called every frame. Delta is time since last frame.
 #	# Update game logic here.
 #	pass
+
+func _emit_toast(toast):
+	$AdoptionToast.toast(toast)
 
 func _on_GameController_game_over():
 	#Show the game over button
@@ -54,14 +58,17 @@ func _on_GameController_food_changed(current_food, max_food):
 func _on_GameController_not_enough_food():
 	
 	#Shake the resource container or something
-	
-	pass
-	
+	_emit_toast("You are out of food! Go grab some more from a bucket")
+
+func _on_GameController_create_toast(toast):
+	#Let the toast know what's up
+	_emit_toast(toast)
+
 func _on_GameController_dog_adopted(dog_name):
 
 	#Let the toast know!
 	var toast_string = "%s was adopted!" % dog_name
-	$AdoptionToast.toast(toast_string)
+	_emit_toast(toast_string)
 
 func _on_GameController_open_kennels_changed(open_kennel_count, total_kennel_count):
 	#Just pass on to the widget

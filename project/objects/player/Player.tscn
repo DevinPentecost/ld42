@@ -36,7 +36,7 @@ subdivide_depth = 0
 
 radius = 1.0
 
-[node name="Player" type="KinematicBody" index="0" groups=[
+[node name="Player" type="KinematicBody" groups=[
 "player",
 ]]
 
