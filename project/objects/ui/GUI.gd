@@ -29,7 +29,9 @@ func _ready():
 
 
 func _on_GameController_score_changed(time, adoptions):
-	pass
+	
+	#Update the score container
+	$ScoreContainer.set_score(time, adoptions)
 	
 func _on_GameController_food_changed(food):
 	pass

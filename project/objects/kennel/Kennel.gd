@@ -86,11 +86,13 @@ func _on_ActionArea_body_exited(body):
 		_active = false
 
 func _on_Dog_adopted():
+	#Announce we got the dog adopted
+	emit_signal("dog_adopted")
+	
 	#Make some changes to the kennel if needed
 	
 	#Get rid of the dog since it's happy
 	_active_dog_node.queue_free()
 	_active_dog_node = null
 	
-	#Announce we got the dog adopted
-	emit_signal("dog_adopted")
+	

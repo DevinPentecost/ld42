@@ -156,3 +156,6 @@ func _on_SpawnTimer_timeout():
 	
 	#Spawn another one!
 	_start_dog_spawn()
+
+func _on_Kennel_dog_status_changed():
+	pass # replace with function body
