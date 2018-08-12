@@ -1,25 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://sprites/emoticons/emote_heart.png" type="Texture" id=1]
+[ext_resource path="res://sprites/emoticons/emote_heartBroken.png" type="Texture" id=2]
+[ext_resource path="res://sprites/emoticons/emote_anger.png" type="Texture" id=3]
+[ext_resource path="res://sprites/emoticons/emote_swirl.png" type="Texture" id=4]
 
 [sub_resource type="GDScript" id=1]
 
 script/source = "extends Spatial
 
-var _heart = load(\"res://sprites/emoticons/emote_heart.png\")
-var _heartBroken = load(\"res://sprites/emoticons/emote_heartBroken.png\")
-var _swirl = load(\"res://sprites/emoticons/emote_swirl.png\")
-var _anger = load(\"res://sprites/emoticons/emote_anger.png\")
-
-
-
+onready var _heart = find_node(\"heart\")
+onready var _heartBroken = find_node(\"heartBroken\")
+onready var _swirl = find_node(\"swirl\")
+onready var _anger = find_node(\"anger\")
 
 var _animDuration = 3.0
 var _icon = _heart
 
 
 var _animSpeed = 0.5
-var _animMagnitude = 10.0
+var _animMagnitude = 0.4
 
 var _animProgress = 0.0
 
@@ -44,7 +44,9 @@ func _setIcon(icon, duration):
 		return
 	
 	_icon = icon
-	self.get_child(0).texture = _icon
+	for child in self.get_children():
+		child.visible = (child == _icon)
+
 	_animDuration = duration
 	_animProgress = 0.0
 	_animDuration = _animDuration * _animSpeed
@@ -58,10 +60,10 @@ func _ready():
 func _process(delta):
 	_animProgress = _animProgress + (delta * _animSpeed)
 	if _animProgress > _animDuration:
-		self.visible = false
-		self.translation.y = _initialPos.y
+		self.translation.z = _initialPos.y
+		for child in self.get_children():
+			child.visible = false
 	else:
-		self.visible = true
 		self.translation.y = _initialPos.y + (cos(_animProgress) + 1) * _animMagnitude "
 
 [sub_resource type="SpatialMaterial" id=2]
@@ -122,7 +124,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.466241, 2.03345, 0 )
 script = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="emoji" type="Sprite3D" parent="." index="0"]
+[node name="heart" type="Sprite3D" parent="." index="0"]
 
 layers = 1
 material_override = SubResource( 2 )
@@ -146,6 +148,99 @@ shaded = false
 double_sided = true
 alpha_cut = 0
 texture = ExtResource( 1 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = false
+region_rect = Rect2( 0, 0, 0, 0 )
+_sections_unfolded = [ "Animation", "Geometry", "LOD", "Pause", "Region", "Transform", "Visibility" ]
+
+[node name="heartBroken" type="Sprite3D" parent="." index="1"]
+
+layers = 1
+material_override = SubResource( 2 )
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 2
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 2 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = false
+region_rect = Rect2( 0, 0, 0, 0 )
+_sections_unfolded = [ "Animation", "Geometry", "LOD", "Pause", "Region", "Transform", "Visibility" ]
+
+[node name="anger" type="Sprite3D" parent="." index="2"]
+
+layers = 1
+material_override = SubResource( 2 )
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 2
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 3 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = false
+region_rect = Rect2( 0, 0, 0, 0 )
+_sections_unfolded = [ "Animation", "Geometry", "LOD", "Pause", "Region", "Transform", "Visibility" ]
+
+[node name="swirl" type="Sprite3D" parent="." index="3"]
+
+layers = 1
+material_override = SubResource( 2 )
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 2
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 4 )
 vframes = 1
 hframes = 1
 frame = 0
