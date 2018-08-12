@@ -36,7 +36,8 @@ func toast(toast_text):
 	
 	#Give it a background
 	var background = ColorRect.new()
-	background.color = Color(0, 0, 0, 0.25)
+	background.show_behind_parent = true
+	background.color = Color(0, 0, 0, 0.75)
 	background.set_anchor_and_margin(MARGIN_TOP, 0, -2)
 	background.set_anchor_and_margin(MARGIN_LEFT, 0, -2)
 	background.set_anchor_and_margin(MARGIN_BOTTOM, 1, 2)
