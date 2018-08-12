@@ -13,3 +13,6 @@ func add_dog(dog_node):
 	#Put it there
 	dog_node.transform.origin.x = x_pos
 	dog_node.transform.origin.z = z_pos
+	
+	#Rotate it
+	dog_node.rotation.y = rand_range(0, 2*PI)
