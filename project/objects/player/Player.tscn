@@ -74,7 +74,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="DebugMesh" type="MeshInstance" parent="." index="2"]
 
-transform = Transform( -2.18557e-008, 0.5, -2.18557e-008, 0, -2.18557e-008, -0.5, -0.5, -2.18557e-008, 9.55343e-016, 0.25, 2, 0 )
+transform = Transform( -2.18557e-08, 0.5, -2.18557e-08, 0, -2.18557e-08, -0.5, -0.5, -2.18557e-08, 9.55343e-16, 0.25, 2, 0 )
 visible = false
 layers = 1
 material_override = null
@@ -92,7 +92,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="PlayerModel" parent="." index="3" instance=ExtResource( 2 )]
 
-transform = Transform( -8.14603e-008, 0, 0.5, 0, 0.5, 0, -0.5, 0, -8.14603e-008, 0, 0, 0 )
+transform = Transform( -8.14603e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -8.14603e-08, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="InteractArea" type="Area" parent="." index="4"]
