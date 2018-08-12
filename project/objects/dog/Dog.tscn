@@ -30,7 +30,7 @@ adoption_rate = 1.0
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
-transform = Transform( 1, -7.10543e-15, -3.01876e-11, -3.01876e-11, -0.000345306, -1, -7.10543e-15, 1, -0.000345306, 0, 0.5, 0 )
+transform = Transform( 1, -7.10543e-015, -3.01876e-011, -3.01876e-011, -0.000345306, -1, -7.10543e-015, 1, -0.000345306, 0, 0.5, 0 )
 visible = false
 layers = 1
 material_override = null
@@ -56,7 +56,7 @@ AgeMonths = 0
 
 [node name="dogmodel_temp" parent="." index="2" instance=ExtResource( 5 )]
 
-transform = Transform( -6.51683e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -6.51683e-08, 0, 0, 0 )
+transform = Transform( -6.51683e-008, 0, -0.4, 0, 0.4, 0, 0.4, 0, -6.51683e-008, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="emoter" parent="." index="3" instance=ExtResource( 6 )]
