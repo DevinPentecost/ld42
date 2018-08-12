@@ -93,7 +93,7 @@ _sections_unfolded = [ "Background" ]
 
 [node name="GameGrid" parent="." index="1" instance=ExtResource( 2 )]
 
-_sections_unfolded = [ "Pause" ]
+_sections_unfolded = [ "Pause", "Transform" ]
 
 [node name="GameController" parent="." index="2" instance=ExtResource( 3 )]
 

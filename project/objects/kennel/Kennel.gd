@@ -66,11 +66,10 @@ func spawn_dog():
 func on_player_action():
 	
 	#Is the player here?
-	if _active:
+	if _active and _active_dog_node:
 		#We respond!
 		get_tree().call_group("game_controller", "player_feed_kennel", self)
-		if _active_dog_node:
-			_active_dog_node.feed()
+		_active_dog_node.feed()
 	
 	pass
 
