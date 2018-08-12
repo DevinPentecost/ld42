@@ -20,15 +20,9 @@ dog_name = "Null"
 description = "This hound needs a description!"
 dog_scale = Vector3( 1, 1, 1 )
 base_texture = null
-<<<<<<< Updated upstream
-tint = null
-tend_rate = 0.0001
-adoption_rate = 0.01
-=======
 tint = Color( 1, 1, 1, 1 )
 tend_rate = 1.0
 adoption_rate = 1.0
->>>>>>> Stashed changes
 
 [node name="Biography" type="Node" parent="." index="0"]
 
