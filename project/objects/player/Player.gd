@@ -277,6 +277,9 @@ func game_over():
 	#Game has ended!
 	_game_over = true
 	
+	#Play the loser animation
+	_play_lose_animation()
+	
 	#Uh oh!
 	_play_sfx(lose_sfx)
 
