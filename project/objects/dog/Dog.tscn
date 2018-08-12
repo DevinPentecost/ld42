@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://objects/dog/Dog.gd" type="Script" id=1]
 [ext_resource path="res://objects/dog/dog_texture_a.png" type="Texture" id=2]
 [ext_resource path="res://objects/dog/dog_texture_b.png" type="Texture" id=3]
 [ext_resource path="res://objects/dogbio.gd" type="Script" id=4]
 [ext_resource path="res://objects/dog/dog.dae" type="PackedScene" id=5]
+[ext_resource path="res://objects/emoter.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -14,7 +15,7 @@ mid_height = 0.5
 radial_segments = 64
 rings = 8
 
-[node name="Dog" type="Spatial"]
+[node name="Dog" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 TEXTURE_A = ExtResource( 2 )
@@ -57,5 +58,7 @@ AgeMonths = 0
 
 transform = Transform( -6.51683e-008, 0, -0.4, 0, 0.4, 0, 0.4, 0, -6.51683e-008, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="emoter" parent="." index="3" instance=ExtResource( 6 )]
 
 
