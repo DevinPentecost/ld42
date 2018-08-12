@@ -24,8 +24,9 @@ export(String) var description = "This hound needs a description!"
 export(float) var dog_scale = 1.0
 export(Texture) var base_texture
 export(Color) var tint
-export(float) var tend_rate = 1.0
-export(float) var adoption_rate = 1.0
+export(float) var tend_rate = 0.0001
+export(float) var adoption_rate = 0.01
+var _secondCounter = 0.0
 
 # Refs to other nodes
 var bio
@@ -36,7 +37,9 @@ onready var _dog_area = $".."
 #Properties of the dog's status
 const MIN_START_HAPPINESS = 0.1
 const MAX_START_HAPPINESS = 0.8
-const MIN_ADOPTION_HAPPINESS = 0.6
+const MIN_ADOPTION_HAPPINESS = 0.3
+const ABONDONDED_ADOPTIONDECAY = 0.0003
+const ADOPTION_CHANCERATIO = 0.2 # this * adoption meter is chance of early adoption per second
 var happiness = rand_range(MIN_START_HAPPINESS, MAX_START_HAPPINESS)
 var adoption = 0
 
@@ -85,6 +88,8 @@ func _process(delta):
 	# Called every frame. Delta is time since last frame.
 	# Update game logic here.
 	
+	_secondCounter += delta
+	
 	_update_status(delta)
 	
 	#Tell our parent to let folks know we've updated
@@ -99,19 +104,35 @@ func _update_status(delta):
 	happiness -= tend_rate * delta
 	happiness = max(happiness, 0)
 	
-	#Are we happy enough to start getting adopted?
+	#Update adoption meter depending on happiness
 	if happiness >= MIN_ADOPTION_HAPPINESS:
-		adoption += adoption_rate * delta
+		adoption += adoption_rate * delta * max(min(pow(happiness, 3), 1), 0.1)
 		
 		emojiRef.ShowHeart(10)
-		
-		#Are we super happy?!
+	elif happiness <= 0.0:
+		adoption -= ABONDONDED_ADOPTIONDECAY * delta
+		emojiRef.ShowHeartBroken(10)
+	else:
+		emojiRef.ShowAnger(10)
+	
+	# Determine if dog is adopted
+	if happiness > 0.0:
+		#Adoption can only occur while a dog is not heartbroken.
 		if adoption >= 1:
 			#Someone adopted us
 			emit_signal("adopted")
 			set_process(false)
-	else:
-		emojiRef.ShowAnger(10)
+			
+		# Adoption can occur earlier by chance.
+		if _secondCounter > 1.0:
+			_secondCounter = 0.0
+			randomize()
+			if randf() < adoption * ADOPTION_CHANCERATIO:
+				#Someone adopted us
+				emit_signal("adopted")
+				set_process(false)
+				print("early adoption!")
+		
 		
 func feed():
 	#The dog is fed and happy!

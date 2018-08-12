@@ -26,8 +26,8 @@ description = "This hound needs a description!"
 dog_scale = 1.0
 base_texture = null
 tint = null
-tend_rate = 1.0
-adoption_rate = 1.0
+tend_rate = 0.0001
+adoption_rate = 0.01
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 
