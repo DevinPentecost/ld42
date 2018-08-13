@@ -121,6 +121,8 @@ script/source = "extends Spatial
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
+	
+	$AnimationPlayer.get_animation(\"sit\").loop = true
 	$AnimationPlayer.play(\"sit\")
 	
 	pass
@@ -137,7 +139,7 @@ tool
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	
+	$AnimationPlayer.get_animation(\"idle\").loop = true
 	$AnimationPlayer.play(\"idle\")
 	pass
 
