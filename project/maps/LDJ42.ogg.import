@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/LDJ42.ogg-304bcb64f185c4bbb93c789c5d9bbb22.oggstr"
+
+[deps]
+
+source_file="res://maps/LDJ42.ogg"
+dest_files=[ "res://.import/LDJ42.ogg-304bcb64f185c4bbb93c789c5d9bbb22.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=21.16

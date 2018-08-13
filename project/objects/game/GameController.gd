@@ -7,9 +7,6 @@ signal food_changed(food_amount)
 signal open_kennels_changed(open_kennel_count, total_kennels)
 signal not_enough_food
 
-#Music
-export(AudioStream) var bgm
-
 #Scoring
 var time = 0
 var adoptions = 0

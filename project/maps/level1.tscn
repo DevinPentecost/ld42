@@ -21,11 +21,11 @@
 [ext_resource path="res://objects/basic_tiles/WallTile.tscn" type="PackedScene" id=19]
 [ext_resource path="res://objects/decor/computer.dae" type="PackedScene" id=20]
 [ext_resource path="res://objects/decor/radio.dae" type="PackedScene" id=21]
-[ext_resource path="res://maps/Swinging Pants.ogg" type="AudioStream" id=22]
+[ext_resource path="res://maps/LDJ42.ogg" type="AudioStream" id=22]
 [ext_resource path="res://objects/decor/counter.dae" type="PackedScene" id=23]
 [ext_resource path="res://objects/decor/pawprints.png" type="Texture" id=24]
 
-[node name="Map" type="Spatial"]
+[node name="Map" type="Spatial" index="0"]
 
 [node name="Entry" type="Spatial" parent="." index="0"]
 
