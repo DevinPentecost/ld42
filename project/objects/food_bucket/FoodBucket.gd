@@ -79,9 +79,11 @@ func on_player_action():
 	#Is the player interacting with the bucket?
 	if _active:
 		# Give the player food!
-		get_tree().call_group("game_controller", "fill_player_food", request_food())
+		get_tree().call_group("game_controller", "fill_player_food", null)
 		
-	pass
+		#Let the player know!
+		var toast = "Grabbed some dog food"
+		get_tree().call_group("toast", "toast", toast)
 
 func _on_ActionArea_body_entered(body):
 	#For now, assume it's the player
