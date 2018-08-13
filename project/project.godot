@@ -14,16 +14,12 @@ config/name="ld42"
 run/main_scene="res://scenes/StartScreen.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Helpers="*res://lib/Helpers.gd"
-
 [display]
 
 window/size/width=1600
 window/size/height=900
 window/stretch/mode="viewport"
-window/stretch/aspect="keep_height"
+window/stretch/aspect="keep"
 window/stretch/shrink="1"
 
 [input]

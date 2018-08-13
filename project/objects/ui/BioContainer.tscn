@@ -1,22 +1,22 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://objects/ui/BioContainer.gd" type="Script" id=1]
-[ext_resource path="res://fonts/fontbold.tres" type="DynamicFont" id=2]
-[ext_resource path="res://objects/ui/progress_back.png" type="Texture" id=3]
+[ext_resource path="res://fonts/IMBBold.tres" type="DynamicFont" id=2]
+[ext_resource path="res://objects/ui/IBMPlex.tres" type="DynamicFont" id=3]
 [ext_resource path="res://objects/ui/progress_over.png" type="Texture" id=4]
 [ext_resource path="res://objects/ui/progress_fill.png" type="Texture" id=5]
-[ext_resource path="res://fonts/fontlight.tres" type="DynamicFont" id=6]
+[ext_resource path="res://objects/ui/progress_fill2.png" type="Texture" id=6]
 
-[node name="BioContainer" type="VBoxContainer"]
+[node name="BioContainer" type="VBoxContainer" index="0"]
 
 anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 0.0
-margin_left = -300.0
-margin_top = 15.0
-margin_right = -15.0
-margin_bottom = 10.0
+margin_left = -434.0
+margin_top = 10.0
+margin_right = 242.0
+margin_bottom = 1098.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -33,8 +33,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 285.0
-margin_bottom = 19.0
+margin_right = 676.0
+margin_bottom = 66.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -49,9 +49,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 112.0
-margin_right = 173.0
-margin_bottom = 19.0
+margin_left = 242.0
+margin_right = 434.0
+margin_bottom = 66.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -60,20 +60,22 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
 text = "Doggie"
+uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Visibility", "custom_fonts" ]
 
-[node name="StatsContainer" type="CenterContainer" parent="." index="1"]
+[node name="SPACER2" type="CenterContainer" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 23.0
-margin_right = 285.0
-margin_bottom = 163.0
+margin_top = 70.0
+margin_right = 676.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 0, 32 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -81,122 +83,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 use_top_left = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 92.0
-margin_right = 192.0
-margin_bottom = 140.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-
-[node name="Happiness" type="Label" parent="StatsContainer/VBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 100.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Happiness"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="HappinessProgress" type="TextureProgress" parent="StatsContainer/VBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 100.0
-margin_bottom = 68.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-min_value = 0.0
-max_value = 1.0
-step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
-texture_under = ExtResource( 3 )
-texture_over = ExtResource( 4 )
-texture_progress = ExtResource( 5 )
-radial_fill_degrees = 360.0
-radial_center_offset = Vector2( 0, 0 )
-nine_patch_stretch = false
-_sections_unfolded = [ "Anchor", "Margin", "Textures" ]
-
-[node name="Adoptability" type="Label" parent="StatsContainer/VBoxContainer" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 72.0
-margin_right = 100.0
-margin_bottom = 86.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Adoptability"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="AdoptabilityProgress" type="TextureProgress" parent="StatsContainer/VBoxContainer" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 90.0
-margin_right = 100.0
-margin_bottom = 140.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-min_value = 0.0
-max_value = 1.0
-step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
-texture_under = ExtResource( 3 )
-texture_over = ExtResource( 4 )
-texture_progress = ExtResource( 5 )
-radial_fill_degrees = 360.0
-radial_center_offset = Vector2( 0, 0 )
-nine_patch_stretch = false
-_sections_unfolded = [ "Anchor", "Margin", "Textures" ]
+_sections_unfolded = [ "Rect" ]
 
 [node name="DescriptionContainer" type="CenterContainer" parent="." index="2"]
 
@@ -204,9 +91,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 167.0
-margin_right = 285.0
-margin_bottom = 1088.0
+margin_top = 106.0
+margin_right = 676.0
+margin_bottom = 579.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -214,7 +101,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 use_top_left = false
-_sections_unfolded = [ "Anchor", "Margin" ]
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DescriptionContainer" index="0"]
 
@@ -222,9 +109,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 104.0
-margin_right = 180.0
-margin_bottom = 921.0
+margin_left = 188.0
+margin_right = 488.0
+margin_bottom = 473.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -234,24 +121,26 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Anchor", "Grow Direction", "Margin" ]
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect" ]
 
 [node name="DogBio" type="Label" parent="DescriptionContainer/VBoxContainer" index="0"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 76.0
-margin_bottom = 19.0
+margin_right = 256.0
+margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 3 )
 text = "About me:"
+align = 3
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -263,27 +152,193 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 23.0
-margin_right = 76.0
-margin_bottom = 921.0
+margin_right = 300.0
+margin_bottom = 473.0
+rect_min_size = Vector2( 300, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
 text = "There are, of course, cases where you want to set information to a transform. Imagine a first person controller or orbiting camera. Those are definitely done using angles, because you do want the transforms to happen in a specific order.
 
 For such cases, keep the angles and rotations outside the transform and set them every frame. Don’t try retrieve them and re-use them because the transform is not meant to be used this way.
 
 Example of looking around, FPS style:"
+align = 3
 autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "Margin" ]
+_sections_unfolded = [ "Anchor", "Margin", "Rect", "custom_fonts" ]
 
-[node name="Tween" type="Tween" parent="." index="3"]
+[node name="SPACER" type="CenterContainer" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 583.0
+margin_right = 676.0
+margin_bottom = 615.0
+rect_min_size = Vector2( 0, 32 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+_sections_unfolded = [ "Rect" ]
+
+[node name="StatsContainer" type="CenterContainer" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 619.0
+margin_right = 676.0
+margin_bottom = 831.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+_sections_unfolded = [ "Anchor", "Focus", "Margin", "Rect", "Size Flags" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StatsContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 676.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 676, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 2
+_sections_unfolded = [ "Grow Direction", "Size Flags" ]
+
+[node name="Happiness" type="Label" parent="StatsContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 676.0
+margin_bottom = 25.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+text = "Happiness"
+align = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Grow Direction", "Rect", "custom_fonts" ]
+
+[node name="HappinessProgress" type="TextureProgress" parent="StatsContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 188.0
+margin_top = 29.0
+margin_right = 488.0
+margin_bottom = 104.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = 0.0
+max_value = 1.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = null
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Radial Fill", "Rect", "Size Flags" ]
+
+[node name="Adoptability" type="Label" parent="StatsContainer/VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 108.0
+margin_right = 676.0
+margin_bottom = 133.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
+text = "Adoptability"
+align = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="AdoptabilityProgress" type="TextureProgress" parent="StatsContainer/VBoxContainer" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 188.0
+margin_top = 137.0
+margin_right = 488.0
+margin_bottom = 212.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 4
+size_flags_vertical = 5
+min_value = 0.0
+max_value = 1.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = null
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 6 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Anchor", "Margin", "Rect", "Size Flags", "Textures" ]
+
+[node name="Tween" type="Tween" parent="." index="5"]
 
 repeat = false
 playback_process_mode = 1

@@ -20,7 +20,7 @@ extents = Vector3( 0.1, 1, 2 )
 
 [sub_resource type="BoxShape" id=3]
 
-extents = Vector3( 0.25, 0.25, 1 )
+extents = Vector3( 1, 0.25, 1.3 )
 
 [sub_resource type="CubeMesh" id=4]
 
@@ -38,7 +38,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[node name="Kennel" type="Spatial" index="0" groups=[
+[node name="Kennel" type="Spatial" groups=[
 "kennel",
 ]]
 
@@ -117,7 +117,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="ActionArea" index="0"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.94999, 0.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.827428, 0.5, 0 )
 shape = SubResource( 3 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
@@ -146,7 +146,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="WallLeft" type="MeshInstance" parent="Walls" index="1"]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 1, 2 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 2 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -180,7 +180,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="WallRight" type="MeshInstance" parent="Walls" index="3"]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 1, -2 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, -2 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -212,7 +212,7 @@ area = Vector2( 1.25, 1.75 )
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="5"]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 1.5, 0.01, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.5, 0.01, 0 )
 visible = false
 layers = 1
 material_override = null
@@ -245,7 +245,7 @@ _sections_unfolded = [ "Flags", "Transform" ]
 
 [node name="mat" parent="." index="6" instance=ExtResource( 7 )]
 
-transform = Transform( -1.62921e-007, 0, 1, 0, 1, 0, -1, 0, -1.62921e-007, 0.502637, 0.111293, 3.02363 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0.502637, 0.111293, 3.02363 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="FloorTile" parent="." index="7" instance=ExtResource( 8 )]
@@ -254,7 +254,7 @@ visible = false
 
 [node name="kennelwalls" parent="." index="8" instance=ExtResource( 9 )]
 
-transform = Transform( -1.61291e-007, 0, 0.97, 0, 2, 0, -0.99, 0, -1.58033e-007, -0.0331978, -0.17377, 0.00800133 )
+transform = Transform( -1.61291e-07, 0, 0.97, 0, 2, 0, -0.99, 0, -1.58033e-07, -0.0331978, -0.17377, 0.00800133 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="9"]

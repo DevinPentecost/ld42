@@ -38,7 +38,7 @@ editor/display_folded = true
 [node name="CounterTile" parent="Entry/EntryCounter" index="0" instance=ExtResource( 1 )]
 
 editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 3, 0, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Scene Root" parent="Entry/EntryCounter/CounterTile" index="5" instance=ExtResource( 2 )]
@@ -47,11 +47,11 @@ transform = Transform( -0.123756, 0, -0.992313, 0, 1, 0, 0.992313, 0, -0.123756,
 
 [node name="Scene Root2" parent="Entry/EntryCounter/CounterTile" index="6" instance=ExtResource( 3 )]
 
-transform = Transform( -0.253433, -0.967353, -3.12065e-008, 4.37114e-008, -4.37114e-008, 1, -0.967353, 0.253433, 5.33622e-008, -0.457231, 1.14995, 0.700756 )
+transform = Transform( -0.253433, -0.967353, -3.12065e-08, 4.37114e-08, -4.37114e-08, 1, -0.967353, 0.253433, 5.33622e-08, -0.457231, 1.14995, 0.700756 )
 
 [node name="Scene Root3" parent="Entry/EntryCounter/CounterTile" index="7" instance=ExtResource( 4 )]
 
-transform = Transform( 0.884993, 0, -0.465604, 0, 1, 0, 0.465604, 0, 0.884993, -4.93324e-008, 0, -1.12859 )
+transform = Transform( 0.884993, 0, -0.465604, 0, 1, 0, 0.465604, 0, 0.884993, -4.93324e-08, 0, -1.12859 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Scene Root4" parent="Entry/EntryCounter/CounterTile" index="8" instance=ExtResource( 5 )]
@@ -59,13 +59,13 @@ _sections_unfolded = [ "Transform" ]
 transform = Transform( 0.151166, 0, 0.19912, 0, 0.25, 0, -0.19912, 0, 0.151166, -3.77476, 1.51213, -0.496266 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Scene Root5" type="Spatial" parent="Entry/EntryCounter/CounterTile" index="9" instance=ExtResource( 6 )]
+[node name="Scene Root5" parent="Entry/EntryCounter/CounterTile" index="9" instance=ExtResource( 6 )]
 
 transform = Transform( 0.728118, 0, 0.305385, 0, 0.789567, 0, -0.305385, 0, 0.728118, -3.51533, 1.44741, -0.958977 )
 
 [node name="CounterTile2" parent="Entry/EntryCounter" index="1" instance=ExtResource( 1 )]
 
-transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 3, 0, 4 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CounterTile3" parent="Entry/EntryCounter" index="2" instance=ExtResource( 1 )]
@@ -73,17 +73,17 @@ _sections_unfolded = [ "Transform" ]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -3.5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Scene Root" type="Spatial" parent="Entry/EntryCounter/CounterTile3" index="5" instance=ExtResource( 7 )]
+[node name="Scene Root" parent="Entry/EntryCounter/CounterTile3" index="5" instance=ExtResource( 7 )]
 
 transform = Transform( -0.000298068, 0, -0.5, 0, 0.480788, 0, 0.5, 0, -0.000298068, -1.61901, 0.0133185, 0.847885 )
 
 [node name="Scene Root2" parent="Entry/EntryCounter/CounterTile3" index="6" instance=ExtResource( 7 )]
 
-transform = Transform( -4.37114e-008, 0, -1, 0, 0.108609, 0, 1, 0, -4.37114e-008, 1.46256, 1.19521, 0 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 0.108609, 0, 1, 0, -4.37114e-08, 1.46256, 1.19521, 0 )
 
-[node name="Scene Root3" type="Spatial" parent="Entry/EntryCounter/CounterTile3" index="7" instance=ExtResource( 8 )]
+[node name="Scene Root3" parent="Entry/EntryCounter/CounterTile3" index="7" instance=ExtResource( 8 )]
 
-transform = Transform( -3.39679e-009, 0, -0.0777094, 0, 0.0777094, 0, 0.0777094, 0, -3.39679e-009, 1.65691, 1.178, -0.959153 )
+transform = Transform( -3.39679e-09, 0, -0.0777094, 0, 0.0777094, 0, 0.0777094, 0, -3.39679e-09, 1.65691, 1.178, -0.959153 )
 _sections_unfolded = [ "Visibility" ]
 
 [node name="CounterTile4" parent="Entry/EntryCounter" index="3" instance=ExtResource( 1 )]
@@ -107,7 +107,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0 )
 
 [node name="Kennel4" parent="Entry/EntryKennels" index="1" instance=ExtResource( 10 )]
 
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -11, 0, 4 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11, 0, 4 )
 
 [node name="Kennel2" parent="Entry/EntryKennels" index="2" instance=ExtResource( 10 )]
 
@@ -115,7 +115,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 4 )
 
 [node name="Kennel5" parent="Entry/EntryKennels" index="3" instance=ExtResource( 10 )]
 
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -11, 0, 4.76837e-007 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11, 0, 4.76837e-07 )
 
 [node name="Kennel3" parent="Entry/EntryKennels" index="4" instance=ExtResource( 10 )]
 
@@ -123,15 +123,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 12 )
 
 [node name="Kennel6" parent="Entry/EntryKennels" index="5" instance=ExtResource( 10 )]
 
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -11, 0, 12 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11, 0, 12 )
 
 [node name="Kennel7" parent="Entry/EntryKennels" index="6" instance=ExtResource( 10 )]
 
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 2, 0, 14 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 14 )
 
 [node name="Kennel8" parent="Entry/EntryKennels" index="7" instance=ExtResource( 10 )]
 
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 2, 0, 18 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0, 18 )
 
 [node name="EntryWalls" type="Spatial" parent="Entry" index="2"]
 
@@ -143,12 +143,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -2 )
 
 [node name="Window1" parent="Entry/EntryWalls/Wallx4" index="4" instance=ExtResource( 12 )]
 
-transform = Transform( -1.62921e-007, 0, -1, 0, 1, 0, 1, 0, -1.62921e-007, -2.00041, 1.78821, 0 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -2.00041, 1.78821, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Picture1" parent="Entry/EntryWalls/Wallx4" index="5" instance=ExtResource( 13 )]
 
-transform = Transform( -1.62921e-007, 0, -1, 0, 1, 0, 1, 0, -1.62921e-007, -1.99381, 1.99542, 8.89343 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -1.99381, 1.99542, 8.89343 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Wallx6" parent="Entry/EntryWalls" index="1" instance=ExtResource( 11 )]
@@ -161,13 +161,13 @@ transform = Transform( -0.510049, 0, -0.860145, 0, 1, 0, 0.860145, 0, -0.510049,
 
 [node name="Window2" parent="Entry/EntryWalls/Wallx6" index="5" instance=ExtResource( 12 )]
 
-transform = Transform( -2.8213e-007, 0, -1, 0, 1, 0, 1, 0, -2.8213e-007, -2.00041, 1.69385, -0.299805 )
+transform = Transform( -2.8213e-07, 0, -1, 0, 1, 0, 1, 0, -2.8213e-07, -2.00041, 1.69385, -0.299805 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Wallx8" parent="Entry/EntryWalls" index="2" instance=ExtResource( 11 )]
 
 editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, -12, 0, 24 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12, 0, 24 )
 
 [node name="filecab3" parent="Entry/EntryWalls/Wallx8" index="0" instance=ExtResource( 15 )]
 
@@ -180,7 +180,7 @@ transform = Transform( 0.0212655, 0, 0.999774, 0, 1, 0, -0.999774, 0, 0.0212655,
 
 [node name="Door1" parent="Entry/EntryWalls/Wallx8" index="5" instance=ExtResource( 16 )]
 
-transform = Transform( -1.62921e-007, 0, -1, 0, 1.5, 0, 1, 0, -1.62921e-007, -2.06201, 0.138672, 2.23728 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1.5, 0, 1, 0, -1.62921e-07, -2.06201, 0.138672, 2.23728 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Clock1" parent="Entry/EntryWalls/Wallx8" index="6" instance=ExtResource( 17 )]
@@ -202,27 +202,27 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="WallTile2" parent="Entry/EntryWalls" index="3" instance=ExtResource( 19 )]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -10, 0, -12 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 0, -12 )
 
 [node name="WallTile3" parent="Entry/EntryWalls" index="4" instance=ExtResource( 19 )]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -14, 0, -12 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 0, -12 )
 
 [node name="WallTile4" parent="Entry/EntryWalls" index="5" instance=ExtResource( 19 )]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -18, 0, -12 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18, 0, -12 )
 
 [node name="WallTile5" parent="Entry/EntryWalls" index="6" instance=ExtResource( 19 )]
 
-transform = Transform( 1.31134e-007, 0, -1, 0, 1, 0, 1, 0, 1.31134e-007, 2, 0, 24 )
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 2, 0, 24 )
 
 [node name="WallTile6" parent="Entry/EntryWalls" index="7" instance=ExtResource( 19 )]
 
-transform = Transform( 1.31134e-007, 0, -1, 0, 1, 0, 1, 0, 1.31134e-007, -2, 0, 24 )
+transform = Transform( 1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -2, 0, 24 )
 
 [node name="WallTile8" parent="Entry/EntryWalls" index="8" instance=ExtResource( 19 )]
 
-transform = Transform( -2.18557e-007, 0, 1, 0, 1, 0, -1, 0, -2.18557e-007, 2, 0, -12 )
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 2, 0, -12 )
 
 [node name="Scene Root" parent="Entry/EntryWalls/WallTile8" index="4" instance=ExtResource( 4 )]
 
@@ -230,27 +230,26 @@ transform = Transform( 2.28386, 0, 0, 0, 4.39847, 0, 0, 0, 2.28386, -3.19931, -5
 
 [node name="WallTile9" parent="Entry/EntryWalls" index="9" instance=ExtResource( 19 )]
 
-transform = Transform( -2.18557e-007, 0, 1, 0, 1, 0, -1, 0, -2.18557e-007, -2, 0, -12 )
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -2, 0, -12 )
 
 [node name="WallTile10" parent="Entry/EntryWalls" index="10" instance=ExtResource( 19 )]
 
-transform = Transform( -2.18557e-007, 0, 1, 0, 1, 0, -1, 0, -2.18557e-007, -6, 0, -12 )
+transform = Transform( -2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -6, 0, -12 )
 
 [node name="Middle" type="Spatial" parent="." index="1"]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="MiddleCounter" type="Spatial" parent="Middle" index="0"]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 7, 0, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CounterTile2" parent="Middle/MiddleCounter" index="0" instance=ExtResource( 1 )]
 
 editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -1.56921, 0, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.56921, 0, 0 )
 
 [node name="Computer1" parent="Middle/MiddleCounter/CounterTile2" index="5" instance=ExtResource( 20 )]
 
@@ -262,15 +261,15 @@ transform = Transform( -0.991783, 0, -0.127933, 0, 1, 0, 0.127933, 0, -0.991783,
 
 [node name="Clipboard2" parent="Middle/MiddleCounter/CounterTile2" index="7" instance=ExtResource( 3 )]
 
-transform = Transform( 1.66117, -0.318686, 0.014205, -3.51193e-007, 0.0323429, 3.09928, -0.361263, -1.4654, 0.0653152, 0.849297, 1.34302, -1.78329 )
+transform = Transform( 1.66117, -0.318686, 0.014205, -3.51193e-07, 0.0323429, 3.09928, -0.361263, -1.4654, 0.0653152, 0.849297, 1.34302, -1.78329 )
 
 [node name="CounterTile3" parent="Middle/MiddleCounter" index="1" instance=ExtResource( 1 )]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -4.56921, 0, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.56921, 0, 0 )
 
 [node name="CounterTile4" parent="Middle/MiddleCounter" index="2" instance=ExtResource( 1 )]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -13, 0, 0 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, 0 )
 visible = false
 
 [node name="CounterTile5" parent="Middle/MiddleCounter" index="3" instance=ExtResource( 1 )]
@@ -281,7 +280,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Countertop6" parent="Middle/MiddleCounter" index="4" instance=ExtResource( 21 )]
 
-transform = Transform( -2.76965e-007, 0, 3.1, 0, 1.5, 0, -1.7, 0, -5.05054e-007, -14.5736, 0.154541, 0.397644 )
+transform = Transform( -2.76965e-07, 0, 3.1, 0, 1.5, 0, -1.7, 0, -5.05054e-07, -14.5736, 0.154541, 0.397644 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="radio" parent="Middle/MiddleCounter/Countertop6" index="2" instance=ExtResource( 22 )]
@@ -311,11 +310,11 @@ doppler_tracking = 0
 
 [node name="Clipboard" parent="Middle/MiddleCounter/Countertop6" index="3" instance=ExtResource( 3 )]
 
-transform = Transform( 0.773179, -0.559447, 0.0249358, -2.34129e-007, 0.0215619, 2.06619, -0.34778, -0.374032, 0.0166711, 1.24469, 0.792317, -1.38176 )
+transform = Transform( 0.773179, -0.559447, 0.0249358, -2.34129e-07, 0.0215619, 2.06619, -0.34778, -0.374032, 0.0166711, 1.24469, 0.792317, -1.38176 )
 
 [node name="Countertop7" parent="Middle/MiddleCounter" index="5" instance=ExtResource( 21 )]
 
-transform = Transform( -1.7, 0, -9.50171e-007, 0, 1.5, 0, 6.62004e-007, 0, -2.44, -13.1663, 0.154541, -3.71362 )
+transform = Transform( -1.7, 0, -9.50171e-07, 0, 1.5, 0, 6.62004e-07, 0, -2.44, -13.1663, 0.154541, -3.71362 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Chair7" parent="Middle/MiddleCounter" index="6" instance=ExtResource( 2 )]
@@ -330,7 +329,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="CounterTile7" parent="Middle/MiddleCounter" index="8" instance=ExtResource( 1 )]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -13, 0, -4 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13, 0, -4 )
 visible = false
 
 [node name="Filecab8" parent="Middle/MiddleCounter" index="9" instance=ExtResource( 15 )]
@@ -344,17 +343,17 @@ transform = Transform( 0.287114, 0, -0.766317, 0, 1, 0, 1.19737, 0, 0.287114, 0.
 
 [node name="CounterTile8" parent="Middle/MiddleCounter" index="10" instance=ExtResource( 1 )]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -16, 0, -13 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 0, -13 )
 visible = false
 
 [node name="CounterTile9" parent="Middle/MiddleCounter" index="11" instance=ExtResource( 1 )]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, -19, 0, -13 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 0, -13 )
 visible = false
 
 [node name="CounterTile10" parent="Middle/MiddleCounter" index="12" instance=ExtResource( 1 )]
 
-transform = Transform( 1, 0, 6.15888e-008, 0, 1, 0, -6.15888e-008, 0, 1, -19.9604, 0, -13.5114 )
+transform = Transform( 1, 0, 6.15888e-08, 0, 1, 0, -6.15888e-08, 0, 1, -19.9604, 0, -13.5114 )
 visible = false
 
 [node name="FoodBucket" parent="Middle/MiddleCounter" index="13" instance=ExtResource( 9 )]
@@ -383,12 +382,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12 )
 
 [node name="MiddleWalls" type="Spatial" parent="Middle" index="2"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Wallx4" parent="Middle/MiddleWalls" index="0" instance=ExtResource( 11 )]
 
-transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, -1, 0, 24 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, 24 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Filecab2" parent="Middle/MiddleWalls/Wallx4" index="4" instance=ExtResource( 7 )]
@@ -402,7 +400,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Wallx5" parent="Middle/MiddleWalls" index="1" instance=ExtResource( 11 )]
 
-transform = Transform( -1, 0, 8.74228e-008, 0, 1, 0, -8.74228e-008, 0, -1, -11, 0, 14 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11, 0, 14 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Window4" parent="Middle/MiddleWalls/Wallx5" index="4" instance=ExtResource( 12 )]
@@ -412,13 +410,13 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Wallx6" parent="Middle/MiddleWalls" index="2" instance=ExtResource( 11 )]
 
-transform = Transform( -1, 0, 8.74228e-008, 0, 1, 0, -8.74228e-008, 0, -1, -11, 0, -2 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11, 0, -2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Wing" type="Spatial" parent="." index="2"]
 
 editor/display_folded = true
-transform = Transform( -1, 0, 8.74228e-008, 0, 1, 0, -8.74228e-008, 0, -1, -28, 0, -19 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -28, 0, -19 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="WingKennels" type="Spatial" parent="Wing" index="0"]
@@ -432,7 +430,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
 
 [node name="Kennel4" parent="Wing/WingKennels" index="1" instance=ExtResource( 10 )]
 
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -1.90735e-006, 0, 7 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.90735e-06, 0, 7 )
 
 [node name="Kennel2" parent="Wing/WingKennels" index="2" instance=ExtResource( 10 )]
 
@@ -440,7 +438,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
 
 [node name="Kennel3" parent="Wing/WingKennels" index="3" instance=ExtResource( 10 )]
 
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -1.90735e-006, 0, -1 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.90735e-06, 0, -1 )
 
 [node name="WingWalls" type="Spatial" parent="Wing" index="1"]
 
@@ -450,11 +448,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -1.00001 )
 
 [node name="Wallx5" parent="Wing/WingWalls" index="1" instance=ExtResource( 11 )]
 
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -10, 0, 6.99999 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 0, 6.99999 )
 
 [node name="Picture2" parent="Wing/WingWalls/Wallx5" index="4" instance=ExtResource( 13 )]
 
-transform = Transform( -1.62921e-007, 0, -1, 0, 1, 0, 1, 0, -1.62921e-007, -1.91712, 1.99542, 5.2108 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -1.91712, 1.99542, 5.2108 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="WallTile" parent="Wing/WingWalls" index="2" instance=ExtResource( 19 )]
@@ -463,7 +461,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 8.99999 )
 
 [node name="WallTile4" parent="Wing/WingWalls" index="3" instance=ExtResource( 19 )]
 
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -10, 0, -3.00001 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 0, -3.00001 )
 
 [node name="WallTile2" parent="Wing/WingWalls" index="4" instance=ExtResource( 19 )]
 
@@ -471,11 +469,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 13 )
 
 [node name="WallTile3" parent="Wing/WingWalls" index="5" instance=ExtResource( 19 )]
 
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -10, 0, -7.00001 )
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -10, 0, -7.00001 )
 
 [node name="Wallx6" parent="Wing/WingWalls" index="6" instance=ExtResource( 11 )]
 
-transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 1.90735e-006, 0, 17 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.90735e-06, 0, 17 )
 
 [node name="Filecab3" parent="Wing/WingWalls/Wallx6" index="0" instance=ExtResource( 7 )]
 
@@ -483,7 +481,7 @@ transform = Transform( -0.999388, 0, 0.0349773, 0, 1, 0, -0.0349773, 0, -0.99938
 
 [node name="Door2" parent="Wing/WingWalls/Wallx6" index="1" instance=ExtResource( 16 )]
 
-transform = Transform( 7.54979e-008, 0, 1, 0, 1.5, 0, -1, 0, 7.54979e-008, -1.91955, 0, 0.0490952 )
+transform = Transform( 7.54979e-08, 0, 1, 0, 1.5, 0, -1, 0, 7.54979e-08, -1.91955, 0, 0.0490952 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Broom2" parent="Wing/WingWalls/Wallx6" index="6" instance=ExtResource( 14 )]
@@ -575,7 +573,7 @@ _sections_unfolded = [ "Region", "Transform" ]
 
 [node name="pawsprite6" type="Sprite3D" parent="pawmap" index="2"]
 
-transform = Transform( -9.80226e-005, 0, -0.2, 0, 0.2, 0, 0.2, 0, -9.80226e-005, 7.35697, 0, 17.2686 )
+transform = Transform( -9.80226e-05, 0, -0.2, 0, 0.2, 0, 0.2, 0, -9.80226e-05, 7.35697, 0, 17.2686 )
 layers = 1
 material_override = null
 cast_shadow = 1
