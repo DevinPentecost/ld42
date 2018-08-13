@@ -11,13 +11,12 @@ config_version=3
 [application]
 
 config/name="ld42"
-run/main_scene="res://scenes/MainGame.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=1600
+window/size/height=900
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 window/stretch/shrink="1"
