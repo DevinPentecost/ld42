@@ -33,12 +33,10 @@ func _emit_toast(toast):
 	$AdoptionToast.toast(toast)
 
 func _on_GameController_game_over():
-	#Show the game over button
-	$GameOver.visible = true
-	
-	#Fade it in
+	#Show the Game Over button
 	$Tween.interpolate_property($GameOver, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), 1, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	$Tween.start()
+	$GameOver.visible = true
 	yield($Tween, "tween_completed")
 	
 	#Listen for clicks

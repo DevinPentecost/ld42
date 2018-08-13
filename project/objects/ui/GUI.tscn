@@ -10,7 +10,7 @@
 [ext_resource path="res://fonts/IBMgameover.tres" type="DynamicFont" id=8]
 [ext_resource path="res://fonts/IBM72.tres" type="DynamicFont" id=9]
 
-[node name="GUI" type="Node" index="0" groups=[
+[node name="GUI" type="Node" groups=[
 "gui",
 ]]
 
@@ -56,9 +56,6 @@ margin_left = 684.0
 margin_top = 7.0
 margin_right = 1127.0
 margin_bottom = 49.0
-warning_color = Color( 1, 0.985962, 0.640625, 1 )
-danger_color = Color( 0.910156, 0.56582, 0.337753, 1 )
-out_color = Color( 1, 0.332031, 0.472931, 1 )
 
 [node name="GameOver" parent="." index="4" instance=ExtResource( 7 )]
 

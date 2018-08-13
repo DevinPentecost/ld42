@@ -25,6 +25,7 @@ const MAX_PLAYER_FOOD = 6
 var _player_food = MAX_PLAYER_FOOD setget _set_player_food
 
 #Dog spawning
+const STARTING_DOG_COUNT = 4
 onready var _spawn_timer = $SpawnTimer
 const MIN_DOG_SPAWN_TIME = 15
 const MAX_DOG_SPAWN_TIME = 25
@@ -47,10 +48,10 @@ func _ready():
 	_initialize_kennels()
 	
 	#Spawn the first dogs
-	call_deferred("_spawn_dog")
-	call_deferred("_spawn_dog")
-	call_deferred("_spawn_dog")
-	call_deferred("_spawn_dog")
+	for dog in range(STARTING_DOG_COUNT):
+		call_deferred("_spawn_dog")
+	
+	#Start the first dog
 	_start_dog_spawn()
 	
 	#Track every frame

@@ -3,7 +3,7 @@
 [ext_resource path="res://objects/ui/ResourceContainer.gd" type="Script" id=1]
 [ext_resource path="res://fonts/IBMScore.tres" type="DynamicFont" id=2]
 
-[node name="ResourceContainer" type="HBoxContainer"]
+[node name="ResourceContainer" type="HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -19,8 +19,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 script = ExtResource( 1 )
-safe_color = Color( 1, 1, 1, 1 )
-warning_color = Color( 1, 0.973755, 0.328125, 1 )
+warning_color = Color( 0.726563, 0.711818, 0.349091, 1 )
 danger_color = Color( 1, 0.473633, 0.125, 1 )
 out_color = Color( 1, 0, 0, 1 )
 
@@ -56,13 +55,12 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.0980392, 0.0627451, 0.156863, 1 )
 text = "Food: "
 uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+_sections_unfolded = [ "Theme", "Visibility", "custom_colors", "custom_fonts" ]
 
 [node name="FoodAmount" type="Label" parent="FoodContainer" index="1"]
 
@@ -81,7 +79,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.0980392, 0.0627451, 0.156863, 1 )
 text = "10/10"
 percent_visible = 1.0
 lines_skipped = 0
@@ -90,7 +87,6 @@ _sections_unfolded = [ "custom_colors", "custom_fonts" ]
 
 [node name="Split" type="Label" parent="." index="1"]
 
-visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -119,8 +115,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 154.0
-margin_right = 370.0
+margin_left = 180.0
+margin_right = 380.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -137,7 +133,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 4.0
-margin_right = 145.0
+margin_right = 129.0
 margin_bottom = 36.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -146,8 +142,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.0980392, 0.0627451, 0.156863, 1 )
-text = " - Kennels: "
+text = " Kennels: "
 uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
@@ -160,9 +155,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 149.0
+margin_left = 133.0
 margin_top = 4.0
-margin_right = 216.0
+margin_right = 200.0
 margin_bottom = 36.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -171,7 +166,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.0980392, 0.0627451, 0.156863, 1 )
 text = "15/15"
 percent_visible = 1.0
 lines_skipped = 0
