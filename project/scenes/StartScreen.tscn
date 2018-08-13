@@ -169,6 +169,13 @@ func _ready():
 #	pass
 "
 
+[sub_resource type="StyleBoxEmpty" id=4]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
 [sub_resource type="StyleBoxEmpty" id=5]
 
 content_margin_left = -1.0
@@ -232,14 +239,7 @@ content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
 
-[sub_resource type="StyleBoxEmpty" id=14]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
-
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=14]
 
 size = 192
 use_mipmaps = true
@@ -247,7 +247,7 @@ use_filter = false
 font_data = ExtResource( 26 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="StartScreen" type="Node"]
+[node name="StartScreen" type="Node" index="0"]
 
 script = SubResource( 1 )
 
@@ -341,7 +341,7 @@ transform = Transform( 0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, 0.642788, 7
 
 stream = ExtResource( 12 )
 attenuation_model = 0
-unit_db = 0.0
+unit_db = 5.0
 unit_size = 1.0
 max_db = 3.0
 pitch_scale = 1.0
@@ -428,11 +428,11 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 theme = ExtResource( 21 )
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 7 )
-custom_styles/disabled = SubResource( 8 )
-custom_styles/normal = SubResource( 9 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 custom_fonts/font = ExtResource( 22 )
 custom_colors/font_color = Color( 0.462745, 0.392157, 0.996078, 1 )
 custom_colors/font_color_hover = Color( 0.619608, 0.760784, 0.909804, 1 )
@@ -464,11 +464,11 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/hover = SubResource( 10 )
-custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 12 )
-custom_styles/disabled = SubResource( 13 )
-custom_styles/normal = SubResource( 14 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 22 )
 custom_colors/font_color = Color( 0.462745, 0.392157, 0.996078, 1 )
 custom_colors/font_color_hover = Color( 0.619608, 0.760784, 0.909804, 1 )
@@ -548,10 +548,10 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/hover = SubResource( 10 )
-custom_styles/pressed = SubResource( 11 )
-custom_styles/focus = SubResource( 12 )
-custom_styles/normal = SubResource( 14 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/normal = SubResource( 13 )
 custom_fonts/font = ExtResource( 22 )
 custom_colors/font_color = Color( 0.462745, 0.392157, 0.996078, 1 )
 custom_colors/font_color_hover = Color( 0.619608, 0.760784, 0.909804, 1 )
@@ -584,7 +584,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 0.270588, 0.243137, 0.470588, 1 )
 text = "nokill"
 percent_visible = 1.0

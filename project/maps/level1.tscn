@@ -25,7 +25,7 @@
 [ext_resource path="res://objects/decor/counter.dae" type="PackedScene" id=23]
 [ext_resource path="res://objects/decor/pawprints.png" type="Texture" id=24]
 
-[node name="Map" type="Spatial" index="0"]
+[node name="Map" type="Spatial"]
 
 [node name="Entry" type="Spatial" parent="." index="0"]
 
@@ -274,7 +274,7 @@ _sections_unfolded = [ "Transform" ]
 stream = ExtResource( 22 )
 attenuation_model = 0
 unit_db = 0.0
-unit_size = 1.0
+unit_size = 2.0
 max_db = 3.0
 pitch_scale = 1.0
 autoplay = true
