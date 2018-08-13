@@ -53,7 +53,6 @@ func toast(toast_text):
 	
 	#Calculate the target Y pos
 	var target_y = TOAST_VERTICAL_DISTANCE
-	print(target_y, ' ', _toasts.has(target_y))
 	while _toasts.has(target_y):
 		target_y += TOAST_SPACING
 	

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://objects/ui/AdoptionToast.gd" type="Script" id=1]
 
-[node name="Toast" type="Control" groups=[
+[node name="Toast" type="Control" index="0" groups=[
 "toast",
 ]]
 
