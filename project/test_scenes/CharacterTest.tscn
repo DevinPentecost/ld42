@@ -85,7 +85,6 @@ adjustment_enabled = false
 adjustment_brightness = 1.0
 adjustment_contrast = 1.0
 adjustment_saturation = 1.0
-_sections_unfolded = [ "Background" ]
 
 [node name="CharacterTest" type="Node"]
 
@@ -113,6 +112,7 @@ _force_dog_spawn = true
 [node name="DirectionalLight" type="DirectionalLight" parent="." index="6"]
 
 transform = Transform( 0.819152, -0.368688, 0.439385, 0, 0.766044, 0.642788, -0.573577, -0.526541, 0.627507, 0, 0, 0 )
+visible = false
 layers = 1
 light_color = Color( 1, 1, 1, 1 )
 light_energy = 1.0

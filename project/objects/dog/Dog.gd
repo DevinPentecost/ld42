@@ -19,9 +19,9 @@ const SCALE_RANGE = {
 const TEND_RATE_RANGE = Vector2(0.1, 0.15)
 const ADOPTION_RATE_RANGE = Vector2(0.1, 0.15)
 const COLOR_RANGE = {
-	'r': Vector2(.4, .9),
-	'g': Vector2(.6, .9),
-	'b': Vector2(.75, .9)
+	'r': Vector2(.6, .9),
+	'g': Vector2(.5, .8),
+	'b': Vector2(.50, .75)
 }
 export(Texture) var TEXTURE_A
 export(Texture) var TEXTURE_B
