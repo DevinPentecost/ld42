@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://objects/basic_tiles/CounterTile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/food_bucket/FoodBucket.tscn" type="PackedScene" id=2]
@@ -21,14 +21,17 @@
 [ext_resource path="res://objects/decor/radio.dae" type="PackedScene" id=19]
 [ext_resource path="res://objects/decor/filecab1.dae" type="PackedScene" id=20]
 [ext_resource path="res://objects/decor/phone.dae" type="PackedScene" id=21]
+[ext_resource path="res://objects/decor/pawprints.png" type="Texture" id=22]
 
-[node name="Map" type="Spatial" index="0"]
+[node name="Map" type="Spatial"]
 
 [node name="Entry" type="Spatial" parent="." index="0"]
 
 _sections_unfolded = [ "Transform" ]
 
 [node name="EntryCounter" type="Spatial" parent="Entry" index="0"]
+
+editor/display_folded = true
 
 [node name="CounterTile" parent="Entry/EntryCounter" index="0" instance=ExtResource( 1 )]
 
@@ -183,11 +186,13 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18, 0,
 
 [node name="Middle" type="Spatial" parent="." index="1"]
 
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="MiddleCounter" type="Spatial" parent="Middle" index="0"]
 
+editor/display_folded = true
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
@@ -307,6 +312,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12 )
 
 [node name="MiddleWalls" type="Spatial" parent="Middle" index="2"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Wallx4" parent="Middle/MiddleWalls" index="0" instance=ExtResource( 4 )]
@@ -340,6 +346,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Wing" type="Spatial" parent="." index="2"]
 
+editor/display_folded = true
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -28, 0, -19 )
 _sections_unfolded = [ "Transform" ]
 
@@ -426,5 +433,201 @@ _sections_unfolded = [ "Transform" ]
 [node name="FoodBucket" parent="Wing/WingCounter" index="1" instance=ExtResource( 2 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+
+[node name="pawmap" type="Spatial" parent="." index="3"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8972, 0, -8.54614 )
+
+[node name="pawsprite" type="Sprite3D" parent="pawmap" index="0"]
+
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.722168, 0, 23.6526 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 1
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 22 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 6150 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="pawsprite2" type="Sprite3D" parent="pawmap" index="1"]
+
+transform = Transform( 0.000546947, 0, 0.199999, 0, 0.2, 0, -0.199999, 0, 0.000546947, -6.03512, 0, 17.2686 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 1
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 22 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 6150 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="pawsprite6" type="Sprite3D" parent="pawmap" index="2"]
+
+transform = Transform( -9.80226e-05, 0, -0.2, 0, 0.2, 0, 0.2, 0, -9.80226e-05, 7.35697, 0, 17.2686 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 1
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 22 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 6150 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="pawsprite3" type="Sprite3D" parent="pawmap" index="3"]
+
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -10.7501, 0, 9.60217 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 1
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 22 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 6150 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="pawsprite4" type="Sprite3D" parent="pawmap" index="4"]
+
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -7.08972, 0, -10.3296 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 1
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 22 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 12400 )
+_sections_unfolded = [ "Region", "Transform" ]
+
+[node name="pawsprite5" type="Sprite3D" parent="pawmap" index="5"]
+
+transform = Transform( 0.152259, 0, -0.129681, 0, 0.2, 0, 0.129681, 0, 0.152259, -8.29578, 0, 3.33978 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = true
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.01
+axis = 1
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 0
+texture = ExtResource( 22 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = true
+region_rect = Rect2( 0, 0, 1024, 2048 )
+_sections_unfolded = [ "Region", "Transform" ]
 
 
