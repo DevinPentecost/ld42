@@ -24,8 +24,8 @@ margin_bottom = 53.0
 [node name="WhiteBG" type="Sprite" parent="ScoreContainer" index="2"]
 
 modulate = Color( 0.960784, 0.956863, 0.921569, 1 )
-position = Vector2( 792.645, 14.1591 )
-scale = Vector2( 207.523, 7.47619 )
+position = Vector2( 792.645, 18.2492 )
+scale = Vector2( 207.523, 7.48875 )
 z_index = -1
 texture = ExtResource( 3 )
 _sections_unfolded = [ "Visibility" ]

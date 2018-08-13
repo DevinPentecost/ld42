@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://objects/kennel/kennel.dae" type="PackedScene" id=1]
 [ext_resource path="res://objects/dog/dog.dae" type="PackedScene" id=2]
@@ -7,8 +7,8 @@
 [ext_resource path="res://objects/decor/broom.dae" type="PackedScene" id=5]
 [ext_resource path="res://objects/kennel/mat.dae" type="PackedScene" id=6]
 [ext_resource path="res://objects/player/char.dae" type="PackedScene" id=7]
-[ext_resource path="res://objects/decor/counter.dae" type="PackedScene" id=8]
-[ext_resource path="res://objects/decor/clipboard.dae" type="PackedScene" id=9]
+[ext_resource path="res://objects/decor/clipboard.dae" type="PackedScene" id=8]
+[ext_resource path="res://objects/decor/counter.dae" type="PackedScene" id=9]
 [ext_resource path="res://objects/decor/chair.dae" type="PackedScene" id=10]
 [ext_resource path="res://objects/decor/radio.dae" type="PackedScene" id=11]
 [ext_resource path="res://maps/Swinging Pants.ogg" type="AudioStream" id=12]
@@ -19,10 +19,11 @@
 [ext_resource path="res://objects/decor/window.dae" type="PackedScene" id=17]
 [ext_resource path="res://objects/decor/window2.dae" type="PackedScene" id=18]
 [ext_resource path="res://objects/decor/picture.dae" type="PackedScene" id=19]
-[ext_resource path="res://objects/ui/TutorialDialog.tscn" type="PackedScene" id=20]
-[ext_resource path="res://objects/ui/progress_back.png" type="Texture" id=21]
-[ext_resource path="res://objects/ui/progress_over.png" type="Texture" id=22]
-[ext_resource path="res://objects/ui/progress_fill.png" type="Texture" id=23]
+[ext_resource path="res://objects/ui/IBMPlexSans-Bold.otf" type="DynamicFontData" id=20]
+[ext_resource path="res://objects/ui/white.png" type="Texture" id=21]
+[ext_resource path="res://objects/ui/TutorialDialog.tscn" type="PackedScene" id=22]
+[ext_resource path="res://fonts/starttheme.tres" type="Theme" id=23]
+[ext_resource path="res://fonts/IMBBold.tres" type="DynamicFont" id=24]
 
 [sub_resource type="GDScript" id=1]
 
@@ -32,59 +33,11 @@ script/source = "extends Node
 # var a = 2
 # var b = \"textvar\"
 
-const _main_game_path = \"res://scenes/MainGame.tscn\"
-var _loader = null
-var _main_scene = null
-
 func _ready():
 	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	
-	#Start loading
-	_loader = ResourceLoader.load_interactive(_main_game_path)
-	set_process(true)
+	# Initialization here	
+	pass
 
-func _process(delta):
-	
-	#Continue loading
-	_load_game()
-
-func _load_game():
-	
-	#Any loader?
-	if not _loader:
-		return
-
-	#Start waiting for it to load
-	var time = OS.get_ticks_msec()
-	while OS.get_ticks_msec() < time + 100:
-		
-		#Poll for loading
-		var response = _loader.poll()
-		
-		#Was it done
-		if response == ERR_FILE_EOF:
-			
-			#We can get the resource
-			_main_scene = _loader.get_resource()
-			
-			#Hide the progress bar
-			$PlayButton/Loading.visible = false
-			
-			#Enable the button
-			$PlayButton.connect(\"pressed\", self, \"_on_PlayButton_pressed\")
-			_loader = null
-			break
-			
-		elif response == OK:
-			#Just update the progress bar
-			var progress = float(_loader.get_stage()) / _loader.get_stage_count()
-			$PlayButton/Loading.value = progress
-		else:
-			#Some problem
-			print(\"ERROR WHEN LOADING: \", response)
-			_loader = null
-			break
 
 func _start_tutorial():
 	#Get it going
@@ -98,13 +51,10 @@ func _on_TutorialButton_pressed():
 
 func _on_PlayButton_pressed():
 	#Switch to the other scene
-	var new_scene = _main_scene.instance()
-	var root = get_tree().get_root()
-	var start_screen = root.get_node(\"StartScreen\")
-	root.remove_child(start_screen)
-	root.add_child(new_scene)
-	
 	pass # replace with function body
+
+func _on_ExitButton_pressed():
+	get_tree().quit() # replace with function body
 "
 
 [sub_resource type="GDScript" id=2]
@@ -144,7 +94,85 @@ func _ready():
 #	pass
 "
 
-[node name="StartScreen" type="Node"]
+[sub_resource type="DynamicFont" id=14]
+
+size = 192
+use_mipmaps = true
+use_filter = false
+font_data = ExtResource( 20 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
+[node name="StartScreen" type="Node" index="0"]
 
 script = SubResource( 1 )
 
@@ -152,28 +180,28 @@ script = SubResource( 1 )
 "camera",
 ]]
 
-transform = Transform( 0.597322, 0.396212, -0.697297, 0, 0.869445, 0.494029, 0.802002, -0.295095, 0.519338, -0.165882, 5.51998, 6.57832 )
+transform = Transform( 0.724544, 0.30476, -0.618188, 0, 0.896928, 0.442176, 0.689229, -0.320376, 0.649864, 0.459606, 5.686, 7.36982 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null
 h_offset = 0.0
 v_offset = 0.0
 doppler_tracking = 0
-projection = 0
+projection = 1
 current = false
 fov = 70.0
-size = 11.83
+size = 10.0
 near = 0.05
 far = 100.0
+_sections_unfolded = [ "Transform" ]
 
 [node name="Kennel" parent="." index="1" instance=ExtResource( 1 )]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Dog" parent="Kennel" index="2" instance=ExtResource( 2 )]
 
-transform = Transform( 0.249479, -3.30461e-009, 0.177938, 6.48826e-010, 0.306434, 4.7813e-009, -0.177938, -3.51588e-009, 0.249479, 0, 0, 0 )
+transform = Transform( 0.249479, -3.30461e-09, 0.177938, 6.48826e-10, 0.306434, 4.7813e-09, -0.177938, -3.51588e-09, 0.249479, 0, 0, 0 )
 script = SubResource( 2 )
 
 [node name="Bowl" parent="Kennel" index="3" instance=ExtResource( 3 )]
@@ -182,19 +210,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27002, 0, -2.12538 )
 
 [node name="Bucket" parent="Kennel" index="4" instance=ExtResource( 4 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9417, 0, 1.44904 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.23626, 0, 0.479313 )
 
 [node name="Scene Root2" parent="Kennel" index="5" instance=ExtResource( 5 )]
 
-transform = Transform( 0.710878, -0.176761, 0.680741, 0, 0.967903, 0.251325, -0.703315, -0.178661, 0.688061, 2.40882, 0, -1.39881 )
+transform = Transform( 0.964053, -0.0667798, 0.257181, 0, 0.967903, 0.251325, -0.265709, -0.24229, 0.93311, 2.62025, 0, -1.41346 )
 
 [node name="Scene Root3" parent="Kennel" index="6" instance=ExtResource( 6 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.06846, 0, 0 )
+visible = false
 
 [node name="Desk" type="Spatial" parent="." index="2"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Person" parent="Desk" index="0" instance=ExtResource( 7 )]
@@ -202,35 +230,35 @@ _sections_unfolded = [ "Transform" ]
 transform = Transform( 0.176521, 0, -0.573446, 0, 0.6, 0, 0.573446, 0, 0.176521, 11.3284, -1, 2.92039 )
 script = SubResource( 3 )
 
-[node name="Scene Root" parent="Desk" index="1" instance=ExtResource( 8 )]
+[node name="Clipboard" parent="Desk" index="1" instance=ExtResource( 8 )]
+
+transform = Transform( 0.965926, 0.258819, 1.13133e-08, 0, -4.37114e-08, 1, 0.258819, -0.965926, -4.2222e-08, 7.30322, 1.56013, 0.563708 )
+
+[node name="Scene Root" parent="Desk" index="2" instance=ExtResource( 9 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Scene Root" parent="Desk/Scene Root" index="2" instance=ExtResource( 9 )]
-
-transform = Transform( 0.965926, 0.258819, 1.13133e-008, 0, -4.37114e-008, 1, 0.258819, -0.965926, -4.2222e-008, -0.696777, 1.56013, 0.563708 )
-
-[node name="Scene Root2" parent="Desk" index="2" instance=ExtResource( 8 )]
+[node name="Scene Root2" parent="Desk" index="3" instance=ExtResource( 9 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 3 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Scene Root3" parent="Desk" index="3" instance=ExtResource( 8 )]
+[node name="Scene Root3" parent="Desk" index="4" instance=ExtResource( 9 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Scene Root4" parent="Desk" index="4" instance=ExtResource( 8 )]
+[node name="desk1" parent="Desk" index="5" instance=ExtResource( 9 )]
 
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 10, 0, 6 )
+transform = Transform( -4.37114e-08, 0, 1.3, 0, 1, 0, -1, 0, -5.68248e-08, 10.1919, 0, 6.03003 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Scene Root5" parent="Desk" index="5" instance=ExtResource( 10 )]
+[node name="chair1" parent="Desk" index="6" instance=ExtResource( 10 )]
 
-transform = Transform( -0.0287897, 0, -0.999585, 0, 1, 0, 0.999585, 0, -0.0287897, 12.1547, -0.443547, 2.83291 )
+transform = Transform( 0.495429, 0, -0.868648, 0, 1, 0, 0.868648, 0, 0.495429, 12.1245, -0.443547, 1.40933 )
 
-[node name="Radio" parent="Desk" index="6" instance=ExtResource( 11 )]
+[node name="Radio" parent="Desk" index="7" instance=ExtResource( 11 )]
 
 transform = Transform( 0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, 0.642788, 7.61985, 1.5963, 2 )
 
@@ -254,152 +282,199 @@ attenuation_filter_cutoff_hz = 5000.0
 attenuation_filter_db = -24.0
 doppler_tracking = 0
 
-[node name="Scene Root7" parent="Desk" index="7" instance=ExtResource( 13 )]
+[node name="plant1" parent="Desk" index="8" instance=ExtResource( 13 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7475, 0.502575, 6.40591 )
 
-[node name="Scene Root8" parent="Desk" index="8" instance=ExtResource( 14 )]
+[node name="plant2" parent="Desk" index="9" instance=ExtResource( 14 )]
 
 transform = Transform( 0.572652, 0, 0, 0, 0.572652, 0, 0, 0, 0.572652, 8.44531, -0.508455, 7.91921 )
 
 [node name="DoorWall" type="Spatial" parent="." index="3"]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
 
 [node name="Scene Root" parent="DoorWall" index="0" instance=ExtResource( 15 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03162, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0.686283, 0, -0.401611 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Scene Root2" parent="DoorWall" index="1" instance=ExtResource( 16 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.45813, 0.532471, -0.850586 )
 
 [node name="Scene Root3" parent="DoorWall" index="2" instance=ExtResource( 17 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.459382, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.44067, 1.25772, 0 )
 
 [node name="BackWall" type="Spatial" parent="." index="4"]
 
-editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 15, 0, 2 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 2 )
 
 [node name="Scene Root" parent="BackWall" index="0" instance=ExtResource( 18 )]
 
+transform = Transform( 1, 0, 0, 0, 0.8, 0, 0, 0, 1, -3.14551, -0.648804, 0 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Scene Root2" parent="BackWall" index="1" instance=ExtResource( 19 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
-
-[node name="PopupDialog" parent="." index="5" instance=ExtResource( 20 )]
-
 visible = false
-tutorial_targets = [ NodePath("../Desk/Person"), NodePath("../Kennel/Bucket"), NodePath("../Kennel/Dog") ]
-tutorial_texts = [ "You work at a No-Kill Shelter. Move around and keep the dogs fed to have them adopted.
-Move with the arrow keys, or WASD/IJKL", "This bucket will refill your food, so if you run out make sure to load up!
-You can grab food and feed dogs with the action keys: Shift, Space, or Enter", "Feed dogs when they are hungry to keep them happy!
-New dogs will constantly appear in kennels, so make sure to keep an eye out for new hungry pups.
-If you run out of kennels, you'll lose the game!" ]
 
-[node name="TutorialButton" type="Button" parent="." index="6"]
+[node name="Title" type="Label" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 12.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "How to Play"
-flat = false
-align = 1
-
-[node name="PlayButton" type="Button" parent="." index="7"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 300.0
-margin_top = 176.0
-margin_right = 312.0
-margin_bottom = 196.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Play Game"
-flat = false
-align = 1
-
-[node name="Loading" type="TextureProgress" parent="PlayButton" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-min_value = 0.0
-max_value = 1.0
-step = 0.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
-texture_under = ExtResource( 21 )
-texture_over = ExtResource( 22 )
-texture_progress = ExtResource( 23 )
-radial_fill_degrees = 360.0
-radial_center_offset = Vector2( 0, 0 )
-nine_patch_stretch = false
-_sections_unfolded = [ "Textures" ]
-
-[node name="Label" type="Label" parent="PlayButton/Loading" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 5.0
-margin_top = 9.0
-margin_right = 54.0
-margin_bottom = 23.0
+margin_left = 164.0
+margin_top = 53.0
+margin_right = 861.0
+margin_bottom = 303.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Loading"
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.270588, 0.243137, 0.470588, 1 )
+text = "nokill"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="titlebg" type="Sprite" parent="Title" index="0"]
+
+position = Vector2( 185.332, 128.301 )
+scale = Vector2( 101.488, 31.0185 )
+z_index = -1
+texture = ExtResource( 21 )
+_sections_unfolded = [ "Z Index" ]
+
+[node name="PopupDialog" parent="." index="6" instance=ExtResource( 22 )]
+
+visible = false
+tutorial_targets = [ NodePath("../Desk/Clipboard"), NodePath("../Kennel/Bucket"), NodePath("../Kennel/Dog") ]
+tutorial_texts = [ "You work at a No-Kill Shelter. Move around and keep the dogs fed to have them adopted.
+Move with the arrow keys, or WASD/IJKL", "This bucket will refill your food, so if you run out make sure to load up!
+You can grab food and feed dogs with the action keys: Shift, Space, or Enter", "Feed dogs when they are hungry to keep them happy!
+New dogs will constantly appear in kennels, so make sure to keep an eye out for new hungry pups.
+If you run out of kennels, you'll lose the game!" ]
+
+[node name="TutorialButton" type="Button" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 641.0
+margin_top = 698.0
+margin_right = 983.0
+margin_bottom = 770.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 23 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = ExtResource( 24 )
+custom_colors/font_color = Color( 0.462745, 0.392157, 0.996078, 1 )
+custom_colors/font_color_hover = Color( 0.619608, 0.760784, 0.909804, 1 )
+custom_colors/font_color_pressed = Color( 0.782837, 0.861879, 0.945312, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "how to play"
+flat = false
+align = 1
+_sections_unfolded = [ "Theme", "custom_colors", "custom_fonts", "custom_styles" ]
+
+[node name="PlayButton" type="Button" parent="." index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 726.0
+margin_top = 618.0
+margin_right = 893.0
+margin_bottom = 690.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 24 )
+custom_colors/font_color = Color( 0.462745, 0.392157, 0.996078, 1 )
+custom_colors/font_color_hover = Color( 0.619608, 0.760784, 0.909804, 1 )
+custom_colors/font_color_pressed = Color( 0.772549, 0.847059, 0.92549, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "start"
+flat = false
+align = 1
+_sections_unfolded = [ "custom_colors", "custom_styles" ]
+
+[node name="ExitButton" type="Button" parent="." index="9"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 725.0
+margin_top = 780.0
+margin_right = 892.0
+margin_bottom = 852.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = ExtResource( 24 )
+custom_colors/font_color = Color( 0.462745, 0.392157, 0.996078, 1 )
+custom_colors/font_color_hover = Color( 0.619608, 0.760784, 0.909804, 1 )
+custom_colors/font_color_pressed = Color( 0.772549, 0.847059, 0.92549, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "quit"
+flat = false
+align = 1
+_sections_unfolded = [ "custom_colors", "custom_styles" ]
 
 [connection signal="pressed" from="TutorialButton" to="." method="_on_TutorialButton_pressed"]
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
 
 
