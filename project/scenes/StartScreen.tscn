@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://objects/kennel/kennel.dae" type="PackedScene" id=1]
 [ext_resource path="res://objects/dog/dog.dae" type="PackedScene" id=2]
@@ -20,6 +20,9 @@
 [ext_resource path="res://objects/decor/window2.dae" type="PackedScene" id=18]
 [ext_resource path="res://objects/decor/picture.dae" type="PackedScene" id=19]
 [ext_resource path="res://objects/ui/TutorialDialog.tscn" type="PackedScene" id=20]
+[ext_resource path="res://objects/ui/progress_back.png" type="Texture" id=21]
+[ext_resource path="res://objects/ui/progress_over.png" type="Texture" id=22]
+[ext_resource path="res://objects/ui/progress_fill.png" type="Texture" id=23]
 
 [sub_resource type="GDScript" id=1]
 
@@ -29,11 +32,59 @@ script/source = "extends Node
 # var a = 2
 # var b = \"textvar\"
 
+const _main_game_path = \"res://scenes/MainGame.tscn\"
+var _loader = null
+var _main_scene = null
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
-	# Initialization here	
-	pass
+	# Initialization here
+	
+	#Start loading
+	_loader = ResourceLoader.load_interactive(_main_game_path)
+	set_process(true)
 
+func _process(delta):
+	
+	#Continue loading
+	_load_game()
+
+func _load_game():
+	
+	#Any loader?
+	if not _loader:
+		return
+
+	#Start waiting for it to load
+	var time = OS.get_ticks_msec()
+	while OS.get_ticks_msec() < time + 100:
+		
+		#Poll for loading
+		var response = _loader.poll()
+		
+		#Was it done
+		if response == ERR_FILE_EOF:
+			
+			#We can get the resource
+			_main_scene = _loader.get_resource()
+			
+			#Hide the progress bar
+			$PlayButton/Loading.visible = false
+			
+			#Enable the button
+			$PlayButton.connect(\"pressed\", self, \"_on_PlayButton_pressed\")
+			_loader = null
+			break
+			
+		elif response == OK:
+			#Just update the progress bar
+			var progress = float(_loader.get_stage()) / _loader.get_stage_count()
+			$PlayButton/Loading.value = progress
+		else:
+			#Some problem
+			print(\"ERROR WHEN LOADING: \", response)
+			_loader = null
+			break
 
 func _start_tutorial():
 	#Get it going
@@ -47,6 +98,12 @@ func _on_TutorialButton_pressed():
 
 func _on_PlayButton_pressed():
 	#Switch to the other scene
+	var new_scene = _main_scene.instance()
+	var root = get_tree().get_root()
+	var start_screen = root.get_node(\"StartScreen\")
+	root.remove_child(start_screen)
+	root.add_child(new_scene)
+	
 	pass # replace with function body
 "
 
@@ -111,6 +168,7 @@ far = 100.0
 
 [node name="Kennel" parent="." index="1" instance=ExtResource( 1 )]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Dog" parent="Kennel" index="2" instance=ExtResource( 2 )]
@@ -136,6 +194,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.06846, 0, 0 )
 
 [node name="Desk" type="Spatial" parent="." index="2"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Person" parent="Desk" index="0" instance=ExtResource( 7 )]
@@ -272,8 +331,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 12.0
-margin_bottom = 20.0
+margin_left = 300.0
+margin_top = 176.0
+margin_right = 312.0
+margin_bottom = 196.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -285,11 +346,60 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
+text = "Play Game"
 flat = false
 align = 1
 
-[connection signal="pressed" from="TutorialButton" to="." method="_on_TutorialButton_pressed"]
+[node name="Loading" type="TextureProgress" parent="PlayButton" index="0"]
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 1.0
+step = 0.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 21 )
+texture_over = ExtResource( 22 )
+texture_progress = ExtResource( 23 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Textures" ]
+
+[node name="Label" type="Label" parent="PlayButton/Loading" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 5.0
+margin_top = 9.0
+margin_right = 54.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Loading"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="pressed" from="TutorialButton" to="." method="_on_TutorialButton_pressed"]
 
 
