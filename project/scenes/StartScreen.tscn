@@ -144,7 +144,7 @@ func _ready():
 #	pass
 "
 
-[node name="StartScreen" type="Node"]
+[node name="StartScreen" type="Node" index="0"]
 
 script = SubResource( 1 )
 
@@ -173,7 +173,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Dog" parent="Kennel" index="2" instance=ExtResource( 2 )]
 
-transform = Transform( 0.249479, -3.30461e-09, 0.177938, 6.48826e-10, 0.306434, 4.7813e-09, -0.177938, -3.51588e-09, 0.249479, 0, 0, 0 )
+transform = Transform( 0.249479, -3.30461e-009, 0.177938, 6.48826e-010, 0.306434, 4.7813e-009, -0.177938, -3.51588e-009, 0.249479, 0, 0, 0 )
 script = SubResource( 2 )
 
 [node name="Bowl" parent="Kennel" index="3" instance=ExtResource( 3 )]
@@ -209,7 +209,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Scene Root" parent="Desk/Scene Root" index="2" instance=ExtResource( 9 )]
 
-transform = Transform( 0.965926, 0.258819, 1.13133e-08, 0, -4.37114e-08, 1, 0.258819, -0.965926, -4.2222e-08, -0.696777, 1.56013, 0.563708 )
+transform = Transform( 0.965926, 0.258819, 1.13133e-008, 0, -4.37114e-008, 1, 0.258819, -0.965926, -4.2222e-008, -0.696777, 1.56013, 0.563708 )
 
 [node name="Scene Root2" parent="Desk" index="2" instance=ExtResource( 8 )]
 
@@ -223,7 +223,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Scene Root4" parent="Desk" index="4" instance=ExtResource( 8 )]
 
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 6 )
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 10, 0, 6 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Scene Root5" parent="Desk" index="5" instance=ExtResource( 10 )]
@@ -282,7 +282,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.459382, 0 )
 [node name="BackWall" type="Spatial" parent="." index="4"]
 
 editor/display_folded = true
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 2 )
+transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 15, 0, 2 )
 
 [node name="Scene Root" parent="BackWall" index="0" instance=ExtResource( 18 )]
 
