@@ -310,14 +310,14 @@ func _play_sfx(sound_type):
 func _on_InteractArea_area_entered(area):
 	
 	#Is it a kennel?
-	if area.is_in_group("kennel"):
+	if area.is_in_group("kennel_action"):
 		#We let people know
 		emit_signal("near_kennel", area.get_parent())
 
 
 func _on_InteractArea_area_exited(area):
 	#Is it a kennel?
-	if area.is_in_group("kennel"):
+	if area.is_in_group("kennel_action"):
 		#We let people know
 		emit_signal("leave_kennel", area.get_parent())
 

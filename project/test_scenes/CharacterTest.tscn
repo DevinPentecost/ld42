@@ -87,7 +87,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Background" ]
 
-[node name="CharacterTest" type="Node" index="0"]
+[node name="CharacterTest" type="Node"]
 
 [node name="GUI" parent="." index="0" instance=ExtResource( 1 )]
 
