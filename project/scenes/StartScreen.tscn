@@ -144,7 +144,7 @@ func _ready():
 #	pass
 "
 
-[node name="StartScreen" type="Node" index="0"]
+[node name="StartScreen" type="Node"]
 
 script = SubResource( 1 )
 

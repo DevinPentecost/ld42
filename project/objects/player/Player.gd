@@ -7,6 +7,7 @@ signal leave_kennel
 
 #Action input from the player
 const _action_input_event = "player_action"
+var _active_kennel = null
 
 #Which movement buttons are pressed
 #Done counter_clockwise - top, left, bot, right
@@ -269,14 +270,13 @@ func _handle_action_input(event):
 		emit_signal("player_action")
 		
 		# Tell groups to check player action
-		get_tree().call_group("kennel", "on_player_action")
 		get_tree().call_group("food", "on_player_action")
+		
+		if _active_kennel:
+			_active_kennel.player_action()
 		
 		#Pet the good boy
 		_play_action_animation()
-		
-		#Play a sound
-		_play_sfx(SoundEffectType.EAT)
 		
 func game_over():
 	#Game has ended!
@@ -312,6 +312,9 @@ func _on_InteractArea_area_entered(area):
 	if area.is_in_group("kennel_action"):
 		#We let people know
 		emit_signal("near_kennel", area.get_parent())
+		
+		#Mark this as the active kennel
+		_active_kennel = area.get_parent()
 
 
 func _on_InteractArea_area_exited(area):
@@ -319,6 +322,9 @@ func _on_InteractArea_area_exited(area):
 	if area.is_in_group("kennel_action"):
 		#We let people know
 		emit_signal("leave_kennel", area.get_parent())
+		
+		#No longer at this kennel
+		_active_kennel = null
 
 func _on_GameController_dog_adopted(dog_name):
 	#Play a sound

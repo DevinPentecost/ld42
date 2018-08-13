@@ -8,7 +8,6 @@ const _dog_class = preload("res://objects/dog/Dog.gd")
 export(bool) var _force_dog_spawn = false #DEBUG ONLY!
 
 var _active_dog_node = null
-var _active = false
 
 #Sounds
 const pour_sounds = [preload("Pour1.ogg"), preload("Pour2.ogg")]
@@ -78,10 +77,10 @@ func spawn_dog():
 	#Show the mat and bowl
 	_update_decor(true)
 
-func on_player_action():
+func player_action():
 	
 	#Is the player here?
-	if _active and _active_dog_node:
+	if _active_dog_node:
 		#We respond!
 		get_tree().call_group("game_controller", "player_feed_kennel", self)
 		
@@ -89,18 +88,7 @@ func play_pour_sound():
 	var pour_sound = Helpers.pick_randomly_from_array(pour_sounds)
 	$AudioStreamPlayer3D.stream = pour_sound
 	$AudioStreamPlayer3D.play()
-
-func _on_ActionArea_body_entered(body):
-	#For now, assume it's the player
-	if body.is_in_group("player"):
-		_active = true
-
-
-func _on_ActionArea_body_exited(body):
-	#For now, assume it's the player
-	if body.is_in_group("player"):
-		_active = false
-
+	
 func _on_Dog_adopted():
 	#Announce we got the dog adopted
 	emit_signal("dog_adopted")
