@@ -28,6 +28,8 @@ var _player_food = MAX_PLAYER_FOOD setget _set_player_food
 onready var _spawn_timer = $SpawnTimer
 const MIN_DOG_SPAWN_TIME = 15
 const MAX_DOG_SPAWN_TIME = 25
+const TIME_DIFFICULTY = 90 #After this many seconds, decrease the spawn time by 1 second
+var _start_time = 0
 var _all_kennels = []
 var _empty_kennels = []
 
@@ -37,6 +39,9 @@ func _ready():
 	
 	#Randomize RNG
 	randomize()
+	
+	#The game start time
+	_start_time = OS.get_ticks_msec()
 	
 	#Get all the kennels
 	_initialize_kennels()
@@ -74,6 +79,11 @@ func _update_score():
 func _start_dog_spawn():
 	#Pick a time
 	var spawn_delay = rand_range(MIN_DOG_SPAWN_TIME, MAX_DOG_SPAWN_TIME)
+	
+	#Adjust delay
+	var difficulty_adjustment = ((OS.get_ticks_msec() - _start_time) / 1000) / TIME_DIFFICULTY
+	spawn_delay = max(5, spawn_delay - difficulty_adjustment)
+	
 	_spawn_timer.wait_time = spawn_delay
 	_spawn_timer.start()
 
