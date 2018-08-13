@@ -23,6 +23,9 @@ func _ready():
 	#Listen to the player
 	_player.connect("near_kennel", self, "_on_Player_near_kennel")
 	_player.connect("leave_kennel", self, "_on_Player_leave_kennel")
+	
+	#Fade
+	$Fader.fade_out()
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -84,6 +87,9 @@ func _on_Kennel_dog_status_changed(kennel):
 	$BioContainer.update_dog(kennel._active_dog_node)
 
 func _on_GameOver_pressed():
+	#Fade
+	$Fader.fade_in()
+	
 	#Remove the current game and load the main menu
 	var root = get_tree().get_root()
 	var game_scene = root.get_node("MainGame")
