@@ -16,9 +16,9 @@ var _movement_input = [false, false, false, false]
 #Movement variables
 var desired_angle = null
 const _player_rotation_lock = 0.1 #Radians to 'lock' to desired angle
-const _player_rotation_speed = 2.3 #Radians a second?
+const _player_rotation_speed = 4.3 #Radians a second?
 const _player_movement_speed = 140 #Units per second
-const _player_movement_angle = PI/2 #Radians away from target before player starts moving
+const _player_movement_angle = PI #Radians away from target before player starts moving
 var _moving = false
 var _rotating = false
 
@@ -117,10 +117,14 @@ func _handle_player_rotation(delta):
 	
 	#Now rotate that much
 	var rotation_amount = _player_rotation_speed * rotation_direction
+	var remaining_distance = abs(min(desired_angle - rotation.y, desired_angle - (rotation.y + 2*PI)))
 	rotation_amount *= delta
 	
 	#Do the rotate
-	rotation.y += rotation_amount
+	if remaining_distance < 0.005:
+		rotation.y = desired_angle
+	else:
+		rotation.y += rotation_amount
 	
 	#If we rotated past
 	if rotation.y > PI:

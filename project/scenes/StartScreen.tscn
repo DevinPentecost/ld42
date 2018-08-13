@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://objects/kennel/kennel.dae" type="PackedScene" id=1]
 [ext_resource path="res://objects/dog/dog.dae" type="PackedScene" id=2]
@@ -11,14 +11,15 @@
 [ext_resource path="res://objects/decor/clipboard.dae" type="PackedScene" id=9]
 [ext_resource path="res://objects/decor/chair.dae" type="PackedScene" id=10]
 [ext_resource path="res://objects/decor/radio.dae" type="PackedScene" id=11]
-[ext_resource path="res://objects/decor/plant.dae" type="PackedScene" id=12]
-[ext_resource path="res://objects/decor/plant2.dae" type="PackedScene" id=13]
-[ext_resource path="res://objects/decor/door.dae" type="PackedScene" id=14]
-[ext_resource path="res://objects/decor/clock.dae" type="PackedScene" id=15]
-[ext_resource path="res://objects/decor/window.dae" type="PackedScene" id=16]
-[ext_resource path="res://objects/decor/window2.dae" type="PackedScene" id=17]
-[ext_resource path="res://objects/decor/picture.dae" type="PackedScene" id=18]
-[ext_resource path="res://objects/ui/TutorialDialog.tscn" type="PackedScene" id=19]
+[ext_resource path="res://maps/Swinging Pants.ogg" type="AudioStream" id=12]
+[ext_resource path="res://objects/decor/plant.dae" type="PackedScene" id=13]
+[ext_resource path="res://objects/decor/plant2.dae" type="PackedScene" id=14]
+[ext_resource path="res://objects/decor/door.dae" type="PackedScene" id=15]
+[ext_resource path="res://objects/decor/clock.dae" type="PackedScene" id=16]
+[ext_resource path="res://objects/decor/window.dae" type="PackedScene" id=17]
+[ext_resource path="res://objects/decor/window2.dae" type="PackedScene" id=18]
+[ext_resource path="res://objects/decor/picture.dae" type="PackedScene" id=19]
+[ext_resource path="res://objects/ui/TutorialDialog.tscn" type="PackedScene" id=20]
 
 [sub_resource type="GDScript" id=1]
 
@@ -135,7 +136,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.06846, 0, 0 )
 
 [node name="Desk" type="Spatial" parent="." index="2"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="Person" parent="Desk" index="0" instance=ExtResource( 7 )]
@@ -171,15 +171,35 @@ _sections_unfolded = [ "Transform" ]
 
 transform = Transform( -0.0287897, 0, -0.999585, 0, 1, 0, 0.999585, 0, -0.0287897, 12.1547, -0.443547, 2.83291 )
 
-[node name="Scene Root6" parent="Desk" index="6" instance=ExtResource( 11 )]
+[node name="Radio" parent="Desk" index="6" instance=ExtResource( 11 )]
 
 transform = Transform( 0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, 0.642788, 7.61985, 1.5963, 2 )
 
-[node name="Scene Root7" parent="Desk" index="7" instance=ExtResource( 12 )]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Desk/Radio" index="2"]
+
+stream = ExtResource( 12 )
+attenuation_model = 0
+unit_db = -10.0
+unit_size = 1.0
+max_db = 3.0
+pitch_scale = 1.0
+autoplay = true
+max_distance = 0.0
+out_of_range_mode = 0
+bus = "Master"
+area_mask = 1
+emission_angle_enabled = false
+emission_angle_degrees = 45.0
+emission_angle_filter_attenuation_db = -12.0
+attenuation_filter_cutoff_hz = 5000.0
+attenuation_filter_db = -24.0
+doppler_tracking = 0
+
+[node name="Scene Root7" parent="Desk" index="7" instance=ExtResource( 13 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7475, 0.502575, 6.40591 )
 
-[node name="Scene Root8" parent="Desk" index="8" instance=ExtResource( 13 )]
+[node name="Scene Root8" parent="Desk" index="8" instance=ExtResource( 14 )]
 
 transform = Transform( 0.572652, 0, 0, 0, 0.572652, 0, 0, 0, 0.572652, 8.44531, -0.508455, 7.91921 )
 
@@ -188,15 +208,15 @@ transform = Transform( 0.572652, 0, 0, 0, 0.572652, 0, 0, 0, 0.572652, 8.44531, 
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
 
-[node name="Scene Root" parent="DoorWall" index="0" instance=ExtResource( 14 )]
+[node name="Scene Root" parent="DoorWall" index="0" instance=ExtResource( 15 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03162, 0, 0 )
 
-[node name="Scene Root2" parent="DoorWall" index="1" instance=ExtResource( 15 )]
+[node name="Scene Root2" parent="DoorWall" index="1" instance=ExtResource( 16 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0 )
 
-[node name="Scene Root3" parent="DoorWall" index="2" instance=ExtResource( 16 )]
+[node name="Scene Root3" parent="DoorWall" index="2" instance=ExtResource( 17 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.459382, 0 )
 
@@ -205,15 +225,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.459382, 0 )
 editor/display_folded = true
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 2 )
 
-[node name="Scene Root" parent="BackWall" index="0" instance=ExtResource( 17 )]
+[node name="Scene Root" parent="BackWall" index="0" instance=ExtResource( 18 )]
 
 _sections_unfolded = [ "Transform" ]
 
-[node name="Scene Root2" parent="BackWall" index="1" instance=ExtResource( 18 )]
+[node name="Scene Root2" parent="BackWall" index="1" instance=ExtResource( 19 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
 
-[node name="PopupDialog" parent="." index="5" instance=ExtResource( 19 )]
+[node name="PopupDialog" parent="." index="5" instance=ExtResource( 20 )]
 
 visible = false
 tutorial_targets = [ NodePath("../Desk/Person"), NodePath("../Kennel/Bucket"), NodePath("../Kennel/Dog") ]
