@@ -90,3 +90,4 @@ func _on_GameOver_pressed():
 	var new_scene = load("res://scenes/StartScreen.tscn").instance()
 	root.remove_child(game_scene)
 	root.add_child(new_scene)
+

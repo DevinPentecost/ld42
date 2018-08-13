@@ -57,6 +57,7 @@ func _ready():
 	#Track every frame
 	set_process(true)
 	
+	
 	#Let the player know when a dog is adopted
 	connect("dog_adopted", _player, "_on_GameController_dog_adopted")
 	

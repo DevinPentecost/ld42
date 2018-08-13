@@ -246,6 +246,15 @@ func _unhandled_input(event):
 	#See if it was action
 	_handle_action_input(event)
 	
+	#Should we quit?
+	if event.is_action_pressed("quit_game"):
+		#Remove the current game and load the main menu
+		var root = get_tree().get_root()
+		var game_scene = root.get_node("MainGame")
+		var new_scene = load("res://scenes/StartScreen.tscn").instance()
+		root.remove_child(game_scene)
+		root.add_child(new_scene)
+	
 func _handle_movement_input(event):
 	
 	#Was this one of the movement actions
