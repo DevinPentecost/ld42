@@ -10,7 +10,7 @@
 [ext_resource path="res://fonts/IBMgameover.tres" type="DynamicFont" id=8]
 [ext_resource path="res://fonts/IBM72.tres" type="DynamicFont" id=9]
 
-[node name="GUI" type="Node" groups=[
+[node name="GUI" type="Node" index="0" groups=[
 "gui",
 ]]
 
@@ -62,6 +62,7 @@ out_color = Color( 1, 0.332031, 0.472931, 1 )
 
 [node name="GameOver" parent="." index="4" instance=ExtResource( 7 )]
 
+visible = false
 margin_left = -3.0
 margin_top = 2.0
 margin_right = -3.0

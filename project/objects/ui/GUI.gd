@@ -86,6 +86,9 @@ func _on_Kennel_dog_status_changed(kennel):
 	$BioContainer.update_dog(kennel._active_dog_node)
 
 func _on_GameOver_pressed():
-	
-	print("RESTART THE GAME HERE!")
-	get_tree().change_scene("res://scenes/StartScreen.tscn")
+	#Remove the current game and load the main menu
+	var root = get_tree().get_root()
+	var game_scene = root.get_node("MainGame")
+	var new_scene = load("res://scenes/StartScreen.tscn").instance()
+	root.remove_child(game_scene)
+	root.add_child(new_scene)
