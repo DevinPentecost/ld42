@@ -73,7 +73,7 @@ func _start_dog_spawn():
 func _initialize_kennels():
 	
 	#Get all of the kennels
-	_all_kennels = _game_grid.get_all_kennels()
+	_all_kennels = get_tree().get_nodes_in_group("kennel")
 	for kennel in _all_kennels:
 		#It starts empty
 		_empty_kennels.append(kennel)
