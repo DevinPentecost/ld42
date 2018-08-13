@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://objects/kennel/kennel.dae" type="PackedScene" id=1]
 [ext_resource path="res://objects/dog/dog.dae" type="PackedScene" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://objects/ui/TutorialDialog.tscn" type="PackedScene" id=22]
 [ext_resource path="res://fonts/starttheme.tres" type="Theme" id=23]
 [ext_resource path="res://fonts/IMBBold.tres" type="DynamicFont" id=24]
+[ext_resource path="res://objects/ui/progress_fill.png" type="Texture" id=25]
+[ext_resource path="res://objects/ui/progress_over.png" type="Texture" id=26]
 
 [sub_resource type="GDScript" id=1]
 
@@ -31,13 +33,61 @@ script/source = "extends Node
 
 # class member variables go here, for example:
 # var a = 2
-# var b = \"textvar\"
+# var b = \\\"textvar\\\"
+
+const _main_game_path = \"res://scenes/MainGame.tscn\"
+var _loader = null
+var _main_scene = null
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
-	# Initialization here	
-	pass
+	# Initialization here
+	
+	#Start loading
+	_loader = ResourceLoader.load_interactive(_main_game_path)
+	set_process(true)
 
+func _process(delta):
+	
+	#Continue loading
+	_load_game()
+
+func _load_game():
+	
+	#Any loader?
+	if not _loader:
+		return
+
+	#Start waiting for it to load
+	var time = OS.get_ticks_msec()
+	while OS.get_ticks_msec() < time + 100:
+		
+		#Poll for loading
+		var response = _loader.poll()
+		
+		#Was it done
+		if response == ERR_FILE_EOF:
+			
+			#We can get the resource
+			_main_scene = _loader.get_resource()
+			
+			#Hide the progress bar
+			$PlayButton/Loading.visible = false
+			
+			#Enable the button
+			$PlayButton.connect(\"pressed\", self, \"_on_PlayButton_pressed\")
+			_loader = null
+			break
+			
+		elif response == OK:
+			#Just update the progress bar
+			var progress = float(_loader.get_stage()) / _loader.get_stage_count()
+			$PlayButton/Loading.value = progress
+		else:
+			#Some problem
+			print(\"ERROR WHEN LOADING: \", response)
+			_loader = null
+			break
 
 func _start_tutorial():
 	#Get it going
@@ -51,11 +101,14 @@ func _on_TutorialButton_pressed():
 
 func _on_PlayButton_pressed():
 	#Switch to the other scene
-	pass # replace with function body
+	var new_scene = _main_scene.instance()
+	var root = get_tree().get_root()
+	var start_screen = root.get_node(\"StartScreen\")
+	root.remove_child(start_screen)
+	root.add_child(new_scene)
 
-func _on_ExitButton_pressed():
-	get_tree().quit() # replace with function body
-"
+func _on_ExitButton_pressed(): 
+  get_tree().quit()"
 
 [sub_resource type="GDScript" id=2]
 
@@ -94,20 +147,13 @@ func _ready():
 #	pass
 "
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=4]
 
 size = 192
 use_mipmaps = true
 use_filter = false
 font_data = ExtResource( 20 )
 _sections_unfolded = [ "Font", "Settings" ]
-
-[sub_resource type="StyleBoxEmpty" id=4]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
@@ -116,14 +162,14 @@ content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=6]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=7]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -172,6 +218,13 @@ content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
 
+[sub_resource type="StyleBoxEmpty" id=14]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+
 [node name="StartScreen" type="Node" index="0"]
 
 script = SubResource( 1 )
@@ -201,7 +254,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Dog" parent="Kennel" index="2" instance=ExtResource( 2 )]
 
-transform = Transform( 0.249479, -3.30461e-09, 0.177938, 6.48826e-10, 0.306434, 4.7813e-09, -0.177938, -3.51588e-09, 0.249479, 0, 0, 0 )
+transform = Transform( 0.249479, -3.30461e-009, 0.177938, 6.48826e-010, 0.306434, 4.7813e-009, -0.177938, -3.51588e-009, 0.249479, 0, 0, 0 )
 script = SubResource( 2 )
 
 [node name="Bowl" parent="Kennel" index="3" instance=ExtResource( 3 )]
@@ -232,7 +285,7 @@ script = SubResource( 3 )
 
 [node name="Clipboard" parent="Desk" index="1" instance=ExtResource( 8 )]
 
-transform = Transform( 0.965926, 0.258819, 1.13133e-08, 0, -4.37114e-08, 1, 0.258819, -0.965926, -4.2222e-08, 7.30322, 1.56013, 0.563708 )
+transform = Transform( 0.965926, 0.258819, 1.13133e-008, 0, -4.37114e-008, 1, 0.258819, -0.965926, -4.2222e-008, 7.30322, 1.56013, 0.563708 )
 
 [node name="Scene Root" parent="Desk" index="2" instance=ExtResource( 9 )]
 
@@ -251,7 +304,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="desk1" parent="Desk" index="5" instance=ExtResource( 9 )]
 
-transform = Transform( -4.37114e-08, 0, 1.3, 0, 1, 0, -1, 0, -5.68248e-08, 10.1919, 0, 6.03003 )
+transform = Transform( -4.37114e-008, 0, 1.3, 0, 1, 0, -1, 0, -5.68248e-008, 10.1919, 0, 6.03003 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="chair1" parent="Desk" index="6" instance=ExtResource( 10 )]
@@ -309,7 +362,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.44067, 1.25772, 0 )
 
 [node name="BackWall" type="Spatial" parent="." index="4"]
 
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15, 0, 2 )
+transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 15, 0, 2 )
 
 [node name="Scene Root" parent="BackWall" index="0" instance=ExtResource( 18 )]
 
@@ -337,7 +390,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.270588, 0.243137, 0.470588, 1 )
 text = "nokill"
 percent_visible = 1.0
@@ -384,11 +437,11 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 theme = ExtResource( 23 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/disabled = SubResource( 7 )
-custom_styles/focus = SubResource( 6 )
-custom_styles/normal = SubResource( 8 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
 custom_fonts/font = ExtResource( 24 )
 custom_colors/font_color = Color( 0.462745, 0.392157, 0.996078, 1 )
 custom_colors/font_color_hover = Color( 0.619608, 0.760784, 0.909804, 1 )
@@ -419,11 +472,11 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/focus = SubResource( 11 )
-custom_styles/disabled = SubResource( 12 )
-custom_styles/normal = SubResource( 13 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/disabled = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
 custom_fonts/font = ExtResource( 24 )
 custom_colors/font_color = Color( 0.462745, 0.392157, 0.996078, 1 )
 custom_colors/font_color_hover = Color( 0.619608, 0.760784, 0.909804, 1 )
@@ -436,6 +489,55 @@ text = "start"
 flat = false
 align = 1
 _sections_unfolded = [ "custom_colors", "custom_styles" ]
+
+[node name="Loading" type="TextureProgress" parent="PlayButton" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 25 )
+texture_over = ExtResource( 26 )
+texture_progress = null
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+_sections_unfolded = [ "Textures" ]
+
+[node name="Label" type="Label" parent="PlayButton/Loading" index="0"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Loading..."
+valign = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect" ]
 
 [node name="ExitButton" type="Button" parent="." index="9"]
 
@@ -454,10 +556,10 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/focus = SubResource( 11 )
-custom_styles/normal = SubResource( 13 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 14 )
 custom_fonts/font = ExtResource( 24 )
 custom_colors/font_color = Color( 0.462745, 0.392157, 0.996078, 1 )
 custom_colors/font_color_hover = Color( 0.619608, 0.760784, 0.909804, 1 )
