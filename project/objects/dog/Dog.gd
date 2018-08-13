@@ -7,8 +7,7 @@ signal happiness_state_changed(new_state)
 var _debugging = false
 
 #Sounds
-export(AudioStreamOGGVorbis) var bark_1
-export(AudioStreamOGGVorbis) var bark_2
+const bark_sounds = [preload("Ruff.ogg"), preload("Bark.ogg")]
 
 #Properties of doggo
 const SCALE_RANGE = {
@@ -275,9 +274,7 @@ func _toggle_sit_stand():
 
 func _bark():
 	#Pick a random bark
-	var all_barks = [bark_1, bark_2]
-	var index = randi() % all_barks.size()
-	var bark = all_barks[index]
+	var bark = Helpers.pick_randomly_from_array(bark_sounds)
 	
 	#Play it
 	$BarkSprite.visible = true

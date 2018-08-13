@@ -1,5 +1,8 @@
 extends Spatial
 
+#Sounds
+const scoop_sounds = [preload("Scoop.ogg")]
+
 #Materials to use for normal and highlight
 export(Material) var normal_material
 export(Material) var highlight_material
@@ -84,6 +87,11 @@ func on_player_action():
 		#Let the player know!
 		var toast = "Grabbed some dog food"
 		get_tree().call_group("toast", "toast", toast)
+		
+		#Play the sound
+		var scoop_sound = Helpers.pick_randomly_from_array(scoop_sounds)
+		$AudioStreamPlayer3D.stream = scoop_sound
+		$AudioStreamPlayer3D.play()
 
 func _on_ActionArea_body_entered(body):
 	#For now, assume it's the player

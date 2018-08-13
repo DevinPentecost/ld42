@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Scoop.ogg-c738276a60952f7ea31348c873cac3be.oggstr"
+
+[deps]
+
+source_file="res://objects/food_bucket/Scoop.ogg"
+dest_files=[ "res://.import/Scoop.ogg-c738276a60952f7ea31348c873cac3be.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

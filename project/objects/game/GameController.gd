@@ -122,13 +122,13 @@ func player_feed_kennel(kennel_node):
 	if can_player_spend_food():
 		#We spend that food
 		var remaining_food = spend_player_food()
-		print("Remaining food: ", remaining_food)
 		
 		#Tell the kennel to be happy or whatever
-		pass
+		kennel_node._active_dog_node.feed()
+		kennel_node.play_pour_sound()
+		
 	else:
 		#We need to alert folks that there wasn't enough food
-		print("OUT OF FOOD")
 		emit_signal("not_enough_food")
 
 func _on_Kennel_dog_adopted(kennel):

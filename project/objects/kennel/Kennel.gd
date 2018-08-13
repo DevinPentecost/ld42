@@ -10,6 +10,9 @@ export(bool) var _force_dog_spawn = false #DEBUG ONLY!
 var _active_dog_node = null
 var _active = false
 
+#Sounds
+const pour_sounds = [preload("Pour1.ogg"), preload("Pour2.ogg")]
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -81,9 +84,11 @@ func on_player_action():
 	if _active and _active_dog_node:
 		#We respond!
 		get_tree().call_group("game_controller", "player_feed_kennel", self)
-		_active_dog_node.feed()
-	
-	pass
+		
+func play_pour_sound():
+	var pour_sound = Helpers.pick_randomly_from_array(pour_sounds)
+	$AudioStreamPlayer3D.stream = pour_sound
+	$AudioStreamPlayer3D.play()
 
 func _on_ActionArea_body_entered(body):
 	#For now, assume it's the player

@@ -284,24 +284,19 @@ func game_over():
 	#Uh oh!
 	_play_sfx(SoundEffectType.LOSE)
 
-func _pick_randomly_from_array(choice_array):
-	var array_size = choice_array.size()
-	var selection = randi()%array_size
-	return choice_array[selection]
-
 func _play_sfx(sound_type):
 	# Play one of the provided sound effects
 	# Why doesn't godot have a sane way to create sound effect libraries?
 	var player = null
 	match sound_type:
 		SoundEffectType.EAT:
-			player = _pick_randomly_from_array([$AudioPlayerEat0])
+			player = Helpers.pick_randomly_from_array([$AudioPlayerEat0])
 			pass
 		SoundEffectType.LOSE:
-			player = _pick_randomly_from_array([$AudioPlayerLose0, $AudioPlayerLose1])
+			player = Helpers.pick_randomly_from_array([$AudioPlayerLose0, $AudioPlayerLose1])
 			pass
 		SoundEffectType.ADOPT:
-			player = _pick_randomly_from_array([$AudioPlayerAdopted0, $AudioPlayerAdopted1, $AudioPlayerAdopted2, $AudioPlayerAdopted3])
+			player = Helpers.pick_randomly_from_array([$AudioPlayerAdopted0, $AudioPlayerAdopted1, $AudioPlayerAdopted2, $AudioPlayerAdopted3])
 			pass
 	
 	#Play the sound
