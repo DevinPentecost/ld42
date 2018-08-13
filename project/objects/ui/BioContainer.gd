@@ -2,7 +2,7 @@ extends VBoxContainer
 
 onready var _tween = $Tween
 const TWEEN_DURATION = 0.25
-const HIDE_DISTANCE = 15 + 300
+const HIDE_DISTANCE = 15 + 512
 var _start_position = null
 
 func _ready():
@@ -23,7 +23,8 @@ func _ready():
 func update_dog(dog_node):
 	#Was a dog passed?
 	if not dog_node:
-		_show_empty_kennel()
+		hide(true)
+		#_show_empty_kennel()
 		return
 		
 	#Update information about the dog

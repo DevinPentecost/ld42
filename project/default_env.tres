@@ -4,7 +4,7 @@
 
 background_mode = 1
 background_sky_custom_fov = 0.0
-background_color = Color( 0.938461, 0.962989, 0.964844, 1 )
+background_color = Color( 0.960784, 0.956863, 0.921569, 1 )
 background_energy = 1.0
 background_canvas_max_layer = 0
 ambient_light_color = Color( 0, 0, 0, 1 )
@@ -77,5 +77,5 @@ adjustment_enabled = false
 adjustment_brightness = 1.0
 adjustment_contrast = 1.0
 adjustment_saturation = 1.0
-_sections_unfolded = [ "Resource" ]
+_sections_unfolded = [ "Background", "Resource" ]
 
