@@ -11,7 +11,7 @@
 [ext_resource path="res://fonts/IBMgameover.tres" type="DynamicFont" id=9]
 [ext_resource path="res://fonts/IBM72.tres" type="DynamicFont" id=10]
 
-[node name="GUI" type="Node" groups=[
+[node name="GUI" type="Node" index="0" groups=[
 "gui",
 ]]
 
