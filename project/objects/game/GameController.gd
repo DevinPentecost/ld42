@@ -21,13 +21,13 @@ onready var _player = $"../Player"
 onready var _game_grid = $"../GameGrid"
 
 #Food
-const MAX_PLAYER_FOOD = 10
+const MAX_PLAYER_FOOD = 6
 var _player_food = MAX_PLAYER_FOOD setget _set_player_food
 
 #Dog spawning
 onready var _spawn_timer = $SpawnTimer
-const MIN_DOG_SPAWN_TIME = 10
-const MAX_DOG_SPAWN_TIME = 15
+const MIN_DOG_SPAWN_TIME = 15
+const MAX_DOG_SPAWN_TIME = 25
 var _all_kennels = []
 var _empty_kennels = []
 
@@ -42,10 +42,10 @@ func _ready():
 	_initialize_kennels()
 	
 	#Spawn the first dogs
-	_spawn_dog()
-	_spawn_dog()
-	_spawn_dog()
-	_spawn_dog()
+	call_deferred("_spawn_dog")
+	call_deferred("_spawn_dog")
+	call_deferred("_spawn_dog")
+	call_deferred("_spawn_dog")
 	_start_dog_spawn()
 	
 	#Track every frame
@@ -54,6 +54,13 @@ func _ready():
 	#Let the player know when a dog is adopted
 	connect("dog_adopted", _player, "_on_GameController_dog_adopted")
 	
+	#Update the gui
+	_update_gui()
+	
+func _update_gui():
+	_update_score()
+	emit_signal("food_changed", _player_food, MAX_PLAYER_FOOD)
+	emit_signal("open_kennels_changed", _empty_kennels.size(), _all_kennels.size())
 
 func _process(delta):
 	#Add to the time alive

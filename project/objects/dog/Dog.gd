@@ -15,8 +15,8 @@ const SCALE_RANGE = {
 	'y': Vector2(0.6, 1.4),
 	'z': Vector2(0.6, 1.2)
 }
-const TEND_RATE_RANGE = Vector2(0.1, 0.15)
-const ADOPTION_RATE_RANGE = Vector2(0.1, 0.15)
+const TEND_RATE_RANGE = Vector2(0.02, 0.025)
+const ADOPTION_RATE_RANGE = Vector2(0.02, 0.03)
 const COLOR_RANGE = {
 	'r': Vector2(.6, .9),
 	'g': Vector2(.5, .8),
@@ -33,8 +33,8 @@ export(String) var description = "This hound needs a description!"
 export(float) var dog_scale = Vector3(1,1,1)
 export(Texture) var base_texture
 export(Color) var tint = Color(1,1,1)
-export(float) var tend_rate = 0.0001
-export(float) var adoption_rate = 0.01
+export(float) var tend_rate = 0.1
+export(float) var adoption_rate = 0.5
 var _secondCounter = 0.0
 
 # Refs to other nodes
@@ -50,7 +50,7 @@ const MIN_START_HAPPINESS = 0.1
 const MAX_START_HAPPINESS = 0.8
 const MIN_ADOPTION_HAPPINESS = 0.3
 const ABONDONDED_ADOPTIONDECAY = 0.0003
-const ADOPTION_CHANCERATIO = 0.2 # this * adoption meter is chance of early adoption per second
+const ADOPTION_CHANCERATIO = 0.3 # this * adoption meter is chance of early adoption per second
 var happiness = rand_range(MIN_START_HAPPINESS, MAX_START_HAPPINESS)
 var adoption = 0
 
@@ -142,21 +142,22 @@ func _update_status(delta):
 	#Update adoption meter depending on happiness
 	var new_state = null
 	if happiness >= MIN_ADOPTION_HAPPINESS:
-		adoption += adoption_rate * delta * max(min(pow(happiness, 3), 1), 0.1)
-		#We are grumpy, let people know
+		adoption += adoption_rate * delta * max(min(pow(happiness, 2), 1), 0.12)
+		
+		#We aren't grumpy, let people know
 		new_state = DogHappinessState.HAPPY
 		emojiRef.ShowHeart(10)
 	elif happiness <= 0.0:
 		adoption -= ABONDONDED_ADOPTIONDECAY * delta
 		emojiRef.ShowHeartBroken(10)
 		
-		#We are grumpy, let people know
+		#We are starving, let people know
 		new_state = DogHappinessState.BROKEN
 		
 	else:
 		
 		#We are grumpy, let people know
-		new_state = DogHappinessState.ANGRY		
+		new_state = DogHappinessState.ANGRY
 		emojiRef.ShowAnger(10)
 	
 	if _current_happiness_state != new_state:
@@ -174,8 +175,10 @@ func _update_status(delta):
 		# Adoption can occur earlier by chance.
 		if _secondCounter > 1.0:
 			_secondCounter = 0.0
-			randomize()
-			if randf() < adoption * ADOPTION_CHANCERATIO:
+			
+			#Since this is happening every frame, let's normalize by 'chance per second'
+			var adoption_chance = adoption * ADOPTION_CHANCERATIO * delta
+			if randf() < adoption_chance:
 				#Someone adopted us
 				emit_signal("adopted")
 				set_process(false)

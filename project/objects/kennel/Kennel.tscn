@@ -20,7 +20,7 @@ extents = Vector3( 0.1, 1, 2 )
 
 [sub_resource type="BoxShape" id=3]
 
-extents = Vector3( 1, 0.25, 0.5 )
+extents = Vector3( 0.5, 0.25, 0.5 )
 
 [sub_resource type="CubeMesh" id=4]
 
@@ -38,7 +38,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[node name="Kennel" type="Spatial" index="0" groups=[
+[node name="Kennel" type="Spatial" groups=[
 "kennel",
 ]]
 
@@ -117,7 +117,7 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="ActionArea" index="0"]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.827428, 0.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0 )
 shape = SubResource( 3 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
