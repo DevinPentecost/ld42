@@ -88,4 +88,4 @@ func _on_Kennel_dog_status_changed(kennel):
 func _on_GameOver_pressed():
 	
 	print("RESTART THE GAME HERE!")
-	pass # replace with function body
+	get_tree().change_scene("res://scenes/StartScreen.tscn")
