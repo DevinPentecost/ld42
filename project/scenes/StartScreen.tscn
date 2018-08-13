@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://objects/kennel/kennel.dae" type="PackedScene" id=1]
 [ext_resource path="res://objects/dog/dog.dae" type="PackedScene" id=2]
@@ -18,6 +18,36 @@
 [ext_resource path="res://objects/decor/window.dae" type="PackedScene" id=16]
 [ext_resource path="res://objects/decor/window2.dae" type="PackedScene" id=17]
 [ext_resource path="res://objects/decor/picture.dae" type="PackedScene" id=18]
+[ext_resource path="res://objects/ui/TutorialDialog.tscn" type="PackedScene" id=19]
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends Node
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here	
+	pass
+
+
+func _start_tutorial():
+	#Get it going
+	$PopupDialog.popup_centered(Vector2(50, 50))
+	$PopupDialog.show_next_tutorial()
+
+func _on_TutorialButton_pressed():
+	
+	#Prod the tutorial
+	_start_tutorial()
+
+func _on_PlayButton_pressed():
+	#Switch to the other scene
+	pass # replace with function body
+"
 
 [sub_resource type="GDScript" id=2]
 
@@ -58,7 +88,11 @@ func _ready():
 
 [node name="StartScreen" type="Node" index="0"]
 
-[node name="Camera" type="Camera" parent="." index="0"]
+script = SubResource( 3 )
+
+[node name="Camera" type="Camera" parent="." index="0" groups=[
+"camera",
+]]
 
 transform = Transform( 0.597322, 0.396212, -0.697297, 0, 0.869445, 0.494029, 0.802002, -0.295095, 0.519338, -0.165882, 5.51998, 6.57832 )
 keep_aspect = 1
@@ -74,9 +108,8 @@ size = 11.83
 near = 0.05
 far = 100.0
 
-[node name="Kennel" type="Spatial" parent="." index="1" instance=ExtResource( 1 )]
+[node name="Kennel" parent="." index="1" instance=ExtResource( 1 )]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
@@ -89,7 +122,7 @@ script = SubResource( 2 )
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27002, 0, -2.12538 )
 
-[node name="Scene Root" parent="Kennel" index="4" instance=ExtResource( 4 )]
+[node name="Bucket" parent="Kennel" index="4" instance=ExtResource( 4 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9417, 0, 1.44904 )
 
@@ -180,5 +213,64 @@ _sections_unfolded = [ "Transform" ]
 [node name="Scene Root2" parent="BackWall" index="1" instance=ExtResource( 18 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
+
+[node name="PopupDialog" parent="." index="5" instance=ExtResource( 19 )]
+
+visible = false
+tutorial_targets = [ NodePath("../Desk/Person"), NodePath("../Kennel/Bucket"), NodePath("../Kennel/Dog") ]
+tutorial_texts = [ "You work at a No-Kill Shelter. Move around and keep the dogs fed to have them adopted.
+Move with the arrow keys, or WASD/IJKL", "This bucket will refill your food, so if you run out make sure to load up!
+You can grab food and feed dogs with the action keys: Shift, Space, or Enter", "Feed dogs when they are hungry to keep them happy!
+New dogs will constantly appear in kennels, so make sure to keep an eye out for new hungry pups.
+If you run out of kennels, you'll lose the game!" ]
+
+[node name="TutorialButton" type="Button" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 12.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "How to Play"
+flat = false
+align = 1
+
+[node name="PlayButton" type="Button" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 12.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+flat = false
+align = 1
+
+[connection signal="pressed" from="TutorialButton" to="." method="_on_TutorialButton_pressed"]
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 
 

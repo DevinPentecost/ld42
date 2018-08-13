@@ -1,0 +1,114 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends AcceptDialog
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+const TWEEN_DURATION = 1
+
+export(Array, NodePath) var tutorial_targets = []
+export(Array, String) var tutorial_texts = []
+var _current_tutorial = -1
+var _current_camera = null
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+	
+	#Get the camera
+	_current_camera = get_tree().get_nodes_in_group(\"camera\")[0]
+	#Prep all the targets
+	var new_targets = []
+	for target_path in tutorial_targets:
+		var target_node = get_node(target_path)
+		new_targets.append(target_node)
+	tutorial_targets = new_targets
+	
+func show_next_tutorial():
+	
+	#Increment the index
+	_current_tutorial += 1
+	
+	#Are we done?
+	if _current_tutorial >= tutorial_targets.size():
+		_current_tutorial = -1
+		
+		#Go away
+		$Tween.interpolate_property(self, \"modulate\", Color(1, 1, 1), Color(1, 1, 1, 0), TWEEN_DURATION, Tween.TRANS_QUAD, Tween.EASE_OUT)
+		$Tween.start()
+		yield($Tween,\"tween_completed\")
+		visible = false
+		modulate = Color(1, 1, 1, 1)
+		
+	else:
+		#We can tween to the spot
+		var target_node = tutorial_targets[_current_tutorial]
+		var target_text = tutorial_texts[_current_tutorial]
+		
+		#Get the location to go to
+		var target_point = _current_camera.unproject_position(target_node.global_transform.origin)
+		
+		#Set our text
+		dialog_text = target_text
+		
+		#Move to position
+		$Tween.interpolate_property(self, \"rect_global_position\", rect_global_position, target_point, TWEEN_DURATION, Tween.TRANS_QUAD,Tween.EASE_OUT)
+		$Tween.start()
+	
+	#Get the target node and text
+	
+	
+#func _process(delta):
+#	# Called every frame. Delta is time since last frame.
+#	# Update game logic here.
+#	pass
+
+
+func _on_PopupDialog_confirmed():
+	
+	#User hit okay, show next
+	show_next_tutorial()"
+
+[node name="PopupDialog" type="AcceptDialog"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 272.0
+margin_bottom = 109.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = true
+window_title = "How to Play"
+resizable = false
+dialog_text = "TUTORIALTUTORIAL
+TUTORIALTUTORIALTUTORIALTUTORIAL
+TUTORIALTUTORIALTUTORIAL
+TUTORIAL"
+dialog_hide_on_ok = false
+script = SubResource( 1 )
+_sections_unfolded = [ "Dialog", "Rect" ]
+tutorial_targets = null
+tutorial_texts = null
+
+[node name="Tween" type="Tween" parent="." index="3"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[connection signal="confirmed" from="." to="." method="_on_PopupDialog_confirmed"]
+
+
