@@ -6,6 +6,10 @@ signal happiness_state_changed(new_state)
 #Debbing
 var _debugging = false
 
+#Sounds
+export(AudioStreamOGGVorbis) var bark_1
+export(AudioStreamOGGVorbis) var bark_2
+
 #Properties of doggo
 const SCALE_RANGE = {
 	'x': Vector2(0.6, 1.6),
@@ -111,6 +115,10 @@ func _ready():
 	#Let the player know!
 	var toast = "%s needs a forever home!" % dog_name
 	get_tree().call_group("toast", "toast", toast)
+	
+	#Dogs have unique barks
+	$AudioStreamPlayer3D.pitch_scale = rand_range(0.75, 2)
+	$BarkSprite.visible = false
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
@@ -265,6 +273,19 @@ func _toggle_sit_stand():
 		_blend_to_state("sit", SIT_STAND_TIME)
 		_play_sit_animation()
 
+func _bark():
+	#Pick a random bark
+	var all_barks = [bark_1, bark_2]
+	var index = randi() % all_barks.size()
+	var bark = all_barks[index]
+	
+	#Play it
+	$BarkSprite.visible = true
+	$AudioStreamPlayer3D.stream = bark
+	$AudioStreamPlayer3D.play()
+	yield($AudioStreamPlayer3D, "finished")
+	$BarkSprite.visible = false
+
 func _reset_action_timer():
 	#Pick a time
 	$Timer.wait_time = rand_range(MIN_WAIT_TIME, MAX_WAIT_TIME)
@@ -272,7 +293,7 @@ func _reset_action_timer():
 	yield($Timer, "timeout")
 	
 	#Possible actions are rotate, toggle sit/stand, and move to new position
-	var actions = ['sit_stand', 'walk']
+	var actions = ['sit_stand', 'walk', 'bark']
 	if _animation_state != DogAnimationState.SIT:
 		actions.append('rotate')
 	
@@ -288,6 +309,9 @@ func _reset_action_timer():
 		'walk':
 			#Move somewhere new
 			_walk_to_point()
+		'bark':
+			#Make a noise
+			_bark()
 			
 	#We're here, set the timer to do something else
 	_reset_action_timer()

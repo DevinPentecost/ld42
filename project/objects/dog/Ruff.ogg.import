@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ruff.ogg-328829127daba246d413efc94a02cf35.oggstr"
+
+[deps]
+
+source_file="res://objects/dog/Ruff.ogg"
+dest_files=[ "res://.import/Ruff.ogg-328829127daba246d413efc94a02cf35.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
