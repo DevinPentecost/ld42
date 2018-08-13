@@ -1,0 +1,184 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://objects/kennel/kennel.dae" type="PackedScene" id=1]
+[ext_resource path="res://objects/dog/dog.dae" type="PackedScene" id=2]
+[ext_resource path="res://objects/kennel/bowl.dae" type="PackedScene" id=3]
+[ext_resource path="res://objects/food_bucket/bucket.dae" type="PackedScene" id=4]
+[ext_resource path="res://objects/decor/broom.dae" type="PackedScene" id=5]
+[ext_resource path="res://objects/kennel/mat.dae" type="PackedScene" id=6]
+[ext_resource path="res://objects/player/char.dae" type="PackedScene" id=7]
+[ext_resource path="res://objects/decor/counter.dae" type="PackedScene" id=8]
+[ext_resource path="res://objects/decor/clipboard.dae" type="PackedScene" id=9]
+[ext_resource path="res://objects/decor/chair.dae" type="PackedScene" id=10]
+[ext_resource path="res://objects/decor/radio.dae" type="PackedScene" id=11]
+[ext_resource path="res://objects/decor/plant.dae" type="PackedScene" id=12]
+[ext_resource path="res://objects/decor/plant2.dae" type="PackedScene" id=13]
+[ext_resource path="res://objects/decor/door.dae" type="PackedScene" id=14]
+[ext_resource path="res://objects/decor/clock.dae" type="PackedScene" id=15]
+[ext_resource path="res://objects/decor/window.dae" type="PackedScene" id=16]
+[ext_resource path="res://objects/decor/window2.dae" type="PackedScene" id=17]
+[ext_resource path="res://objects/decor/picture.dae" type="PackedScene" id=18]
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Spatial
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+	$AnimationPlayer.play(\"sit\")
+	
+	pass
+"
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Spatial
+tool
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called when the node is added to the scene for the first time.
+	# Initialization here
+	
+	$AnimationPlayer.play(\"idle\")
+	pass
+
+#func _process(delta):
+#	# Called every frame. Delta is time since last frame.
+#	# Update game logic here.
+#	pass
+"
+
+[node name="StartScreen" type="Node" index="0"]
+
+[node name="Camera" type="Camera" parent="." index="0"]
+
+transform = Transform( 0.597322, 0.396212, -0.697297, 0, 0.869445, 0.494029, 0.802002, -0.295095, 0.519338, -0.165882, 5.51998, 6.57832 )
+keep_aspect = 1
+cull_mask = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+doppler_tracking = 0
+projection = 0
+current = false
+fov = 70.0
+size = 11.83
+near = 0.05
+far = 100.0
+
+[node name="Kennel" type="Spatial" parent="." index="1" instance=ExtResource( 1 )]
+
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Dog" parent="Kennel" index="2" instance=ExtResource( 2 )]
+
+transform = Transform( 0.249479, -3.30461e-009, 0.177938, 6.48826e-010, 0.306434, 4.7813e-009, -0.177938, -3.51588e-009, 0.249479, 0, 0, 0 )
+script = SubResource( 2 )
+
+[node name="Bowl" parent="Kennel" index="3" instance=ExtResource( 3 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27002, 0, -2.12538 )
+
+[node name="Scene Root" parent="Kennel" index="4" instance=ExtResource( 4 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9417, 0, 1.44904 )
+
+[node name="Scene Root2" parent="Kennel" index="5" instance=ExtResource( 5 )]
+
+transform = Transform( 0.710878, -0.176761, 0.680741, 0, 0.967903, 0.251325, -0.703315, -0.178661, 0.688061, 2.40882, 0, -1.39881 )
+
+[node name="Scene Root3" parent="Kennel" index="6" instance=ExtResource( 6 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.06846, 0, 0 )
+
+[node name="Desk" type="Spatial" parent="." index="2"]
+
+editor/display_folded = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="Person" parent="Desk" index="0" instance=ExtResource( 7 )]
+
+transform = Transform( 0.176521, 0, -0.573446, 0, 0.6, 0, 0.573446, 0, 0.176521, 11.3284, -1, 2.92039 )
+script = SubResource( 1 )
+
+[node name="Scene Root" parent="Desk" index="1" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Scene Root" parent="Desk/Scene Root" index="2" instance=ExtResource( 9 )]
+
+transform = Transform( 0.965926, 0.258819, 1.13133e-008, 0, -4.37114e-008, 1, 0.258819, -0.965926, -4.2222e-008, -0.696777, 1.56013, 0.563708 )
+
+[node name="Scene Root2" parent="Desk" index="2" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Scene Root3" parent="Desk" index="3" instance=ExtResource( 8 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Scene Root4" parent="Desk" index="4" instance=ExtResource( 8 )]
+
+transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 10, 0, 6 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Scene Root5" parent="Desk" index="5" instance=ExtResource( 10 )]
+
+transform = Transform( -0.0287897, 0, -0.999585, 0, 1, 0, 0.999585, 0, -0.0287897, 12.1547, -0.443547, 2.83291 )
+
+[node name="Scene Root6" parent="Desk" index="6" instance=ExtResource( 11 )]
+
+transform = Transform( 0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, 0.642788, 7.61985, 1.5963, 2 )
+
+[node name="Scene Root7" parent="Desk" index="7" instance=ExtResource( 12 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7475, 0.502575, 6.40591 )
+
+[node name="Scene Root8" parent="Desk" index="8" instance=ExtResource( 13 )]
+
+transform = Transform( 0.572652, 0, 0, 0, 0.572652, 0, 0, 0, 0.572652, 8.44531, -0.508455, 7.91921 )
+
+[node name="DoorWall" type="Spatial" parent="." index="3"]
+
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2 )
+
+[node name="Scene Root" parent="DoorWall" index="0" instance=ExtResource( 14 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.03162, 0, 0 )
+
+[node name="Scene Root2" parent="DoorWall" index="1" instance=ExtResource( 15 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0 )
+
+[node name="Scene Root3" parent="DoorWall" index="2" instance=ExtResource( 16 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.459382, 0 )
+
+[node name="BackWall" type="Spatial" parent="." index="4"]
+
+editor/display_folded = true
+transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 15, 0, 2 )
+
+[node name="Scene Root" parent="BackWall" index="0" instance=ExtResource( 17 )]
+
+_sections_unfolded = [ "Transform" ]
+
+[node name="Scene Root2" parent="BackWall" index="1" instance=ExtResource( 18 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
+
+
