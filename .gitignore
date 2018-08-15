@@ -2,3 +2,9 @@
 *.blend1
 
 *.png~
+
+asset_src/3d/scene\.blend
+
+asset_src/3d/dogtexsleep\.png
+
+asset_src/3d/chartexsleep\.png
