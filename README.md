@@ -9,3 +9,4 @@ made in godot 3.0
 some of the tools and resources used: [arne's jmp palette](http://androidarts.com/palette/16pal.htm), krita, blender, audacity, kenney emoticon sprites
 
 
+![](https://i.imgur.com/I3tjoZZ.png)
